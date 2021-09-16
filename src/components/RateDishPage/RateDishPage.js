@@ -12,7 +12,7 @@ const RateDishForm = () => {
     restaurantsList: [],
     review: {
       restaurant: "",
-      dish: "",
+      dish: mockDishesList[0],//TODO: Set to "" once mock data is removed.
       rating: "10",
     },
     reviewSending: false,
@@ -39,10 +39,23 @@ const RateDishForm = () => {
   const handleRestaurantGet = async (event) => {
     event.preventDefault();
     const restaurantsData = await getRestaurantsByLocation(location);
-    console.log(restaurantsData);
+    console.log(restaurantsData); //TODO: Remove.
     await setRestaurantsList(restaurantsData.restaurants);
-    console.log(restaurantsList);
+    await setReview({
+      ...review,
+      restaurant: restaurantsData.restaurants[0].id,
+    })
   };
+/*
+  const handleDishesGet = async (event) => {
+//TODO: This handler will invoke the controller that gets a list of foods from our database.
+setReview({
+      ...review,
+      dish: mockDishesList[0],
+    })
+  };
+  handleDishesGet(); //TODO: Delete this line when the handler is properly set up.
+*/
   
   const handleReviewChange = (event) => {
     setReview({
@@ -56,9 +69,6 @@ const RateDishForm = () => {
     console.log(review);
     //TODO: This component will invoke the form submission.
   }
-
-  const generateLocationList = () => {
-  };
 
     return (
       <>

@@ -1,9 +1,6 @@
-import { useState } from "react";
-
 const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitRatingForm }) => {
 
   if (restaurantsList.length > 0) {
-    console.log(restaurantsList);
     return (
       <>
         <form onSubmit={handleSubmitRatingForm}>
@@ -15,7 +12,7 @@ const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRat
               name="restaurant"
               onChange={handleFieldChange}
             >
-            {restaurantsList.map(restaurant => <option value={restaurant.name} key={restaurant.id}>{restaurant.name}</option>)};
+            {restaurantsList.map(restaurant => <option value={restaurant.id} key={restaurant.id}>{restaurant.name}</option>)};
             </select>
           </label>
 
