@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import getRestaurantsByLocation from "../../controllers/getRestaurantsByLocation";
 import RatingForm from "./RatingForm";
 
-import mockFoodsList from '../../mockData/mockFoodsList';
+import mockDishesList from '../../mockData/mockDishesList';
 
 const RateDishForm = () => {
 
@@ -11,10 +11,9 @@ const RateDishForm = () => {
     restaurantsLoading: false,
     restaurantsList: [],
     review: {
-      restaurantId: "",
-      food: "",
-      rating: "1",
-      comment: "",
+      restaurant: "",
+      dish: "",
+      rating: "10",
     },
     reviewSending: false,
     reviewSubmittedSuccess: "",
@@ -52,6 +51,12 @@ const RateDishForm = () => {
     });
   };
 
+  const handleSubmitRatingForm = (event) => {
+    event.preventDefault();
+    console.log(review);
+    //TODO: This component will invoke the form submission.
+  }
+
   const generateLocationList = () => {
   };
 
@@ -74,7 +79,10 @@ const RateDishForm = () => {
 
           <RatingForm
             restaurantsList={restaurantsList}
-            foodsList={mockFoodsList}
+            dishesList={mockDishesList}
+            currentRating={review.rating}
+            handleFieldChange={handleReviewChange}
+            handleSubmitRatingForm={handleSubmitRatingForm}
           />
       </div>
     </>

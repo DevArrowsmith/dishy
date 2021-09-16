@@ -1,41 +1,55 @@
 import { useState } from "react";
 
-const RatingForm = ({ restaurantsList, foodsList }) => {
-
-  const initialState = {
-    rating: 10
-  }
-
-  const [rating, setRating] = useState(initialState.rating);
-
-  const handleRatingChange = (event) => {
-    setRating(event.target.value)
-  };
-
+const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitRatingForm }) => {
 
   if (restaurantsList.length > 0) {
     console.log(restaurantsList);
     return (
       <>
-        <p>Choose your restaurant:</p>
-        <select>
-          {restaurantsList.map(restaurant => <option value={restaurant.name} key={restaurant.id}>{restaurant.name}</option>)};
-        </select>
-        <p>What did you eat?</p>
-        <select>
-          {foodsList.map(food => <option value={food} key={food}>{food}</option>)}
-        </select>
-        <p>Rate it!</p>
-        <input 
-          type="range"
-          id="rating"
-          name="rating"
-          min="1"
-          max="10"
-          step="1"
-          onChange={handleRatingChange}
-        />
-        <p>Your rating: {rating}</p>
+        <form onSubmit={handleSubmitRatingForm}>
+
+          <label htmlFor="restaurant">
+            Choose your restaurant:
+            <select
+              id="restaurant"
+              name="restaurant"
+              onChange={handleFieldChange}
+            >
+            {restaurantsList.map(restaurant => <option value={restaurant.name} key={restaurant.id}>{restaurant.name}</option>)};
+            </select>
+          </label>
+
+          <label htmlFor="dish">
+            What did you eat?
+            <select
+              id="dish"
+              name="dish"
+              onChange={handleFieldChange}
+            >
+            {dishesList.map(dish => <option value={dish} key={dish}>{dish}</option>)}
+            </select>
+          </label>
+
+          <label htmlFor="rating">
+            Rate it!
+            <input 
+              type="range"
+              id="rating"
+              name="rating"
+              min="1"
+              max="10"
+              step="1"
+              onChange={handleFieldChange}
+            />
+            <p>Your rating: {currentRating}</p>
+          </label>
+
+          <button type="submit"
+          className="RatingForm-submit-button">
+            Rate it!
+          </button>
+
+        </form>
       </>
     )
   } else {
