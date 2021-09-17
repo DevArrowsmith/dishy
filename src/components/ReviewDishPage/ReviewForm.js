@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "../../styles/ReviewForm.css";
 
 const ReviewForm = ({ restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitReviewForm }) => {
@@ -55,5 +56,15 @@ const ReviewForm = ({ restaurantsList, dishesList, handleFieldChange, currentRat
     return null;
   };
 };
+
+
+ReviewForm.propTypes = {
+  restaurantsList: PropTypes.arrayOf(PropTypes.object),
+  dishesList: PropTypes.arrayOf(PropTypes.string),
+  handleFieldChange: PropTypes.func.isRequired,
+  currentRating: PropTypes.number.isRequired,
+  handleSubmitReviewForm: PropTypes.func.isRequired, 
+};
+
 
 export default ReviewForm;
