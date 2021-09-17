@@ -1,10 +1,10 @@
 import '../styles/App.css';
-import RateDishForm from './RateDishPage/RateDishPage.js';
+import ReviewDishPage from './ReviewDishPage/ReviewDishPage.js';
 
 function App() {
   return (
     <div className="App">
-      <RateDishForm />
+      <ReviewDishPage />
     </div>
   );
 }

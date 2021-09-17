@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import "../../styles/ReviewDishPage.css";
 import getRestaurantsByLocation from "../../controllers/getRestaurantsByLocation";
-import RatingForm from "./RatingForm";
+import ReviewForm from "./ReviewForm";
 
 import mockDishesList from '../../mockData/mockDishesList';
 
-const RateDishForm = () => {
+const ReviewDishPage = () => {
 
   const initialState = {
     location: "",
@@ -64,7 +65,7 @@ setReview({
     });
   };
 
-  const handleSubmitRatingForm = (event) => {
+  const handleSubmitReviewForm = (event) => {
     event.preventDefault();
     console.log(review);
     //TODO: This component will invoke the form submission.
@@ -87,16 +88,16 @@ setReview({
             Search
           </button>
 
-          <RatingForm
+          <ReviewForm
             restaurantsList={restaurantsList}
             dishesList={mockDishesList}
             currentRating={review.rating}
             handleFieldChange={handleReviewChange}
-            handleSubmitRatingForm={handleSubmitRatingForm}
+            handleSubmitReviewForm={handleSubmitReviewForm}
           />
       </div>
     </>
   );
 };
 
-export default RateDishForm;
+export default ReviewDishPage;

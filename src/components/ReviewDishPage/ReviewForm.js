@@ -1,9 +1,11 @@
-const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitRatingForm }) => {
+import "../../styles/ReviewForm.css";
+
+const ReviewForm = ({ restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitReviewForm }) => {
 
   if (restaurantsList.length > 0) {
     return (
       <>
-        <form onSubmit={handleSubmitRatingForm}>
+        <form onSubmit={handleSubmitReviewForm}>
 
           <label htmlFor="restaurant">
             Choose your restaurant:
@@ -42,7 +44,7 @@ const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRat
           </label>
 
           <button type="submit"
-          className="RatingForm-submit-button">
+          className="ReviewForm-submit-button">
             Rate it!
           </button>
 
@@ -54,4 +56,4 @@ const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRat
   };
 };
 
-export default RatingForm;
+export default ReviewForm;
