@@ -1,11 +1,21 @@
 const axios = require('axios');
 
-const saveRestaurant = async (review) => { 
+const getAllDishes = async () => {  
+  return axios.get(`http://localhost:4000/dish/all`)
+  .then((response) => {
+    return({
+      status: response.status,
+      dishes: response.data
+    })
+  });
+};
+
+const saveRestaurant = async (review, coordinates) => { 
+  console.log(coordinates.longitude)
   return axios.post(`http://localhost:4000/restaurant`, {
-    yelp_id: review.restaurant,
-  /*name: review.restaurant.name,
-    longitude: review.restaurant.coordinates.longitude,
-    latitude: review.restaurant.coordinates.latitude, */
+    yelp_id: review.restaurant,  
+    longitude: coordinates.longitude,
+    latitude: coordinates.latitude,
   })
   .then((response) => {
     return({
@@ -48,4 +58,4 @@ const saveRating = async (review,restaurantId,dishId) => {
 
 /*TODO: Create error handling.*/
 
-module.exports = { saveRestaurant, saveDish, saveRating }
+module.exports = { saveRestaurant, saveDish, saveRating, getAllDishes }
