@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/ReviewDishPage.css";
 import getRestaurantsByLocation from "../../controllers/getRestaurantsByLocation";
-import { saveRestaurant, saveDish, saveRating, getAllDishes } from "../../controllers/backendControllers"
+import { saveRestaurant, saveDish, saveRating, getDishes } from "../../controllers/backendControllers"
 import ReviewForm from "./ReviewForm";
 
 const ReviewDishPage = () => {  
@@ -48,7 +48,7 @@ const ReviewDishPage = () => {
 
   const handleDishesGet = async (event) => {
     event.preventDefault();
-    let dishesData = await getAllDishes();
+    let dishesData = await getDishes();
     await setDishesList(dishesData.dishes.map(dish=> dish.name));
     setReview({
         ...review,
@@ -65,9 +65,9 @@ const ReviewDishPage = () => {
 
   const handleSubmitReviewForm = async (event) => {
     event.preventDefault();
-    const coordinates = restaurantsList.find(restaurant=>restaurant.id===review.restaurant).coordinates
+    const targetRestaurant = restaurantsList.find(restaurant=>restaurant.id===review.restaurant)
     const newDish = await saveDish(review);
-    const newRestaurant = await saveRestaurant(review, coordinates);
+    const newRestaurant = await saveRestaurant(review, targetRestaurant);
     const newRating = await saveRating(review, newRestaurant.restaurant[0].id, newDish.dish[0].id)
   }
 

@@ -1,9 +1,14 @@
 import React, {useState} from "react";
 import "../../styles/FindDishPage.css";
 import distance from "../utils/geoLocation";
+import Search from "../FindDishPage/Search/Search"
+import SearchResults from "../FindDishPage/Search/SearchResults"
 
 const FindDishPage = () => {
-  const [coordinates,setCoordinates] = useState({longitude:0,latitude:0})
+  const [searchResults, setSearchResults] = useState([]);
+  console.log(searchResults)
+
+  /* const [coordinates,setCoordinates] = useState({longitude:0,latitude:0})
 
   function getLocation() {
     if (navigator.geolocation) {
@@ -14,12 +19,14 @@ const FindDishPage = () => {
     } else {
       // handle coordinates being refused
     }
-  }
+  } */
+
+
   return (
     <>
       <p id="demo"> This is a placeholder for the Find a Dish page.</p>
-      {coordinates.latitude}
-      {coordinates.longitude}
+      <Search setSearchResults={setSearchResults} />
+      <SearchResults searchResults={searchResults} />
     </>
   );
 };
