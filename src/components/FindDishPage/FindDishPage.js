@@ -1,32 +1,58 @@
-import React, {useState} from "react";
 import "../../styles/FindDishPage.css";
-import distance from "../utils/geoLocation";
-import Search from "../FindDishPage/Search/Search"
-import SearchResults from "../FindDishPage/Search/SearchResults"
+import React, {useState, useEffect} from "react";
+import RatingCard from "./RatingCard";
+import { getDishes, getRatings } from "../../controllers/backendControllers";
 
 const FindDishPage = () => {
-  const [searchResults, setSearchResults] = useState([]);
-  console.log(searchResults)
+  const [availableDishes, setAvailableDishes] = useState([]);
+  const [ratings, setRatings] = useState([]);
+  const [coordinates,setCoordinates] = useState({longitude:0,latitude:0})
+  const [filter, setFilter] = useState("")
+  const [showDishes, setShowDishes] = useState(false)
+  
 
-  /* const [coordinates,setCoordinates] = useState({longitude:0,latitude:0})
-
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position)=>{
-        setCoordinates({longitude: position.coords.longitude, latitude:position.coords.latitude})
-        console.log(distance(coordinates.longitude, coordinates.latitude, -2.27240371365973, 53.45083035825205))
-      });      
-    } else {
-      // handle coordinates being refused
+  useEffect(()=>{
+    async function fetchData(){
+      let dishes = await getDishes();
+      let ratings = await getRatings();
+      setAvailableDishes(dishes.dishes)
+      setRatings(ratings.dishes.map(dishes => dishes))
     }
-  } */
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=>{
+          setCoordinates({longitude: position.coords.longitude, latitude:position.coords.latitude})          
+        });      
+      } else {
+        // handle coordinates being refused
+      }
+    } 
+    fetchData();
+    getLocation()
+  },[])
+
+  const handleFilter = (e) =>{
+    e.preventDefault();
+    setFilter(e.target.name)
+    setShowDishes(!showDishes)
+  }
 
 
   return (
     <>
-      <p id="demo"> This is a placeholder for the Find a Dish page.</p>
-      <Search setSearchResults={setSearchResults} />
-      <SearchResults searchResults={searchResults} />
+      <div>
+        Find Dish: {availableDishes.map(dish => (
+          <button name={dish.name} onClick={handleFilter}>{dish.name}</button>
+        ))}
+        </div> 
+        {<div className="rating-card-column">
+          {ratings.filter(rating => rating.Dish.name===filter).map(rating => (
+            <div className="rating-card">
+              <RatingCard rating={rating} coordinates={coordinates} filter={filter}/>
+            </div>
+          ))}
+        </div>}      
     </>
   );
 };

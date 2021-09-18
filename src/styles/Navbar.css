@@ -1,8 +1,15 @@
 .Navbar {
-  height: 70px;
+  height: 80px;
   width: calc(100vw - 20px);
   padding: 0 10px;
-  background: linear-gradient(#171239 0%, #4E044E 86%, #F63ED4 90%, #33F2FF 94%, #A8EB12 96%, #FFFF51 98%);
+  background: linear-gradient(
+    #171239 0%,
+    #4e044e 86%,
+    #f63ed4 90%,
+    #33f2ff 94%,
+    #a8eb12 96%,
+    #ffff51 98%
+  );
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -11,6 +18,6 @@
 .Navbar-image {
   height: 54px;
   width: auto;
-  margin-top: 4px;
+  margin-top: 8px;
   margin-right: 10px;
 }

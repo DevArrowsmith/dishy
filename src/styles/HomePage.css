@@ -1,0 +1,28 @@
+.HomePage {
+  height: calc(100% - 80px);
+  width: 100%;
+  display: flex;
+  text-align: center;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.HomePage-header {
+  padding: 40px 0 20px 0;
+  margin: 0;
+}
+
+.HomePage-header img {
+  width: 80%;
+}
+
+.HomePage-title {
+  width: 80%;
+  font-size: 1.2rem;
+}
+
+.HomePage-buttons-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}

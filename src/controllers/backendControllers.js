@@ -10,6 +10,16 @@ const getDishes = async () => {
   });
 };
 
+const getRatings = async () => {  
+  return axios.get(`http://localhost:4000/rating/all`)
+  .then((response) => {
+    return({
+      status: response.status,
+      dishes: response.data
+    })
+  });
+};
+
 const getRestaurants = async () => {  
   return axios.get(`http://localhost:4000/restaurant`)
   .then((response) => {
@@ -69,4 +79,4 @@ const saveRating = async (review,restaurantId,dishId) => {
 
 /*TODO: Create error handling.*/
 
-module.exports = { saveRestaurant, saveDish, saveRating, getDishes, getRestaurants }
+module.exports = { saveRestaurant, saveDish, saveRating, getDishes, getRestaurants,getRatings }

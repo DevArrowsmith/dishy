@@ -1,5 +1,7 @@
 .App {
   height: 100vh;
-  widtht: 100vw;
-  background: linear-gradient(to bottom right, #171239 0%, #080C2C 25%, #080C2C 75%, #171239 100%);
-};
+  width: 100vw;
+  background-image: url("../assets/text-bg-2.png");
+  background-size: 300px auto;
+  background-position: center;
+}
