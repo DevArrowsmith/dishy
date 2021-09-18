@@ -14,7 +14,7 @@ const ReviewDishPage = () => {
     review: {
       restaurant: "",
       dish: mockDishesList[0],//TODO: Set to "" once mock data is removed.
-      rating: 10,
+      rating: "10",
     },
     reviewSending: false,
     reviewSubmittedSuccess: "",
