@@ -1,10 +1,14 @@
-const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitRatingForm }) => {
-
+const RatingForm = ({
+  restaurantsList,
+  dishesList,
+  handleFieldChange,
+  currentRating,
+  handleSubmitRatingForm,
+}) => {
   if (restaurantsList.length > 0) {
     return (
       <>
         <form onSubmit={handleSubmitRatingForm}>
-
           <label htmlFor="restaurant">
             Choose your restaurant:
             <select
@@ -12,24 +16,29 @@ const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRat
               name="restaurant"
               onChange={handleFieldChange}
             >
-            {restaurantsList.map(restaurant => <option value={restaurant.id} key={restaurant.id}>{restaurant.name}</option>)};
+              {restaurantsList.map((restaurant) => (
+                <option value={restaurant.id} key={restaurant.id}>
+                  {restaurant.name}
+                </option>
+              ))}
+              ;
             </select>
           </label>
 
           <label htmlFor="dish">
             What did you eat?
-            <select
-              id="dish"
-              name="dish"
-              onChange={handleFieldChange}
-            >
-            {dishesList.map(dish => <option value={dish} key={dish}>{dish}</option>)}
+            <select id="dish" name="dish" onChange={handleFieldChange}>
+              {dishesList.map((dish) => (
+                <option value={dish} key={dish}>
+                  {dish}
+                </option>
+              ))}
             </select>
           </label>
 
           <label htmlFor="rating">
             Rate it!
-            <input 
+            <input
               type="range"
               id="rating"
               name="rating"
@@ -41,17 +50,15 @@ const RatingForm = ({ restaurantsList, dishesList, handleFieldChange, currentRat
             <p>Your rating: {currentRating}</p>
           </label>
 
-          <button type="submit"
-          className="RatingForm-submit-button">
+          <button type="submit" className="RatingForm-submit-button">
             Rate it!
           </button>
-
         </form>
       </>
-    )
+    );
   } else {
     return null;
-  };
+  }
 };
 
 export default RatingForm;

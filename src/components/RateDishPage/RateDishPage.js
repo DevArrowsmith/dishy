@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import getRestaurantsByLocation from "../../controllers/getRestaurantsByLocation";
 import RatingForm from "./RatingForm";
+import { saveRestaurant, saveDish, saveRating } from "../../controllers/backendControllers"
 
 import mockDishesList from '../../mockData/mockDishesList';
 
@@ -30,7 +31,6 @@ const RateDishForm = () => {
   const [reviewSending, setReviewSending] = useState(initialState.reviewSending);
 
   const [reviewSubmittedSuccess, setReviewSubmittedSuccess] = useState(initialState.reviewSubmittedSuccess);
-  
 
   const handleLocationChange = (event) => {
     setLocation(event.target.value)
@@ -39,7 +39,7 @@ const RateDishForm = () => {
   const handleRestaurantGet = async (event) => {
     event.preventDefault();
     const restaurantsData = await getRestaurantsByLocation(location);
-    console.log(restaurantsData); //TODO: Remove.
+    //console.log(restaurantsData); //TODO: Remove.
     await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
       ...review,
@@ -64,9 +64,11 @@ setReview({
     });
   };
 
-  const handleSubmitRatingForm = (event) => {
+  const handleSubmitRatingForm = async (event) => {
     event.preventDefault();
-    console.log(review);
+    const dish = await saveDish(review);
+    const restaurant = await saveRestaurant(review);
+    const newRating = await saveRating(review, restaurant.restaurant[0].id, dish.dish[0].id)
     //TODO: This component will invoke the form submission.
   }
 
