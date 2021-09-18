@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import "../../styles/ReviewDishPage.css";
 import getRestaurantsByLocation from "../../controllers/getRestaurantsByLocation";
+<<<<<<< HEAD:src/components/RateDishPage/RateDishPage.js
 import RatingForm from "./RatingForm";
 import { saveRestaurant, saveDish, saveRating } from "../../controllers/backendControllers"
+=======
+import ReviewForm from "./ReviewForm";
+>>>>>>> 5d04e5818ac2f8d5ebf4ab1ff38c663fdaad6853:src/components/ReviewDishPage/ReviewDishPage.js
 
 import mockDishesList from '../../mockData/mockDishesList';
 
-const RateDishForm = () => {
+const ReviewDishPage = () => {
 
   const initialState = {
     location: "",
@@ -14,7 +19,7 @@ const RateDishForm = () => {
     review: {
       restaurant: "",
       dish: mockDishesList[0],//TODO: Set to "" once mock data is removed.
-      rating: "10",
+      rating: 10,
     },
     reviewSending: false,
     reviewSubmittedSuccess: "",
@@ -64,7 +69,11 @@ setReview({
     });
   };
 
+<<<<<<< HEAD:src/components/RateDishPage/RateDishPage.js
   const handleSubmitRatingForm = async (event) => {
+=======
+  const handleSubmitReviewForm = (event) => {
+>>>>>>> 5d04e5818ac2f8d5ebf4ab1ff38c663fdaad6853:src/components/ReviewDishPage/ReviewDishPage.js
     event.preventDefault();
     const dish = await saveDish(review);
     const restaurant = await saveRestaurant(review);
@@ -89,16 +98,20 @@ setReview({
             Search
           </button>
 
-          <RatingForm
+          <ReviewForm
             restaurantsList={restaurantsList}
             dishesList={mockDishesList}
             currentRating={review.rating}
             handleFieldChange={handleReviewChange}
-            handleSubmitRatingForm={handleSubmitRatingForm}
+            handleSubmitReviewForm={handleSubmitReviewForm}
           />
       </div>
     </>
   );
 };
 
+<<<<<<< HEAD:src/components/RateDishPage/RateDishPage.js
 export default RateDishForm;
+=======
+export default ReviewDishPage;
+>>>>>>> 5d04e5818ac2f8d5ebf4ab1ff38c663fdaad6853:src/components/ReviewDishPage/ReviewDishPage.js
