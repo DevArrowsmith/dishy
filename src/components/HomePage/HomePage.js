@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, HashRouter as Router } from "react-router-dom";
 import "../../styles/HomePage.css";
 
 const HomePage = () => {
@@ -10,24 +11,26 @@ const HomePage = () => {
         <p>Welcome to your new favourite food!</p>
       </div>
 
-      <div className="HomePage-buttonsContainer">
-        <button 
-          className="HomePage-button"
-          id="HomePage-button-find"
-          type="button"
+      <Router className="HomePage-buttonsContainer">
+
+        <Link
+          to="/find"
+          className="HomePage-link-button"
+          id="HomePage-link-button-find"
         >
           Find a Dish
-        </button>
+        </Link>
 
-        <button
-          className="HomePage-button"
-          id="HomePage-button-review"
+        <Link
+          to="/review"
+          className="HomePage-link-button"
+          id="HomePage-link-button-review"
           type="button"
         >
           Rate a Dish
-        </button>
+        </Link>
 
-      </div>
+      </Router>
     </>
   );
 };

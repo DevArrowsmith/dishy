@@ -12,7 +12,6 @@ const App = () => {
       <NavBar />
       <Router>
         <Switch>
-
           <Route
             exact
             path="/"
@@ -23,7 +22,7 @@ const App = () => {
 
           <Route
             exact
-            path="/rate"
+            path="/review"
             component={() => (
               <ReviewDishPage />
             )}
@@ -36,7 +35,6 @@ const App = () => {
               <FindDishPage />
             )}
           />
-
         </Switch>
       </Router>
     </div>
