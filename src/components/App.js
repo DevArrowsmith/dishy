@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import '../styles/App.css';
-import NavBar from './NavBar/NavBar.js';
+import Navbar from './Navbar/Navbar.js';
 import HomePage from './HomePage/HomePage.js';
 import ReviewDishPage from './ReviewDishPage/ReviewDishPage.js';
 import FindDishPage from './FindDishPage/FindDishPage.js';
@@ -9,7 +9,7 @@ import FindDishPage from './FindDishPage/FindDishPage.js';
 const App = () => {
   return (
     <div className="App">
-      <NavBar />
+      <Navbar />
       <Router>
         <Switch>
           <Route
