@@ -8,7 +8,6 @@ const FindDishPage = () => {
   const [ratings, setRatings] = useState([]);
   const [coordinates,setCoordinates] = useState({longitude:0,latitude:0})
   const [filter, setFilter] = useState("")
-  const [showDishes, setShowDishes] = useState(false)
   
 
   useEffect(()=>{
@@ -35,7 +34,6 @@ const FindDishPage = () => {
   const handleFilter = (e) =>{
     e.preventDefault();
     setFilter(e.target.name)
-    setShowDishes(!showDishes)
   }
 
 

@@ -4,14 +4,13 @@ import distance from "../../utils/geoLocation";
 
 const RatingCard = ({rating, coordinates}) => {  
 
-  const distanceFromUser = distance(coordinates.longitude, coordinates.latitude, rating.Restaurant.longitude, rating.Restaurant.latitude)
+  const distanceFromUser = distance(rating.Restaurant.latitude,rating.Restaurant.longitude,coordinates.latitude,coordinates.longitude)
 
   return (
     <>
-      <div>{rating.Dish.name}</div>
       <div>{rating.rating}</div>
       <div>{rating.Restaurant.name}</div>
-      <div>{distanceFromUser} KM from user</div>      
+      <div>{Math.round(Number(distanceFromUser))} metres away</div>      
     </>
   );
 };
