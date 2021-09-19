@@ -1,24 +1,25 @@
 import React from "react";
-import { Link, HashRouter as Router } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "../../styles/HomePage.css";
 import dishyLogo from '../../assets/dishy-logo-1.png';
 
 const HomePage = () => {
   return (
     <div className="HomePage">
+      
+      <h1 className="HomePage-header" id="HomePage-header">
+        <img src={dishyLogo} alt="DISHY"/>
+      </h1>
 
 
-        <h1 className="HomePage-header" id="HomePage-header">
-          <img src={dishyLogo} alt="DISHY"/>
-        </h1>
+      <p className="HomePage-text">
+        Dishy finds all the top-rated dishes in the city.
+      </p>
+      <p className="HomePage-text">
+        Find the best burritos the city has to offer!
+      </p>
 
-        <h2 className="HomePage-title">
-          <span>Welcome to your new favourite food</span>
-        </h2>
-
-
-      <Router className="HomePage-buttons-container">
-
+      <div className="HomePage-buttons-container">
         <Link
           to="/find"
           className="HomePage-link-button"
@@ -35,8 +36,7 @@ const HomePage = () => {
         >
           Rate a Dish
         </Link>
-
-      </Router>
+      </div>
     </div>
   );
 };

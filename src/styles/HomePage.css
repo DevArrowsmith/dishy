@@ -16,13 +16,31 @@
   width: 80%;
 }
 
-.HomePage-title {
+.HomePage-text {
   width: 80%;
   font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .HomePage-buttons-container {
+  width: 240px;
+  margin-top: 30px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.HomePage-link-button {
+  width: 110px;
+  height: 40px;
+  color: #171239;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: linear-gradient(130deg, #FA50FF 0%, #FA50FF 20%, #EF0086 100%);
+  border: 2px solid #BD006B;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
