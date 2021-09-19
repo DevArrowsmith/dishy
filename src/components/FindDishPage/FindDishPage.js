@@ -8,6 +8,7 @@ const FindDishPage = () => {
   const [ratings, setRatings] = useState([]);
   const [coordinates,setCoordinates] = useState({longitude:0,latitude:0})
   const [filter, setFilter] = useState("")
+  const [visits, setVisits] = useState([])
   
 
   useEffect(()=>{
@@ -15,7 +16,7 @@ const FindDishPage = () => {
       let dishes = await getDishes();
       let ratings = await getRatings();
       setAvailableDishes(dishes.dishes)
-      setRatings(ratings.dishes.map(dishes => dishes))
+      setRatings(ratings.dishes.map(dishes => dishes))      
     }
 
     function getLocation() {
@@ -36,7 +37,6 @@ const FindDishPage = () => {
     setFilter(e.target.name)
   }
 
-
   return (
     <>
       <div>
@@ -47,7 +47,7 @@ const FindDishPage = () => {
         {<div className="rating-card-column">
           {ratings.filter(rating => rating.Dish.name===filter).map(rating => (
             <div className="rating-card">
-              <RatingCard rating={rating} coordinates={coordinates} filter={filter}/>
+              <RatingCard rating={rating} coordinates={coordinates} visits={visits} setVisits={setVisits}/>
             </div>
           ))}
         </div>}      
