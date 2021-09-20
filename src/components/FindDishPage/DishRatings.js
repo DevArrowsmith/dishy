@@ -7,31 +7,15 @@ function DishRatings({ filteredRatings, coordinates }) {
   const [dishRatings, setDishRatings] = useState([])
 
   useEffect(()=>{
-    let tempMap = new Map()
-    let coords = []
-
-    filteredRatings.forEach(rating => {
-      const restaurantName = rating.Restaurant.name
-      if(!tempMap.get(restaurantName)){
-        tempMap.set(restaurantName, [rating.rating])
-        const distanceFromUser = distance(coordinates.latitude,coordinates.longitude,rating.Restaurant.latitude,rating.Restaurant.longitude)
-        coords = [...coords,Math.round(Number(distanceFromUser))]
-      }else{
-        tempMap.set(restaurantName,([...tempMap.get(restaurantName),rating.rating]))
-      }
-    })
-
     let restaurantArray = []
-    const restaurantNames = [...tempMap.keys()]
-    restaurantNames.forEach((name,i)=> {
-      let restaurantObj ={
-        name: name,
-        distance: coords[i],
-        scores: [...tempMap.values()][i],
-        averageScore: [...tempMap.values()][i].reduce((a, b) => a + b, 0)/[...tempMap.values()][i].length
+    filteredRatings.forEach(rating => {
+      rating = {
+        ...rating,
+        distance: Math.round(distance(coordinates.latitude,coordinates.longitude,rating.coordinates.latitude,rating.coordinates.longitude)),
+        averageScore: rating.scores.reduce((a, b) => a + b, 0)/rating.scores.length
       }
-      restaurantArray.push(restaurantObj)
-    })
+      restaurantArray.push(rating)
+    })      
     setDishRatings(restaurantArray)
     
   },[filteredRatings])
@@ -43,7 +27,6 @@ function DishRatings({ filteredRatings, coordinates }) {
     setDishRatings(tempR)
   }
 
-  console.log(filteredRatings)
   return (
     <>    
       {dishRatings.map(rating=>(
