@@ -12,7 +12,6 @@ function DishRatings({ filteredRatings, coordinates }) {
 
     filteredRatings.forEach(rating => {
       const restaurantName = rating.Restaurant.name
-      const restaurantAddress = rating.Restaurant.address
       if(!tempMap.get(restaurantName)){
         tempMap.set(restaurantName, [rating.rating])
         const distanceFromUser = distance(coordinates.latitude,coordinates.longitude,rating.Restaurant.latitude,rating.Restaurant.longitude)
@@ -29,20 +28,28 @@ function DishRatings({ filteredRatings, coordinates }) {
         name: name,
         distance: coords[i],
         scores: [...tempMap.values()][i],
+        averageScore: [...tempMap.values()][i].reduce((a, b) => a + b, 0)/[...tempMap.values()][i].length
       }
       restaurantArray.push(restaurantObj)
     })
-
     setDishRatings(restaurantArray)
     
   },[filteredRatings])
 
-  
+  const sortByRating = (e) => {
+    e.preventDefault()
+    const tempR = [...dishRatings]
+    tempR.sort((a,b) => (a.averageScore > b.averageScore) ? -1 : ((b.averageScore > a.averageScore) ? 1 : 0))
+    setDishRatings(tempR)
+  }
+
+  console.log(filteredRatings)
   return (
-    <>
+    <>    
       {dishRatings.map(rating=>(
       <div key={rating.name}><RatingCard rating={rating}/></div>
       ))}
+      <button onClick={sortByRating}>sort</button>
     </>
   )
 }
