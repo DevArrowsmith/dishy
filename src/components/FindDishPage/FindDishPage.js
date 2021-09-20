@@ -1,20 +1,17 @@
 import "../../styles/FindDishPage.css";
 import React, {useState, useEffect} from "react";
 import DishRatings from "./DishRatings";
-import { getDishes, getRatings } from "../../controllers/backendControllers";
+import { getDishes, getFilteredRating } from "../../controllers/backendControllers";
 
 const FindDishPage = () => {
   const [availableDishes, setAvailableDishes] = useState([]);
-  const [ratings, setRatings] = useState([]);
   const [coordinates,setCoordinates] = useState({longitude:0,latitude:0})
   const [filteredRatings, setFilteredRatings] = useState([])
 
   useEffect(()=>{
     async function fetchData(){
       let dishes = await getDishes();
-      let ratings = await getRatings();
-      setAvailableDishes(dishes.dishes)
-      setRatings(ratings.dishes.map(dishes => dishes))    
+      setAvailableDishes(dishes.dishes)   
     }
 
     function getLocation() {
@@ -30,9 +27,10 @@ const FindDishPage = () => {
     getLocation()
   },[])
 
-  const handleFilter = (e) =>{
+  const handleFilter = async (e) =>{
     e.preventDefault(); 
-    setFilteredRatings(ratings.filter(rating => rating.Dish.name===e.target.name))
+    const response = await getFilteredRating(e.target.name)
+    setFilteredRatings(response.ratings)
   }
 
   return (
