@@ -1,62 +1,78 @@
-import React, { useState } from "react";
-import "../../styles/ReviewDishPage.css";
-import getRestaurantsByLocation from "../../controllers/getRestaurantsByLocation";
-import ReviewForm from "./ReviewForm";
-
+import { useState, useEffect } from 'react';
+import '../../styles/ReviewDishPage.css';
+import getRestaurantsBySearch from '../../controllers/getRestaurantsBySearch';
+import getRestaurantsByGeolocation from '../../controllers/getRestaurantsByGeolocation';
+import StillAtRestaurantSelector from './StillAtRestaurantSelector';
+import SearchForRestaurant from './SearchForRestaurant';
+import ReviewForm from './ReviewForm';
+import reviewHeaderImage from '../../assets/review-image-1.png'
 import mockDishesList from '../../mockData/mockDishesList';
 
 const ReviewDishPage = () => {
 
   const initialState = {
-    location: "",
-    restaurantsLoading: false,
+    renderStillAtRestaurant: false,
+    renderSearchForRestaurant: false,
+    renderReviewForm: false,
+    geolocation: {
+      latitude: "a",
+      longitude: "",
+    },
+    locationSearch: "",
     restaurantsList: [],
     review: {
       restaurant: "",
       dish: mockDishesList[0],//TODO: Set to "" once mock data is removed.
       rating: "10",
     },
-    reviewSending: false,
-    reviewSubmittedSuccess: "",
   };
 
-  const [location, setLocation] = useState(initialState.location);
+  const [geolocation, setGeolocation] = useState(initialState.geolocation);
 
-  const [restaurantsLoading, setRestaurantsLoading] = useState(initialState.restaurantsLoading);
+  const [locationSearch, setLocationSearch] = useState(initialState.locationSearch);
 
   const [restaurantsList, setRestaurantsList] = useState(initialState.restaurantsList);
 
   const [review, setReview] = useState(initialState.review);
 
-  const [reviewSending, setReviewSending] = useState(initialState.reviewSending);
+  const [renderStillAtRestaurantSelector, setRenderStillAtRestaurantSelector] = useState(initialState.renderStillAtRestaurant);
 
-  const [reviewSubmittedSuccess, setReviewSubmittedSuccess] = useState(initialState.reviewSubmittedSuccess);
-  
+  const [renderSearchForRestaurant, setRenderSearchForRestaurant] = useState(initialState.renderSearchForRestaurant);
 
-  const handleLocationChange = (event) => {
-    setLocation(event.target.value)
+  const [renderReviewForm, setRenderReviewForm] = useState(initialState.renderReviewForm);
+
+  const handleLocationSearchChange = (event) => {
+    setLocationSearch(event.target.value)
   };
 
-  const handleRestaurantGet = async (event) => {
-    event.preventDefault();
-    const restaurantsData = await getRestaurantsByLocation(location);
-    console.log(restaurantsData); //TODO: Remove.
+  const handleGetRestaurantsByGeolocation = async () => {
+
+    let restaurantsData;
+    restaurantsData = await getRestaurantsByGeolocation(geolocation.latitude, geolocation.longitude);
+
     await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
       ...review,
       restaurant: restaurantsData.restaurants[0].id,
-    })
+    });
+
+    console.log();
   };
-/*
-  const handleDishesGet = async (event) => {
-//TODO: This handler will invoke the controller that gets a list of foods from our database.
-setReview({
+
+  const handleGetRestaurantsBySearch = async (event) => {
+    event.preventDefault();
+
+    let restaurantsData;
+    restaurantsData = await getRestaurantsBySearch(locationSearch);
+
+    await setRestaurantsList(restaurantsData.restaurants);
+    await setReview({
       ...review,
-      dish: mockDishesList[0],
-    })
-  };
-  handleDishesGet(); //TODO: Delete this line when the handler is properly set up.
-*/
+      restaurant: restaurantsData.restaurants[0].id,
+    });
+
+    setRenderReviewForm(true);
+  }
   
   const handleReviewChange = (event) => {
     setReview({
@@ -66,37 +82,82 @@ setReview({
   };
 
   const handleSubmitReviewForm = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     console.log(review);
     //TODO: This component will invoke the form submission.
   }
 
-    return (
-      <>
-        <div className="location-input">
-          <label htmlFor="location">
-            Enter a location:
-            <input
-              id="location"
-              name="location"
-              placeholder="15 North Street, Manchester"
-              onChange={handleLocationChange}
-              value={location}
-            />
-          </label>
-          <button type="submit" onClick={handleRestaurantGet}>
-            Search
-          </button>
+  const handleSetGeolocation = () => {
+    const setGeolocationState = async(locationData) => {
+      await setGeolocation({
+        latitude: locationData.coords.latitude.toString(),
+        longitude: locationData.coords.longitude.toString(),
+      })
+    } 
 
-          <ReviewForm
-            restaurantsList={restaurantsList}
-            dishesList={mockDishesList}
-            currentRating={review.rating}
-            handleFieldChange={handleReviewChange}
-            handleSubmitReviewForm={handleSubmitReviewForm}
-          />
+    window.navigator.geolocation.getCurrentPosition(setGeolocationState);
+  };
+
+  const pageSetup = async () => {
+    await handleSetGeolocation();
+    console.log(geolocation);
+    await geolocation.latitude
+    ? setRenderStillAtRestaurantSelector(true)
+    : setRenderSearchForRestaurant(true)
+  }
+
+  useEffect(() => {
+    pageSetup();
+  }, []);
+
+  const atRestaurantNowHandler = async () => {
+    await setRenderSearchForRestaurant(false);
+    await setRenderReviewForm(true);
+    await setReview(initialState.review);
+    handleGetRestaurantsByGeolocation();
+  };
+
+  const notAtRestaurantNowHandler = async () => {
+    await setRenderReviewForm(false);
+    await setRenderSearchForRestaurant(true);
+    await setReview(initialState.review);
+  };
+
+  return (
+    <div className="ReviewDishPage">
+
+      <h2 className="ReviewPage-header" id="ReviewPage-header">
+        <img src={reviewHeaderImage} alt="Rate a Dish"/>
+      </h2>
+
+      <div className="form-container">
+
+        <StillAtRestaurantSelector
+          renderComponent={renderStillAtRestaurantSelector}
+          atRestaurantNowHandler={atRestaurantNowHandler}
+          notAtRestaurantNowHandler={notAtRestaurantNowHandler}
+          handle
+        />
+
+        <SearchForRestaurant
+          renderComponent={renderSearchForRestaurant}
+          handleLocationChange={handleLocationSearchChange}
+          handleGetRestaurants={handleGetRestaurantsBySearch}
+          location={locationSearch}
+        />
+
+        <ReviewForm
+          renderComponent={renderReviewForm}
+          restaurantsList={restaurantsList}
+          dishesList={mockDishesList}
+          currentRating={review.rating}
+          handleFieldChange={handleReviewChange}
+          handleSubmitReviewForm={handleSubmitReviewForm}
+        />
+
+
       </div>
-    </>
+    </div>
   );
 };
 

@@ -13,10 +13,10 @@ const HomePage = () => {
 
 
       <p className="HomePage-text">
-        Dishy finds all the top-rated dishes in the city.
+        Dishy finds all the top-rated dishes in your location.
       </p>
       <p className="HomePage-text">
-        Find the best burritos the city has to offer!
+        Find the very best food near you!
       </p>
 
       <div className="HomePage-buttons-container">

@@ -1,7 +1,8 @@
 .App {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   width: 100vw;
   background-image: url("../assets/text-bg-2.png");
   background-size: 300px auto;
-  background-position: center;
+  background-position: top;
 };
