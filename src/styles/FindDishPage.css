@@ -1,11 +1,7 @@
-.rating-card-column {
-  display: flex;
-  flex-direction: column;
-}
-
 .rating-card {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   border: 1px black solid;
   margin: 5px;
 }

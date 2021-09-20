@@ -1,30 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import distance from "../../utils/geoLocation";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { getRatings } from '../../controllers/backendControllers';
+function RatingCard({ rating }) {
+  const [showScore, setShowScore] = useState(false)
+  const scores = rating.scores
+  const averageScore = rating.scores.reduce((a, b) => a + b, 0)/scores.length;
 
-const RatingCard = ({rating, coordinates, visits, setVisits}) => {  
-
-  const distanceFromUser = distance(rating.Restaurant.latitude,rating.Restaurant.longitude,coordinates.latitude,coordinates.longitude)
-
-  const visit = {
-    dish: rating.Dish.name,
-    resutrant: rating.Restaurant.name
+  const handleScore = (e) => {
+    e.preventDefault()
+    setShowScore(!showScore)
   }
-  console.log(visit)
-  setVisits(visits.push(visit))
 
   return (
-    <>
-      <div>{rating.rating}</div>
-      <div>{rating.Restaurant.name}</div>
-      <div>{Math.round(Number(distanceFromUser))} metres away</div>      
-    </>
-  );
-};
+    <div className="rating-card" onClick={handleScore}>
+      <div>{rating.name} ({rating.distance}m away) {rating.address}</div>
+      {rating.scores.length>1 ? 
+        <div>{showScore ? rating.scores.map(score => <div>{score}</div>) : averageScore}<button onClick={handleScore}>click</button></div> 
+        : <div>{rating.scores[0]}</div>}
+      
+    </div>
+  )
+}
 
 RatingCard.propTypes = {
 
-};
+}
 
+export default RatingCard
 
-export default RatingCard;
