@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 function RatingCard({ rating }) {
   const [showScore, setShowScore] = useState(false)
-  const averageScore = Math.round(rating.averageScore * 10) / 10
   
 
   const handleScore = (e) => {
@@ -15,7 +14,7 @@ function RatingCard({ rating }) {
     <div className="rating-card" onClick={handleScore}>
       <div>{rating.name} ({rating.distance}m away) </div>
       {rating.scores.length>1 ? 
-        <div>{showScore ? rating.scores.map(score => <div>{score}</div>) : averageScore}<button onClick={handleScore}>click</button></div> 
+        <div>{showScore ? rating.scores.map(score => <div>{score}</div>) : rating.averageScore}<button onClick={handleScore}>click</button></div> 
         : <div>{rating.scores[0]}</div>}
     </div>
   )
