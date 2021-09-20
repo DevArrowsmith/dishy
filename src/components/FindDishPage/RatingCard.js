@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 function RatingCard({ rating }) {
   const [showScore, setShowScore] = useState(false)
-  const scores = rating.scores
   const averageScore = Math.round(rating.averageScore * 10) / 10
   
 
