@@ -1,4 +1,8 @@
 .Navbar {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
   height: 80px;
   width: calc(100vw - 20px);
   padding: 0 10px;
