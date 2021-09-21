@@ -8,6 +8,7 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
       <>
         <form onSubmit={handleSubmitReviewForm}>
 
+
           <div className="form-field">
             <label htmlFor="set-restaurant">
               Choose your restaurant:
@@ -74,14 +75,14 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
               Rate it!
             </button>
           </div>
+
         </form>
       </>
-    )
+    );
   } else {
     return null;
-  };
+  }
 };
-
 
 ReviewForm.propTypes = {
   restaurantsList: PropTypes.arrayOf(PropTypes.object),

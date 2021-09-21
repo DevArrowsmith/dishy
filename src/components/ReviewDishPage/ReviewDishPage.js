@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import '../../styles/ReviewDishPage.css';
 import getRestaurantsBySearch from '../../controllers/getRestaurantsBySearch';
@@ -9,7 +10,7 @@ import reviewHeaderImage from '../../assets/review-image-1.png'
 import mockDishesList from '../../mockData/mockDishesList';
 
 const ReviewDishPage = () => {
-
+  
   const initialState = {
     renderStillAtRestaurant: false,
     renderSearchForRestaurant: false,
@@ -22,8 +23,8 @@ const ReviewDishPage = () => {
     restaurantsList: [],
     review: {
       restaurant: "",
-      dish: mockDishesList[0],//TODO: Set to "" once mock data is removed.
-      rating: "10",
+      dish: "",
+      rating: 10,
     },
   };
 
@@ -33,11 +34,14 @@ const ReviewDishPage = () => {
 
   const [restaurantsList, setRestaurantsList] = useState(initialState.restaurantsList);
 
+  const [dishesList, setDishesList] = useState([]);
+
   const [review, setReview] = useState(initialState.review);
 
   const [renderStillAtRestaurantSelector, setRenderStillAtRestaurantSelector] = useState(initialState.renderStillAtRestaurant);
 
   const [renderSearchForRestaurant, setRenderSearchForRestaurant] = useState(initialState.renderSearchForRestaurant);
+
 
   const [renderReviewForm, setRenderReviewForm] = useState(initialState.renderReviewForm);
 
@@ -45,12 +49,13 @@ const ReviewDishPage = () => {
     setLocationSearch(event.target.value)
   };
 
+
   const handleGetRestaurantsByGeolocation = async () => {
 
     let restaurantsData;
     restaurantsData = await getRestaurantsByGeolocation(geolocation.latitude, geolocation.longitude);
 
-    await setRestaurantsList(restaurantsData.restaurants);
+  await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
       ...review,
       restaurant: restaurantsData.restaurants[0].id,
@@ -58,6 +63,7 @@ const ReviewDishPage = () => {
 
     console.log();
   };
+
 
   const handleGetRestaurantsBySearch = async (event) => {
     event.preventDefault();
@@ -73,6 +79,7 @@ const ReviewDishPage = () => {
 
     setRenderReviewForm(true);
   }
+
   
   const handleReviewChange = (event) => {
     setReview({
@@ -80,6 +87,7 @@ const ReviewDishPage = () => {
       [event.target.name]: event.target.value,
     });
   };
+
 
   const handleSubmitReviewForm = (event) => {
     event.preventDefault()
@@ -154,7 +162,6 @@ const ReviewDishPage = () => {
           handleFieldChange={handleReviewChange}
           handleSubmitReviewForm={handleSubmitReviewForm}
         />
-
 
       </div>
     </div>
