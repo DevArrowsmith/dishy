@@ -68,7 +68,6 @@ const ReviewDishPage = () => {
 
     let restaurantsData;
     restaurantsData = await getRestaurantsBySearch(locationSearch);
-    
     await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
       ...review,
@@ -91,10 +90,11 @@ const ReviewDishPage = () => {
     event.preventDefault();
     const coordinates = restaurantsList.find(restaurant=>restaurant.id===review.restaurant).coordinates;
     const targetRestaurant = restaurantsList.find(restaurant=>restaurant.id===review.restaurant)
-
+    console.log(review)
+    console.log(targetRestaurant)
     const newDish = await saveDish(review);
     const newRestaurant = await saveRestaurant (review, targetRestaurant);
-    const newRating = await saveRating(review, newRestaurant.restaurant[0].id, newDish.dish[0].id)
+    const newRating = await saveRating(review, newRestaurant.restaurant[0].id, newDish.dish[0].id)  
   }
 
   const handleSetGeolocation = () => {

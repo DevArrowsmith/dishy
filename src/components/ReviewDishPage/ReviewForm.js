@@ -10,12 +10,12 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
 
 
           <div className="form-field">
-            <label htmlFor="set-restaurant">
+            <label htmlFor="restaurant">
               Choose your restaurant:
               <select
-                id="set-restaurant"
+                id="restaurant"
                 className="form-input"
-                name="set-restaurant"
+                name="restaurant"
                 onChange={handleFieldChange}
               >
                 {restaurantsList.map(restaurant => 
