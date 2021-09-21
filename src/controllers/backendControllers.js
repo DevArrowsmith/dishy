@@ -22,7 +22,8 @@ const getFilteredRating = async (search) => {
         }
         array.push(obj)  
       }else{
-        array[i-1].scores.push(data.rating)
+        const index = array.findIndex(i => i.name === data.Restaurant.name)
+        array[index].scores.push(data.rating)
       }            
     })
     return({
@@ -79,7 +80,6 @@ const saveRestaurant = async (review, targetRestaurant) => {
 };
 
 const saveDish = async (review) => {  
-  console.log(review)
   return axios.post(`http://localhost:4000/dish`, {
     name: review.dish,
   })
