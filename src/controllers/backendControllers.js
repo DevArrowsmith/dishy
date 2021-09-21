@@ -1,13 +1,15 @@
 const axios = require('axios');
 
+
 const getFilteredRating = async (search) => {
   return axios.post(`http://localhost:4000/rating/search`, {query: search})
+
   .then((response) => {
 
     let array = []
     response.data.forEach((data,i) => {
       let obj = {}
-      if(!array.map((a)=>a.name).includes(data.Restaurant.name)){
+      if(!array.map((restaurant)=>restaurant.name).includes(data.Restaurant.name)){
         obj = {
           dish: data.Dish.name,
           name:data.Restaurant.name,
@@ -61,7 +63,7 @@ const getRestaurants = async () => {
 };
 
 const saveRestaurant = async (review, targetRestaurant) => { 
-  const { name, coordinates } = targetRestaurant
+  const { coordinates, name } = targetRestaurant
   return axios.post(`http://localhost:4000/restaurant`, {
     yelp_id: review.restaurant,  
     longitude: coordinates.longitude,
@@ -77,6 +79,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
 };
 
 const saveDish = async (review) => {  
+  console.log(review)
   return axios.post(`http://localhost:4000/dish`, {
     name: review.dish,
   })

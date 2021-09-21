@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/ReviewDishPage.css';
 import getRestaurantsBySearch from '../../controllers/getRestaurantsBySearch';
 import getRestaurantsByGeolocation from '../../controllers/getRestaurantsByGeolocation';
@@ -7,7 +7,7 @@ import StillAtRestaurantSelector from './StillAtRestaurantSelector';
 import SearchForRestaurant from './SearchForRestaurant';
 import ReviewForm from './ReviewForm';
 import reviewHeaderImage from '../../assets/review-image-1.png'
-import mockDishesList from '../../mockData/mockDishesList';
+import { getDishes, saveDish, saveRestaurant, saveRating } from '../../controllers/backendControllers';
 
 const ReviewDishPage = () => {
   
@@ -16,7 +16,7 @@ const ReviewDishPage = () => {
     renderSearchForRestaurant: false,
     renderReviewForm: false,
     geolocation: {
-      latitude: "a",
+      latitude: "",
       longitude: "",
     },
     locationSearch: "",
@@ -61,16 +61,14 @@ const ReviewDishPage = () => {
       restaurant: restaurantsData.restaurants[0].id,
     });
 
-    console.log();
   };
-
 
   const handleGetRestaurantsBySearch = async (event) => {
     event.preventDefault();
 
     let restaurantsData;
     restaurantsData = await getRestaurantsBySearch(locationSearch);
-
+    
     await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
       ...review,
@@ -89,10 +87,14 @@ const ReviewDishPage = () => {
   };
 
 
-  const handleSubmitReviewForm = (event) => {
-    event.preventDefault()
-    console.log(review);
-    //TODO: This component will invoke the form submission.
+  const handleSubmitReviewForm = async (event) => {
+    event.preventDefault();
+    const coordinates = restaurantsList.find(restaurant=>restaurant.id===review.restaurant).coordinates;
+    const targetRestaurant = restaurantsList.find(restaurant=>restaurant.id===review.restaurant)
+
+    const newDish = await saveDish(review);
+    const newRestaurant = await saveRestaurant (review, targetRestaurant);
+    const newRating = await saveRating(review, newRestaurant.restaurant[0].id, newDish.dish[0].id)
   }
 
   const handleSetGeolocation = () => {
@@ -107,8 +109,9 @@ const ReviewDishPage = () => {
   };
 
   const pageSetup = async () => {
-    await handleSetGeolocation();
-    console.log(geolocation);
+    await handleSetGeolocation();    
+    const a = await getDishes ();
+    setDishesList(a.dishes.map(dish => dish.name))
     await geolocation.latitude
     ? setRenderStillAtRestaurantSelector(true)
     : setRenderSearchForRestaurant(true)
@@ -157,7 +160,7 @@ const ReviewDishPage = () => {
         <ReviewForm
           renderComponent={renderReviewForm}
           restaurantsList={restaurantsList}
-          dishesList={mockDishesList}
+          dishesList={dishesList}
           currentRating={review.rating}
           handleFieldChange={handleReviewChange}
           handleSubmitReviewForm={handleSubmitReviewForm}
