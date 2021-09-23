@@ -41,14 +41,14 @@ const StillAtRestaurantSelector = ({ renderComponent, atRestaurantNowHandler, no
           id="stillAtRestaurantButtonsContainer"
         >
           <button 
-            className="form-button stillAtRestaurantButton"
+            className={`form-button stillAtRestaurantButton ${ selectedButtons.yesButton && "disabledButton"}`}
             onClick={() => !selectedButtons.yesButton && yesOnClick()}
           >
             Yes
           </button>
           
           <button 
-            className="form-button stillAtRestaurantButton"
+            className={`form-button stillAtRestaurantButton ${ selectedButtons.noButton && "disabledButton"}`}
             onClick={() => !selectedButtons.noButton && noOnClick()}
           >
             No

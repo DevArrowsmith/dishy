@@ -79,6 +79,11 @@
   margin: 0 10px;
 }
 
+.disabledButton {
+  background: linear-gradient(130deg, #FFFF99 0%, #FFFF99 20%, #FFFF0A 100%);
+  border-color: #00A2F4;
+}
+
 #rating-form {
   width:calc(100% - 60px);
   margin: 10px 30px;
