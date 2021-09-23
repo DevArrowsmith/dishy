@@ -1,5 +1,33 @@
+import { useState } from 'react';
+import getRestaurantsBySearch from '../../controllers/getRestaurantsBySearch';
 
-const SearchForRestaurant = ({ renderComponent, handleLocationChange, handleGetRestaurants, location }) => {
+const SearchForRestaurant = ({ renderComponent, setRestaurantsList, review, setReview, setRenderReviewForm }) => {
+
+  const initialState = {
+    location: "",
+  };
+
+  const [location, setLocation] = useState(initialState.location);
+  
+  const getRestaurants = async (event) => {
+    event.preventDefault();
+
+    let restaurantsData;
+    restaurantsData = await getRestaurantsBySearch(location);
+
+    await setRestaurantsList(restaurantsData.restaurants);
+    await setReview({
+      ...review,
+      restaurant: restaurantsData.restaurants[0].id,
+    });
+
+    setRenderReviewForm(true);
+  }
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value)
+  };
+
   if (renderComponent) {
     return (
       <div className="form-field">
@@ -17,7 +45,7 @@ const SearchForRestaurant = ({ renderComponent, handleLocationChange, handleGetR
         <button 
           id="find-restaurant-submit-button"
           className="form-button"
-          type="submit" onClick={handleGetRestaurants}>
+          type="submit" onClick={getRestaurants}>
             Search
         </button>
       </div>  

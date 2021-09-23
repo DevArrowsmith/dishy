@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import '../../styles/ReviewDishPage.css';
-import getRestaurantsBySearch from '../../controllers/getRestaurantsBySearch';
 import getRestaurantsByGeolocation from '../../controllers/getRestaurantsByGeolocation';
 import StillAtRestaurantSelector from './StillAtRestaurantSelector';
 import SearchForRestaurant from './SearchForRestaurant';
@@ -30,7 +29,7 @@ const ReviewDishPage = () => {
 
   const [geolocation, setGeolocation] = useState(initialState.geolocation);
 
-  const [locationSearch, setLocationSearch] = useState(initialState.locationSearch);
+
 
   const [restaurantsList, setRestaurantsList] = useState(initialState.restaurantsList);
 
@@ -44,11 +43,6 @@ const ReviewDishPage = () => {
 
 
   const [renderReviewForm, setRenderReviewForm] = useState(initialState.renderReviewForm);
-
-  const handleLocationSearchChange = (event) => {
-    setLocationSearch(event.target.value)
-  };
-
 
   const handleGetRestaurantsByGeolocation = async () => {
 
@@ -65,20 +59,7 @@ const ReviewDishPage = () => {
   };
 
 
-  const handleGetRestaurantsBySearch = async (event) => {
-    event.preventDefault();
 
-    let restaurantsData;
-    restaurantsData = await getRestaurantsBySearch(locationSearch);
-
-    await setRestaurantsList(restaurantsData.restaurants);
-    await setReview({
-      ...review,
-      restaurant: restaurantsData.restaurants[0].id,
-    });
-
-    setRenderReviewForm(true);
-  }
 
   
   const handleReviewChange = (event) => {
@@ -149,9 +130,10 @@ const ReviewDishPage = () => {
 
         <SearchForRestaurant
           renderComponent={renderSearchForRestaurant}
-          handleLocationChange={handleLocationSearchChange}
-          handleGetRestaurants={handleGetRestaurantsBySearch}
-          location={locationSearch}
+          setRestaurantsList={setRestaurantsList}
+          review={review}
+          setReview={setReview}
+          setRenderReviewForm={setRenderReviewForm}
         />
 
         <ReviewForm
