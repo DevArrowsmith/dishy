@@ -107,8 +107,8 @@ const ReviewDishPage = () => {
   };
 
   const notAtRestaurantNowHandler = async () => {
-    await setRenderReviewForm(false);
     await setRenderSearchForRestaurant(true);
+    await setRenderReviewForm(false);
     await setReview(initialState.review);
   };
 

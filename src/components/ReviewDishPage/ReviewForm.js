@@ -6,29 +6,32 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
   if (renderComponent) {
     return (
       <>
+
+        <div className="form-field">
+          <label htmlFor="set-restaurant">
+            Choose your restaurant:
+            <select
+              id="set-restaurant"
+              className="form-input"
+              name="set-restaurant"
+              onChange={handleFieldChange}
+            >
+              {restaurantsList.map(restaurant => 
+                <option 
+                  value={restaurant.id} 
+                  key={restaurant.id
+                }>
+                  {restaurant.name}
+                </option>)
+              };
+            </select>
+          </label> 
+        </div>
+
+
         <form onSubmit={handleSubmitReviewForm}>
 
 
-          <div className="form-field">
-            <label htmlFor="set-restaurant">
-              Choose your restaurant:
-              <select
-                id="set-restaurant"
-                className="form-input"
-                name="set-restaurant"
-                onChange={handleFieldChange}
-              >
-                {restaurantsList.map(restaurant => 
-                  <option 
-                    value={restaurant.id} 
-                    key={restaurant.id
-                  }>
-                    {restaurant.name}
-                  </option>)
-                };
-              </select>
-            </label> 
-            </div>
 
           <div className="form-field">
             <label htmlFor="dish">

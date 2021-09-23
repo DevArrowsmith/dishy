@@ -1,8 +1,6 @@
 import React from "react";
 import "../../styles/SelectLocationFromList.css";
 
-
-
 const SelectLocationFromList = ({ restaurantsList, handleFieldChange }) => {
 
   return (

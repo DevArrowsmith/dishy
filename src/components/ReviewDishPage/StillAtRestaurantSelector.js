@@ -1,5 +1,31 @@
-
+import { useState } from 'react';
 const StillAtRestaurantSelector = ({ renderComponent, atRestaurantNowHandler, notAtRestaurantNowHandler }) => {
+
+  const initialState = {
+    selectedButtons: {
+      yesButton: false,
+      noButton: false,
+    }
+  }
+
+  const [selectedButtons, setSelectedButtons] = useState(initialState.selectedButtons);
+
+  const yesOnClick = () => {
+    setSelectedButtons({
+      yesButton: true,
+      noButton: false,
+    });
+    atRestaurantNowHandler();
+  };
+
+  const noOnClick = () => {
+    setSelectedButtons({
+      yeButton: false,
+      noButton: true,
+    });
+    notAtRestaurantNowHandler();
+  };
+
   if (renderComponent) {
 
     return (
@@ -16,14 +42,14 @@ const StillAtRestaurantSelector = ({ renderComponent, atRestaurantNowHandler, no
         >
           <button 
             className="form-button stillAtRestaurantButton"
-            onClick={atRestaurantNowHandler}
+            onClick={() => !selectedButtons.yesButton && yesOnClick()}
           >
             Yes
           </button>
           
           <button 
             className="form-button stillAtRestaurantButton"
-            onClick={notAtRestaurantNowHandler}
+            onClick={() => !selectedButtons.noButton && noOnClick()}
           >
             No
           </button>
