@@ -1,10 +1,7 @@
 import React from "react";
-import "../../styles/SelectLocationFromList.css";
-
-
+import PropTypes from "prop-types";
 
 const SelectLocationFromList = ({ restaurantsList, handleFieldChange }) => {
-
   return (
     <div className="form-field">
       <label htmlFor="set-restaurant">
@@ -14,11 +11,26 @@ const SelectLocationFromList = ({ restaurantsList, handleFieldChange }) => {
           name="set-restaurant"
           onChange={handleFieldChange}
         >
-          {restaurantsList.map(restaurant => <option value={restaurant.id} key={restaurant.id}>{restaurant.name}</option>)};
+          {restaurantsList.map((restaurant) => (
+            <option value={restaurant.id} key={restaurant.id}>
+              {restaurant.name}
+            </option>
+          ))}
+          ;
         </select>
       </label>
     </div>
   );
+};
+
+SelectLocationFromList.propTypes = {
+  handleFieldChange: PropTypes.func.isRequired,
+  restaurantsList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default SelectLocationFromList;

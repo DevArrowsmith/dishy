@@ -1,10 +1,17 @@
+import React from "react";
+import PropTypes from "prop-types";
 
-const SearchForRestaurant = ({ renderComponent, handleLocationChange, handleGetRestaurants, location }) => {
+const SearchForRestaurant = ({
+  renderComponent,
+  handleLocationChange,
+  handleGetRestaurants,
+  location,
+}) => {
   if (renderComponent) {
     return (
       <div className="form-field">
         <label htmlFor="set-location">
-          Enter the restaurant's address:
+          Enter the restaurant`&apos;`s address:
           <input
             id="set-location"
             className="form-input"
@@ -14,17 +21,31 @@ const SearchForRestaurant = ({ renderComponent, handleLocationChange, handleGetR
             value={location}
           />
         </label>
-        <button 
+        <button
           id="find-restaurant-submit-button"
           className="form-button"
-          type="submit" onClick={handleGetRestaurants}>
-            Search
+          type="submit"
+          onClick={handleGetRestaurants}
+        >
+          Search
         </button>
-      </div>  
+      </div>
     );
-  } else {
-    return null
-  };
+  }
+  return null;
 };
 
+SearchForRestaurant.propTypes = {
+  renderComponent: PropTypes.bool.isRequired,
+  handleLocationChange: PropTypes.func.isRequired,
+  handleGetRestaurants: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    latiude: PropTypes.number,
+    longitude: PropTypes.number,
+  }),
+};
+
+SearchForRestaurant.defaultProps = {
+  location: "",
+};
 export default SearchForRestaurant;

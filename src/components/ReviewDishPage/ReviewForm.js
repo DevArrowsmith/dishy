@@ -1,14 +1,19 @@
 import PropTypes from "prop-types";
+import React from "react";
 import "../../styles/ReviewForm.css";
 
-const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitReviewForm }) => {
-
+const ReviewForm = ({
+  renderComponent,
+  restaurantsList,
+  dishesList,
+  handleFieldChange,
+  currentRating,
+  handleSubmitReviewForm,
+}) => {
   if (renderComponent) {
     return (
       <>
         <form onSubmit={handleSubmitReviewForm}>
-
-
           <div className="form-field">
             <label htmlFor="restaurant">
               Choose your restaurant:
@@ -18,17 +23,15 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
                 name="restaurant"
                 onChange={handleFieldChange}
               >
-                {restaurantsList.map(restaurant => 
-                  <option 
-                    value={restaurant.id} 
-                    key={restaurant.id
-                  }>
+                {restaurantsList.map((restaurant) => (
+                  <option value={restaurant.id} key={restaurant.id}>
                     {restaurant.name}
-                  </option>)
-                };
+                  </option>
+                ))}
+                ;
               </select>
-            </label> 
-            </div>
+            </label>
+          </div>
 
           <div className="form-field">
             <label htmlFor="dish">
@@ -39,18 +42,19 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
                 name="dish"
                 onChange={handleFieldChange}
               >
-              {dishesList.map(dish => <option value={dish} key={dish}>{dish}</option>)}
+                {dishesList.map((dish) => (
+                  <option value={dish} key={dish}>
+                    {dish}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
 
-          <div 
-            className="form-field"
-            id="rating-form"
-          >
+          <div className="form-field" id="rating-form">
             <label htmlFor="rating">
               <p>Rate it!</p>
-              <input 
+              <input
                 type="range"
                 id="rating-slider"
                 name="rating"
@@ -65,32 +69,26 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
               <p id="rating-value-number">{currentRating}</p>
             </div>
           </div>
-          
-          <div 
-            id="review-submit-button"
-            className="form-field"
-          >
-            <button type="submit"
-            className="form-button">
+
+          <div id="review-submit-button" className="form-field">
+            <button type="submit" className="form-button">
               Rate it!
             </button>
           </div>
-
         </form>
       </>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 ReviewForm.propTypes = {
-  restaurantsList: PropTypes.arrayOf(PropTypes.object),
-  dishesList: PropTypes.arrayOf(PropTypes.string),
+  renderComponent: PropTypes.bool.isRequired,
+  restaurantsList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dishesList: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleFieldChange: PropTypes.func.isRequired,
   currentRating: PropTypes.string.isRequired,
-  handleSubmitReviewForm: PropTypes.func.isRequired, 
+  handleSubmitReviewForm: PropTypes.func.isRequired,
 };
-
 
 export default ReviewForm;
