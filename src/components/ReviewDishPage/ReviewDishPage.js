@@ -100,10 +100,10 @@ const ReviewDishPage = () => {
   }, []);
 
   const atRestaurantNowHandler = async () => {
+    await handleGetRestaurantsByGeolocation();
     await setRenderSearchForRestaurant(false);
     await setRenderReviewForm(true);
     await setReview(initialState.review);
-    handleGetRestaurantsByGeolocation();
   };
 
   const notAtRestaurantNowHandler = async () => {
