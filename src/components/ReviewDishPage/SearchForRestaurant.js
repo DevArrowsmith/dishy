@@ -39,13 +39,7 @@ SearchForRestaurant.propTypes = {
   renderComponent: PropTypes.bool.isRequired,
   handleLocationChange: PropTypes.func.isRequired,
   handleGetRestaurants: PropTypes.func.isRequired,
-  location: PropTypes.shape({
-    latiude: PropTypes.number,
-    longitude: PropTypes.number,
-  }),
+  location: PropTypes.string.isRequired,
 };
 
-SearchForRestaurant.defaultProps = {
-  location: "",
-};
 export default SearchForRestaurant;
