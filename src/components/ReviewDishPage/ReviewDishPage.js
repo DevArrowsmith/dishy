@@ -30,7 +30,6 @@ const ReviewDishPage = () => {
       rating: 10,
     },
   };
-
   const [geolocation, setGeolocation] = useState(initialState.geolocation);
 
   const [locationSearch, setLocationSearch] = useState(
