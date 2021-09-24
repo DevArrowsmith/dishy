@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
 import "../../styles/ReviewForm.css";
 
 const ReviewForm = ({
@@ -13,26 +13,26 @@ const ReviewForm = ({
   if (renderComponent) {
     return (
       <>
-        <form onSubmit={handleSubmitReviewForm}>
-          <div className="form-field">
-            <label htmlFor="restaurant">
-              Choose your restaurant:
-              <select
-                id="restaurant"
-                className="form-input"
-                name="restaurant"
-                onChange={handleFieldChange}
-              >
-                {restaurantsList.map((restaurant) => (
-                  <option value={restaurant.id} key={restaurant.id}>
-                    {restaurant.name}
-                  </option>
-                ))}
-                ;
-              </select>
-            </label>
-          </div>
+        <div className="form-field">
+          <label htmlFor="restaurant">
+            Choose your restaurant:
+            <select
+              id="restaurant"
+              className="form-input"
+              name="restaurant"
+              onChange={handleFieldChange}
+            >
+              {restaurantsList.map((restaurant) => (
+                <option value={restaurant.id} key={restaurant.id}>
+                  {restaurant.name}
+                </option>
+              ))}
+              ;
+            </select>
+          </label>
+        </div>
 
+        <form onSubmit={handleSubmitReviewForm}>
           <div className="form-field">
             <label htmlFor="dish">
               What did you eat?

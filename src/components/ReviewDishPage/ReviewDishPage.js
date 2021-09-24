@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/ReviewDishPage.css";
-import getRestaurantsBySearch from "../../controllers/getRestaurantsBySearch";
 import getRestaurantsByGeolocation from "../../controllers/getRestaurantsByGeolocation";
 import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
 import SearchForRestaurant from "./SearchForRestaurant";
@@ -32,10 +31,6 @@ const ReviewDishPage = () => {
   };
   const [geolocation, setGeolocation] = useState(initialState.geolocation);
 
-  const [locationSearch, setLocationSearch] = useState(
-    initialState.locationSearch
-  );
-
   const [restaurantsList, setRestaurantsList] = useState(
     initialState.restaurantsList
   );
@@ -55,10 +50,6 @@ const ReviewDishPage = () => {
     initialState.renderReviewForm
   );
 
-  const handleLocationSearchChange = (event) => {
-    setLocationSearch(event.target.value);
-  };
-
   const handleGetRestaurantsByGeolocation = async () => {
     const restaurantsData = await getRestaurantsByGeolocation(
       geolocation.latitude,
@@ -70,19 +61,6 @@ const ReviewDishPage = () => {
       ...review,
       restaurant: restaurantsData.restaurants[0].id,
     });
-  };
-
-  const handleGetRestaurantsBySearch = async (event) => {
-    event.preventDefault();
-
-    const restaurantsData = await getRestaurantsBySearch(locationSearch);
-    await setRestaurantsList(restaurantsData.restaurants);
-    await setReview({
-      ...review,
-      restaurant: restaurantsData.restaurants[0].id,
-    });
-
-    setRenderReviewForm(true);
   };
 
   const handleReviewChange = (event) => {
@@ -132,15 +110,15 @@ const ReviewDishPage = () => {
   }, []);
 
   const atRestaurantNowHandler = async () => {
+    await handleGetRestaurantsByGeolocation();
     await setRenderSearchForRestaurant(false);
     await setRenderReviewForm(true);
     await setReview(initialState.review);
-    handleGetRestaurantsByGeolocation();
   };
 
   const notAtRestaurantNowHandler = async () => {
-    await setRenderReviewForm(false);
     await setRenderSearchForRestaurant(true);
+    await setRenderReviewForm(false);
     await setReview(initialState.review);
   };
 
@@ -160,9 +138,10 @@ const ReviewDishPage = () => {
 
         <SearchForRestaurant
           renderComponent={renderSearchForRestaurant}
-          handleLocationChange={handleLocationSearchChange}
-          handleGetRestaurants={handleGetRestaurantsBySearch}
-          location={locationSearch}
+          setRestaurantsList={setRestaurantsList}
+          review={review}
+          setReview={setReview}
+          setRenderReviewForm={setRenderReviewForm}
         />
 
         <ReviewForm

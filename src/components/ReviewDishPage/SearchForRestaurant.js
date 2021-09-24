@@ -1,12 +1,38 @@
-import React from "react";
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
+import getRestaurantsBySearch from "../../controllers/getRestaurantsBySearch";
 
 const SearchForRestaurant = ({
   renderComponent,
-  handleLocationChange,
-  handleGetRestaurants,
-  location,
+  setRestaurantsList,
+  review,
+  setReview,
+  setRenderReviewForm,
 }) => {
+  const initialState = {
+    location: "",
+  };
+
+  const [location, setLocation] = useState(initialState.location);
+
+  const getRestaurants = async (event) => {
+    event.preventDefault();
+
+    const restaurantsData = await getRestaurantsBySearch(location);
+
+    await setRestaurantsList(restaurantsData.restaurants);
+    await setReview({
+      ...review,
+      restaurant: restaurantsData.restaurants[0].id,
+    });
+
+    setRenderReviewForm(true);
+  };
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
   if (renderComponent) {
     return (
       <div className="form-field">
@@ -25,7 +51,7 @@ const SearchForRestaurant = ({
           id="find-restaurant-submit-button"
           className="form-button"
           type="submit"
-          onClick={handleGetRestaurants}
+          onClick={getRestaurants}
         >
           Search
         </button>
@@ -33,13 +59,6 @@ const SearchForRestaurant = ({
     );
   }
   return null;
-};
-
-SearchForRestaurant.propTypes = {
-  renderComponent: PropTypes.bool.isRequired,
-  handleLocationChange: PropTypes.func.isRequired,
-  handleGetRestaurants: PropTypes.func.isRequired,
-  location: PropTypes.string.isRequired,
 };
 
 export default SearchForRestaurant;
