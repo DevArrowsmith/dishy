@@ -43,14 +43,15 @@ function DishRatings({ filteredRatings, coordinates }) {
 
   return (
     <>
+      Sort Dish:{" "}
+      <button type="submit" onClick={sortByRating}>
+        sort
+      </button>
       {dishRatings.map((rating) => (
         <div key={rating.name}>
           <RatingCard rating={rating} />
         </div>
       ))}
-      <button type="submit" onClick={sortByRating}>
-        sort
-      </button>
     </>
   );
 }
