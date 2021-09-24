@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "../../styles/ReviewDishPage.css";
 import getRestaurantsByGeolocation from "../../controllers/getRestaurantsByGeolocation";
@@ -98,7 +99,12 @@ const ReviewDishPage = () => {
   const pageSetup = async () => {
     await handleSetGeolocation();
     const a = await getDishes();
+
     setDishesList(a.dishes.map((dish) => dish.name));
+    await setReview({
+      ...review,
+      dish: dishesList[0],
+    });
     // eslint-disable-next-line no-unused-expressions
     geolocation.latitude
       ? setRenderStillAtRestaurantSelector(true)
@@ -151,6 +157,9 @@ const ReviewDishPage = () => {
           currentRating={review.rating}
           handleFieldChange={handleReviewChange}
           handleSubmitReviewForm={handleSubmitReviewForm}
+          review={review}
+          setReview={setReview}
+          setDishesList={setDishesList}
         />
       </div>
     </div>

@@ -76,7 +76,7 @@ DishRatings.propTypes = {
     dish: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     scores: PropTypes.arrayOf(PropTypes.num),
-  }).isRequired,
+  }),
 };
 
 DishRatings.defaultProps = {
@@ -84,6 +84,7 @@ DishRatings.defaultProps = {
     longitude: 0,
     latitude: 0,
   },
+  filteredRatings: [],
 };
 
 export default DishRatings;

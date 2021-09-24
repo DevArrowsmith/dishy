@@ -1,4 +1,5 @@
 import React from "react";
+import Creatable from "react-select/creatable";
 import PropTypes from "prop-types";
 import "../../styles/ReviewForm.css";
 
@@ -9,7 +10,24 @@ const ReviewForm = ({
   handleFieldChange,
   currentRating,
   handleSubmitReviewForm,
+  review,
+  setReview,
+  setDishesList,
 }) => {
+  const selectTable = dishesList.map((option) => ({
+    label: option,
+    value: option,
+  }));
+
+  const handleSetTest = (option, meta) => {
+    if (meta.action === "create-option") {
+      setDishesList([...dishesList, option.value]);
+      setReview({
+        ...review,
+        dish: option.value,
+      });
+    }
+  };
   if (renderComponent) {
     return (
       <>
@@ -34,21 +52,13 @@ const ReviewForm = ({
 
         <form onSubmit={handleSubmitReviewForm}>
           <div className="form-field">
-            <label htmlFor="dish">
-              What did you eat?
-              <select
-                id="dish"
-                className="form-input"
-                name="dish"
-                onChange={handleFieldChange}
-              >
-                {dishesList.map((dish) => (
-                  <option value={dish} key={dish}>
-                    {dish}
-                  </option>
-                ))}
-              </select>
-            </label>
+            What did you eat?
+            <Creatable
+              options={selectTable}
+              className="form-input"
+              name="dish"
+              onChange={handleSetTest}
+            />
           </div>
 
           <div className="form-field" id="rating-form">
@@ -89,6 +99,13 @@ ReviewForm.propTypes = {
   handleFieldChange: PropTypes.func.isRequired,
   currentRating: PropTypes.number.isRequired,
   handleSubmitReviewForm: PropTypes.func.isRequired,
+  setDishesList: PropTypes.func.isRequired,
+  setReview: PropTypes.func.isRequired,
+  review: PropTypes.shape({
+    dish: PropTypes.string,
+    restaurant: PropTypes.string,
+    rating: PropTypes.number,
+  }).isRequired,
 };
 
 export default ReviewForm;

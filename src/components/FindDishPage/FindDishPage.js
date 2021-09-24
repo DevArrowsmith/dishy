@@ -44,7 +44,12 @@ const FindDishPage = () => {
       <div>
         Find Dish:{" "}
         {availableDishes.map((dish) => (
-          <button type="submit" name={dish.name} onClick={handleFilter}>
+          <button
+            key={dish.id}
+            type="submit"
+            name={dish.name}
+            onClick={handleFilter}
+          >
             {dish.name}
           </button>
         ))}
