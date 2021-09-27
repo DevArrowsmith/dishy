@@ -85,18 +85,14 @@ const ReviewDishPage = () => {
         longitude: locationData.coords.longitude.toString(),
       })
     } 
-
     window.navigator.geolocation.getCurrentPosition(setGeolocationState);
   };
 
-  const pageSetup = async () => {
+  useEffect(() => {
     "geolocation" in navigator
     ? setRenderStillAtRestaurantSelector(true)
-    : setRenderSearchForRestaurant(true)
-  }
-
-  useEffect(() => {
-    pageSetup();
+    : setRenderSearchForRestaurant(true);
+    handleSetGeolocation();
   }, []);
 
   const atRestaurantNowHandler = async () => {
