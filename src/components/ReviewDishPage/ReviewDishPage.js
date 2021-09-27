@@ -17,7 +17,7 @@ const ReviewDishPage = () => {
     renderSearchForRestaurant: false,
     renderReviewForm: false,
     geolocation: {
-      latitude: "a",
+      latitude: "",
       longitude: "",
     },
     locationSearch: "",
@@ -90,9 +90,7 @@ const ReviewDishPage = () => {
   };
 
   const pageSetup = async () => {
-    await handleSetGeolocation();
-    console.log(geolocation);
-    await geolocation.latitude
+    "geolocation" in navigator
     ? setRenderStillAtRestaurantSelector(true)
     : setRenderSearchForRestaurant(true)
   }
