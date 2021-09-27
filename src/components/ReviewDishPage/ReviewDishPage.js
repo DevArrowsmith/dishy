@@ -7,6 +7,8 @@ import SearchForRestaurant from './SearchForRestaurant';
 import ReviewForm from './ReviewForm';
 import reviewHeaderImage from '../../assets/review-image-1.png'
 import mockDishesList from '../../mockData/mockDishesList';
+import ErrorMessage from './ErrorMessage';
+import Message from './Message';
 
 const ReviewDishPage = () => {
   
