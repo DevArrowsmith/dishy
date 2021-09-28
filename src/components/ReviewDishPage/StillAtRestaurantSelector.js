@@ -1,14 +1,22 @@
-import { useState } from 'react';
-const StillAtRestaurantSelector = ({ renderComponent, atRestaurantNowHandler, notAtRestaurantNowHandler }) => {
 
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+
+const StillAtRestaurantSelector = ({
+  renderComponent,
+  atRestaurantNowHandler,
+  notAtRestaurantNowHandler,
+}) => {
   const initialState = {
     selectedButtons: {
       yesButton: false,
       noButton: false,
-    }
-  }
+    },
+  };
 
-  const [selectedButtons, setSelectedButtons] = useState(initialState.selectedButtons);
+  const [selectedButtons, setSelectedButtons] = useState(
+    initialState.selectedButtons
+  );
 
   const yesOnClick = () => {
     setSelectedButtons({
@@ -27,38 +35,42 @@ const StillAtRestaurantSelector = ({ renderComponent, atRestaurantNowHandler, no
   };
 
   if (renderComponent) {
-
     return (
-      <div 
-        className="form-field"
-        id="StillAtRestaurantSelector"
-      >
-        <p className="ReviewDishPage-text">
-          Are you at the restaurant?
-        </p>
 
-        <div 
-          id="stillAtRestaurantButtonsContainer"
-        >
-          <button 
-            className={`form-button stillAtRestaurantButton ${ selectedButtons.yesButton && "disabledButton"}`}
+      <div className="form-field" id="StillAtRestaurantSelector">
+        <p className="ReviewDishPage-text">Are you at the restaurant?</p>
+
+        <div id="stillAtRestaurantButtonsContainer">
+          <button
+            type="submit"
+            className={`form-button stillAtRestaurantButton ${
+              selectedButtons.yesButton && "disabledButton"
+            }`}
             onClick={() => !selectedButtons.yesButton && yesOnClick()}
           >
             Yes
           </button>
-          
-          <button 
-            className={`form-button stillAtRestaurantButton ${ selectedButtons.noButton && "disabledButton"}`}
+
+          <button
+            type="submit"
+            className={`form-button stillAtRestaurantButton ${
+              selectedButtons.noButton && "disabledButton"
+            }`}
             onClick={() => !selectedButtons.noButton && noOnClick()}
           >
             No
           </button>
         </div>
       </div>
-    )
-  } else { 
-    return null 
-  };
+    );
+  }
+  return null;
+};
+
+StillAtRestaurantSelector.propTypes = {
+  renderComponent: PropTypes.bool.isRequired,
+  atRestaurantNowHandler: PropTypes.func.isRequired,
+  notAtRestaurantNowHandler: PropTypes.func.isRequired,
 };
 
 export default StillAtRestaurantSelector;

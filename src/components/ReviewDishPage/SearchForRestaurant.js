@@ -1,19 +1,25 @@
-import { useState } from 'react';
-import getRestaurantsBySearch from '../../controllers/getRestaurantsBySearch';
 
-const SearchForRestaurant = ({ renderComponent, setRestaurantsList, review, setReview, setRenderReviewForm }) => {
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
+import getRestaurantsBySearch from "../../controllers/getRestaurantsBySearch";
 
+const SearchForRestaurant = ({
+  renderComponent,
+  setRestaurantsList,
+  review,
+  setReview,
+  setRenderReviewForm,
+}) => {
   const initialState = {
     location: "",
   };
 
   const [location, setLocation] = useState(initialState.location);
-  
+
   const getRestaurants = async (event) => {
     event.preventDefault();
 
-    let restaurantsData;
-    restaurantsData = await getRestaurantsBySearch(location);
+    const restaurantsData = await getRestaurantsBySearch(location);
 
     await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
@@ -22,17 +28,17 @@ const SearchForRestaurant = ({ renderComponent, setRestaurantsList, review, setR
     });
 
     setRenderReviewForm(true);
-  }
+  };
 
   const handleLocationChange = (event) => {
-    setLocation(event.target.value)
+    setLocation(event.target.value);
   };
 
   if (renderComponent) {
     return (
       <div className="form-field">
         <label htmlFor="set-location">
-          Enter the restaurant's address:
+          Enter the restaurant`&apos;`s address:
           <input
             id="set-location"
             className="form-input"
@@ -42,17 +48,18 @@ const SearchForRestaurant = ({ renderComponent, setRestaurantsList, review, setR
             value={location}
           />
         </label>
-        <button 
+        <button
           id="find-restaurant-submit-button"
           className="form-button"
-          type="submit" onClick={getRestaurants}>
-            Search
+          type="submit"
+          onClick={getRestaurants}
+        >
+          Search
         </button>
-      </div>  
+      </div>
     );
-  } else {
-    return null
-  };
+  }
+  return null;
 };
 
 export default SearchForRestaurant;

@@ -1,59 +1,71 @@
+import React from "react";
+import Creatable from "react-select/creatable";
 import PropTypes from "prop-types";
 import "../../styles/ReviewForm.css";
 
-const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldChange, currentRating, handleSubmitReviewForm }) => {
+const ReviewForm = ({
+  renderComponent,
+  restaurantsList,
+  dishesList,
+  handleFieldChange,
+  currentRating,
+  handleSubmitReviewForm,
+  review,
+  setReview,
+  setDishesList,
+}) => {
+  const selectTable = dishesList.map((option) => ({
+    label: option,
+    value: option,
+  }));
 
+  const handleSetTest = (option, meta) => {
+    if (meta.action === "create-option") {
+      setDishesList([...dishesList, option.value]);
+      setReview({
+        ...review,
+        dish: option.value,
+      });
+    }
+  };
   if (renderComponent) {
     return (
       <>
 
         <div className="form-field">
-          <label htmlFor="set-restaurant">
+          <label htmlFor="restaurant">
             Choose your restaurant:
             <select
-              id="set-restaurant"
+              id="restaurant"
               className="form-input"
-              name="set-restaurant"
+              name="restaurant"
               onChange={handleFieldChange}
             >
-              {restaurantsList.map(restaurant => 
-                <option 
-                  value={restaurant.id} 
-                  key={restaurant.id
-                }>
+              {restaurantsList.map((restaurant) => (
+                <option value={restaurant.id} key={restaurant.id}>
                   {restaurant.name}
-                </option>)
-              };
+                </option>
+              ))}
+              ;
             </select>
-          </label> 
+          </label>
         </div>
 
-
         <form onSubmit={handleSubmitReviewForm}>
-
-
-
           <div className="form-field">
-            <label htmlFor="dish">
-              What did you eat?
-              <select
-                id="dish"
-                className="form-input"
-                name="dish"
-                onChange={handleFieldChange}
-              >
-              {dishesList.map(dish => <option value={dish} key={dish}>{dish}</option>)}
-              </select>
-            </label>
+            What did you eat?
+            <Creatable
+              options={selectTable}
+              className="form-input"
+              name="dish"
+              onChange={handleSetTest}
+            />
           </div>
 
-          <div 
-            className="form-field"
-            id="rating-form"
-          >
+          <div className="form-field" id="rating-form">
             <label htmlFor="rating">
               <p>Rate it!</p>
-              <input 
+              <input
                 type="range"
                 id="rating-slider"
                 name="rating"
@@ -68,32 +80,33 @@ const ReviewForm = ({ renderComponent, restaurantsList, dishesList, handleFieldC
               <p id="rating-value-number">{currentRating}</p>
             </div>
           </div>
-          
-          <div 
-            id="review-submit-button"
-            className="form-field"
-          >
-            <button type="submit"
-            className="form-button">
+
+          <div id="review-submit-button" className="form-field">
+            <button type="submit" className="form-button">
               Rate it!
             </button>
           </div>
-
         </form>
       </>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 ReviewForm.propTypes = {
-  restaurantsList: PropTypes.arrayOf(PropTypes.object),
-  dishesList: PropTypes.arrayOf(PropTypes.string),
+  renderComponent: PropTypes.bool.isRequired,
+  restaurantsList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dishesList: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleFieldChange: PropTypes.func.isRequired,
-  currentRating: PropTypes.string.isRequired,
-  handleSubmitReviewForm: PropTypes.func.isRequired, 
+  currentRating: PropTypes.number.isRequired,
+  handleSubmitReviewForm: PropTypes.func.isRequired,
+  setDishesList: PropTypes.func.isRequired,
+  setReview: PropTypes.func.isRequired,
+  review: PropTypes.shape({
+    dish: PropTypes.string,
+    restaurant: PropTypes.string,
+    rating: PropTypes.number,
+  }).isRequired,
 };
-
 
 export default ReviewForm;
