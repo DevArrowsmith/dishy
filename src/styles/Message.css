@@ -2,6 +2,6 @@
   max-width: 300px;
 }
 
-#ErrorMessage {
+.errorMessage {
   color: #BD006B;
 }

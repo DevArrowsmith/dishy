@@ -8,7 +8,8 @@ import SearchForRestaurant from "./SearchForRestaurant";
 import ReviewForm from "./ReviewForm";
 import reviewHeaderImage from "../../assets/review-image-1.png";
 import ErrorMessage from './ErrorMessage';
-import Message from './Message';
+import Message from '../genericComponents/Message';
+
 import {
   getDishes,
   saveDish,
