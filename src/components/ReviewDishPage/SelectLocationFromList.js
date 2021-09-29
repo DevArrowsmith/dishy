@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../styles/SelectLocationFromList.css";
 
 const SelectLocationFromList = ({ restaurantsList, handleFieldChange }) => {
   return (

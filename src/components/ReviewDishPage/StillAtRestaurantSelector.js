@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -36,7 +35,6 @@ const StillAtRestaurantSelector = ({
 
   if (renderComponent) {
     return (
-
       <div className="form-field" id="StillAtRestaurantSelector">
         <p className="ReviewDishPage-text">Are you at the restaurant?</p>
 

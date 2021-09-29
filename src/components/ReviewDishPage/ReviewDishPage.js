@@ -1,4 +1,3 @@
-
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "../../styles/ReviewDishPage.css";
@@ -7,8 +6,7 @@ import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
 import SearchForRestaurant from "./SearchForRestaurant";
 import ReviewForm from "./ReviewForm";
 import reviewHeaderImage from "../../assets/review-image-1.png";
-import ErrorMessage from './ErrorMessage';
-import Message from './Message';
+
 import {
   getDishes,
   saveDish,
@@ -50,12 +48,19 @@ const ReviewDishPage = () => {
     initialState.renderSearchForRestaurant
   );
 
+  const [renderReviewForm, setRenderReviewForm] = useState(
+    initialState.renderReviewForm
+  );
+
   const handleGetRestaurantsByGeolocation = async () => {
-
     let restaurantsData;
-    restaurantsData = getRestaurantsByGeolocation(geolocation.latitude, geolocation.longitude);
+    // eslint-disable-next-line prefer-const
+    restaurantsData = await getRestaurantsByGeolocation(
+      geolocation.latitude,
+      geolocation.longitude
+    );
 
-  await setRestaurantsList(restaurantsData.restaurants);
+    await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
       ...review,
       restaurant: restaurantsData.restaurants[0].id,
@@ -88,32 +93,26 @@ const ReviewDishPage = () => {
       await setGeolocation({
         latitude: locationData.coords.latitude.toString(),
         longitude: locationData.coords.longitude.toString(),
-
       });
     };
 
     window.navigator.geolocation.getCurrentPosition(setGeolocationState);
   };
 
-  const pageSetup = async () => {
-    await handleSetGeolocation();
-    const a = await getDishes();
-
-    setDishesList(a.dishes.map((dish) => dish.name));
-    await setReview({
-      ...review,
-      dish: dishesList[0],
-    });
-    // eslint-disable-next-line no-unused-expressions
-    geolocation.latitude
-      ? setRenderStillAtRestaurantSelector(true)
-      : setRenderSearchForRestaurant(true);
-  };
+  // const setUpDishes = async () => {
+  //   const a = await getDishes();
+  //   setDishesList(a.dishes.map((dish) => dish.name));
+  //   await setReview({
+  //     ...review,
+  //     dish: dishesList[0],
+  //   });
+  // };
 
   useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
     "geolocation" in navigator
-    ? setRenderStillAtRestaurantSelector(true)
-    : setRenderSearchForRestaurant(true);
+      ? setRenderStillAtRestaurantSelector(true)
+      : setRenderSearchForRestaurant(true);
     handleSetGeolocation();
   }, []);
 
