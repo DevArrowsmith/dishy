@@ -1,4 +1,3 @@
-
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import getRestaurantsBySearch from "../../controllers/getRestaurantsBySearch";
@@ -38,7 +37,7 @@ const SearchForRestaurant = ({
     return (
       <div className="form-field">
         <label htmlFor="set-location">
-          Enter the restaurant`&apos;`s address:
+          Enter the restaurant&apos;s address:
           <input
             id="set-location"
             className="form-input"
