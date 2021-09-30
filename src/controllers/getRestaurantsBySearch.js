@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const getRestaurantsBySearch = (location) => {
   return axios
-    .get(`http://localhost:5000/restaurants/${location}`)
+    .get(`http://localhost:5000/restaurants/search/${location}`)
     .then((response) => {
       return {
         status: response.status,

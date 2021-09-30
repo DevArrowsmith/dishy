@@ -7,12 +7,12 @@ const ReviewForm = ({
   renderComponent,
   restaurantsList,
   dishesList,
+  setDishesList,
   handleFieldChange,
   currentRating,
   handleSubmitReviewForm,
   review,
   setReview,
-  setDishesList,
 }) => {
   const selectTable = dishesList.map((option) => ({
     label: option,
@@ -28,6 +28,7 @@ const ReviewForm = ({
       });
     }
   };
+
   if (renderComponent) {
     return (
       <>
