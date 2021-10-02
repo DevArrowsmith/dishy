@@ -44,6 +44,17 @@
   text-align: center;
 }
 
+#creatable {
+  width: calc(240px - 6px);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+  margin-top: 10px;
+  background-color: white;
+  border: 2px solid #bd006b;
+  border-radius: 5px;
+  text-align: center;
+}
+
 .form-input:focus {
   border: 2px solid #ffff51;
 }
