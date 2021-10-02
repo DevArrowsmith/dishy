@@ -1,5 +1,6 @@
 import "../../styles/FindDishPage.css";
 import React, { useState, useEffect } from "react";
+import DishSelector from "./DishSelector";
 import DishRatings from "./DishRatings";
 import {
   getDishes,
@@ -45,19 +46,12 @@ const FindDishPage = () => {
       <h2 className="FindPage-header" id="FindPage-header">
         <img src={findHeaderImage} alt="Rate a Dish" />
       </h2>
-      <div className="find-dish-buttons">
-        Find Dish:{" "}
-        {availableDishes.map((dish) => (
-          <button
-            key={dish.id}
-            type="submit"
-            name={dish.name}
-            onClick={handleFilter}
-          >
-            {dish.name}
-          </button>
-        ))}
-      </div>
+
+      <DishSelector
+        availableDishes={availableDishes}
+        handleFilter={handleFilter}
+      />
+
       <div>
         <DishRatings
           filteredRatings={filteredRatings}
