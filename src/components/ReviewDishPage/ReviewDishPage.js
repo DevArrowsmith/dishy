@@ -99,14 +99,14 @@ const ReviewDishPage = () => {
     window.navigator.geolocation.getCurrentPosition(setGeolocationState);
   };
 
-  // const setUpDishes = async () => {
-  //   const a = await getDishes();
-  //   setDishesList(a.dishes.map((dish) => dish.name));
-  //   await setReview({
-  //     ...review,
-  //     dish: dishesList[0],
-  //   });
-  // };
+  const setUpDishes = async () => {
+    const existingDishes = await getDishes();
+    setDishesList(existingDishes.dishes.map((dish) => dish.name));
+    await setReview({
+      ...review,
+      dish: dishesList[0],
+    });
+  };
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
@@ -114,6 +114,8 @@ const ReviewDishPage = () => {
       ? setRenderStillAtRestaurantSelector(true)
       : setRenderSearchForRestaurant(true);
     handleSetGeolocation();
+
+    setUpDishes();
   }, []);
 
   const atRestaurantNowHandler = async () => {
