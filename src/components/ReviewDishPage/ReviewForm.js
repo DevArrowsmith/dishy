@@ -66,6 +66,26 @@ const ReviewForm = ({
               name="dish"
               onChange={handleSetTest}
               id="creatable"
+              components={{
+                IndicatorSeparator: () => null,
+              }}
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  boxShadow: "none",
+                  border: state.isFocused && "none",
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  border: "none",
+                  boxShadow: "none",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isFocused && "lightgray",
+                  color: state.isFocused && "red",
+                }),
+              }}
             />
           </div>
 
