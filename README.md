@@ -29,7 +29,7 @@ To run the app locally:
 - Clone this repo
 - Navigate to root in a bach terminal
 - Run `npm start`
-- You'll also need to host the backend. The backend and instructions on its use can be found [here](https://github.com/hughsylinden/dishy-backend.
+- You'll also need to host the backend. The backend and instructions on its use can be found [here](https://github.com/hughsylinden/dishy-backend).
 
 In time this app will be hosted online.
 
