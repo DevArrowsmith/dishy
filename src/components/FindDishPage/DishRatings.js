@@ -41,17 +41,39 @@ function DishRatings({ filteredRatings, coordinates }) {
     setDishRatings(tempR);
   };
 
+  const sortByDistance = (e) => {
+    e.preventDefault();
+    const tempR = [...dishRatings];
+    tempR.sort((a, b) => {
+      if (a.distance > b.distance) {
+        return 1;
+      }
+      if (b.distance > a.distance) {
+        return -1;
+      }
+      return 0;
+    });
+    setDishRatings(tempR);
+  };
+
   return (
     <>
-      Sort Dish:{" "}
-      <button type="submit" onClick={sortByRating}>
-        sort
-      </button>
-      {dishRatings.map((rating) => (
-        <div key={rating.name}>
-          <RatingCard rating={rating} />
-        </div>
-      ))}
+      <div className="sort-buttons">
+        Sort Dish:{" "}
+        <button type="submit" onClick={sortByRating}>
+          rating
+        </button>
+        <button type="submit" onClick={sortByDistance}>
+          distance
+        </button>
+      </div>
+      <div className="rating-cards">
+        {dishRatings.map((rating) => (
+          <div className="rating-card" key={rating.name}>
+            <RatingCard rating={rating} />
+          </div>
+        ))}
+      </div>
     </>
   );
 }

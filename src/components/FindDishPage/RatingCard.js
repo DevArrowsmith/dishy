@@ -15,7 +15,7 @@ function RatingCard({ rating }) {
     setShowDetails(!showDetails);
   };
   return (
-    <div className="rating-card">
+    <>
       <div>
         {rating.name} ({rating.distance}m away){" "}
         {showDetails && (
@@ -48,7 +48,7 @@ function RatingCard({ rating }) {
           details
         </button>
       </div>
-    </div>
+    </>
   );
 }
 

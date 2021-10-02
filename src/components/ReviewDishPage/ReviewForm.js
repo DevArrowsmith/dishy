@@ -27,6 +27,13 @@ const ReviewForm = ({
         dish: option.value,
       });
     }
+    if (meta.action === "select-option") {
+      setDishesList([...dishesList, option.value]);
+      setReview({
+        ...review,
+        dish: option.value,
+      });
+    }
   };
 
   if (renderComponent) {
@@ -56,9 +63,29 @@ const ReviewForm = ({
             What did you eat?
             <Creatable
               options={selectTable}
-              className="form-input"
               name="dish"
               onChange={handleSetTest}
+              id="creatable"
+              components={{
+                IndicatorSeparator: () => null,
+              }}
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  boxShadow: "none",
+                  border: state.isFocused && "none",
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  border: "none",
+                  boxShadow: "none",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isFocused && "lightgray",
+                  color: state.isFocused && "red",
+                }),
+              }}
             />
           </div>
 

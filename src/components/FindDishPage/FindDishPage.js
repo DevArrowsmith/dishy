@@ -41,7 +41,7 @@ const FindDishPage = () => {
 
   return (
     <>
-      <div>
+      <div className="find-dish-buttons">
         Find Dish:{" "}
         {availableDishes.map((dish) => (
           <button
@@ -54,12 +54,12 @@ const FindDishPage = () => {
           </button>
         ))}
       </div>
-      <div>
+      <>
         <DishRatings
           filteredRatings={filteredRatings}
           coordinates={coordinates}
         />
-      </div>
+      </>
     </>
   );
 };
