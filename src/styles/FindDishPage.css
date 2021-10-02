@@ -1,3 +1,21 @@
+.FindDishPage {
+  height: calc(100% - 80px - 40px);
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  text-align: center;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#FindPage-header {
+  margin: 0;
+}
+
+#FindPage-header img {
+  width: 70%;
+}
+
 .rating-card {
   display: flex;
   flex-direction: column;

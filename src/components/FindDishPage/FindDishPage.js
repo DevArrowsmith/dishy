@@ -5,6 +5,7 @@ import {
   getDishes,
   getFilteredRating,
 } from "../../controllers/backendControllers";
+import findHeaderImage from "../../assets/search-image-1.png";
 
 const FindDishPage = () => {
   const [availableDishes, setAvailableDishes] = useState([]);
@@ -40,7 +41,10 @@ const FindDishPage = () => {
   };
 
   return (
-    <>
+    <div className="FindDishPage">
+      <h2 className="FindPage-header" id="FindPage-header">
+        <img src={findHeaderImage} alt="Rate a Dish" />
+      </h2>
       <div className="find-dish-buttons">
         Find Dish:{" "}
         {availableDishes.map((dish) => (
@@ -54,13 +58,13 @@ const FindDishPage = () => {
           </button>
         ))}
       </div>
-      <>
+      <div>
         <DishRatings
           filteredRatings={filteredRatings}
           coordinates={coordinates}
         />
-      </>
-    </>
+      </div>
+    </div>
   );
 };
 export default FindDishPage;
