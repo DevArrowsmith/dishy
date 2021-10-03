@@ -3,22 +3,24 @@ import PropTypes from "prop-types";
 import "../../../styles/RatingCard.css";
 
 function RatingCard({ rating }) {
-  const [showScore, setShowScore] = useState(false);
+  // const [showScore, setShowScore] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
-  const handleScore = (e) => {
-    e.preventDefault();
-    setShowScore(!showScore);
-  };
+  // const handleScore = (e) => {
+  //   e.preventDefault();
+  //   setShowScore(!showScore);
+  // };
 
   const handleDetails = (e) => {
     e.preventDefault();
     setShowDetails(!showDetails);
   };
+
   return (
     <>
-      <div>
-        {rating.name} ({rating.distance}m away){" "}
+      <div className="RatingCard-left-container">
+        <p>{rating.name}</p>
+        <p>Distance: {rating.distance}m</p>
         {showDetails && (
           <div>
             <div>{rating.address.address1}</div>
@@ -27,27 +29,33 @@ function RatingCard({ rating }) {
             <div>{rating.address.zip_code}</div>
           </div>
         )}
-      </div>
-      <div>
-        {showScore ? (
-          <div>
+        <div>
+          {/* {showScore ? (
             <div>
-              {rating.scores.map((score) => (
-                <div>{score}</div>
-              ))}
+              <div>
+                {rating.scores.map((score) => (
+                  <div>{score}</div>
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          rating.averageScore
-        )}
-        {rating.scores.length > 1 && (
-          <button type="submit" onClick={handleScore}>
-            scores
+          ) : (
+            rating.averageScore
+          )} */}
+          {/* {rating.scores.length > 1 && (
+            <button type="submit" onClick={handleScore}>
+              scores
+            </button>
+          )} */}
+          <button type="submit" onClick={handleDetails}>
+            details
           </button>
-        )}
-        <button type="submit" onClick={handleDetails}>
-          details
-        </button>
+        </div>
+      </div>
+
+      <div id="RatingCard-right-container">
+        <div className="rating-circle">
+          <p>{rating.averageScore}</p>
+        </div>
       </div>
     </>
   );

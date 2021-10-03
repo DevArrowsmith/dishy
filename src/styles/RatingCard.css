@@ -1,7 +1,46 @@
 .rating-card {
+  width: calc(100% - 20px - 2px);
+  padding: 16px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px black solid;
-  margin: 5px;
+  border: 1px solid red;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.RatingCard-left-container {
+  width: 70%;
+  padding: 0;
+}
+
+.RatingCard-left-container p {
+  margin: 0;
+  text-align: left;
+}
+
+.RatingCard-right-container {
+  width: 30%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-circle {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(100, 230, 255, 0.7);
+  border-radius: 30px;
+  background-color: rgba(240, 250, 255, 1);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-circle p {
+  margin: 0;
 }
