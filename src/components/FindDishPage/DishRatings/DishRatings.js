@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import distance from "../../utils/geoLocation";
+import distance from "../../../utils/geoLocation";
 import RatingCard from "./RatingCard";
 
 function DishRatings({ filteredRatings, coordinates }) {
@@ -56,26 +56,29 @@ function DishRatings({ filteredRatings, coordinates }) {
     setDishRatings(tempR);
   };
 
-  return (
-    <>
-      <div className="sort-buttons">
-        Sort Dish:{" "}
-        <button type="submit" onClick={sortByRating}>
-          rating
-        </button>
-        <button type="submit" onClick={sortByDistance}>
-          distance
-        </button>
-      </div>
-      <div className="rating-cards">
-        {dishRatings.map((rating) => (
-          <div className="rating-card" key={rating.name}>
-            <RatingCard rating={rating} />
-          </div>
-        ))}
-      </div>
-    </>
-  );
+  if (filteredRatings[0]) {
+    return (
+      <>
+        <div className="sort-buttons">
+          Sort Dish:{" "}
+          <button type="submit" onClick={sortByRating}>
+            rating
+          </button>
+          <button type="submit" onClick={sortByDistance}>
+            distance
+          </button>
+        </div>
+        <div className="rating-cards">
+          {dishRatings.map((rating) => (
+            <div className="rating-card" key={rating.name}>
+              <RatingCard rating={rating} />
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  }
+  return null;
 }
 
 DishRatings.propTypes = {

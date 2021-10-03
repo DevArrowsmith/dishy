@@ -1,7 +1,7 @@
 import "../../styles/FindDishPage.css";
 import React, { useState, useEffect } from "react";
 import DishSelector from "./DishSelector";
-import DishRatings from "./DishRatings";
+import DishRatings from "./DishRatings/DishRatings";
 import {
   getDishes,
   getFilteredRating,
@@ -26,6 +26,7 @@ const FindDishPage = () => {
   const [filteredRatings, setFilteredRatings] = useState(
     initialState.filteredRatings
   );
+  // const [selectedDish, setSelectedDish] = useState(initialState.selectedDish);
 
   useEffect(() => {
     async function fetchData() {

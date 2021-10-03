@@ -13,7 +13,7 @@ const DishSelector = ({ availableDishes, handleFilterByDish }) => {
             hidden
             style={{ display: "none" }}
             value=""
-            aria-label="Please select one of the options below"
+            aria-label="Please select one of the following options"
           />
           {availableDishes.map((dish) => (
             <option value={dish.name} key={dish.id}>
