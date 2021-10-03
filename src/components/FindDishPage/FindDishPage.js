@@ -9,9 +9,24 @@ import {
 import findHeaderImage from "../../assets/search-image-1.png";
 
 const FindDishPage = () => {
-  const [availableDishes, setAvailableDishes] = useState([]);
-  const [coordinates, setCoordinates] = useState({ longitude: 0, latitude: 0 });
-  const [filteredRatings, setFilteredRatings] = useState([]);
+  const initialState = {
+    availableDishes: [],
+    coordinates: {
+      longitude: 0,
+      latitude: 0,
+    },
+    filteredRatings: [],
+    selectedDish: "",
+  };
+
+  const [availableDishes, setAvailableDishes] = useState(
+    initialState.availableDishes
+  );
+  const [coordinates, setCoordinates] = useState(initialState.coordinates);
+  const [filteredRatings, setFilteredRatings] = useState(
+    initialState.filteredRatings
+  );
+  // const [selectedDish, setSelectedDish] = useState(initialState.selectedDish);
 
   useEffect(() => {
     async function fetchData() {
@@ -35,9 +50,9 @@ const FindDishPage = () => {
     getLocation();
   }, []);
 
-  const handleFilter = async (e) => {
+  const handleFilterByDish = async (e) => {
     e.preventDefault();
-    const response = await getFilteredRating(e.target.name);
+    const response = await getFilteredRating(e.target.value);
     setFilteredRatings(response.ratings);
   };
 
@@ -49,7 +64,7 @@ const FindDishPage = () => {
 
       <DishSelector
         availableDishes={availableDishes}
-        handleFilter={handleFilter}
+        handleFilterByDish={handleFilterByDish}
       />
 
       <div>

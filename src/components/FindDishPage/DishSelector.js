@@ -1,20 +1,20 @@
 import React from "react";
 import propTypes from "prop-types";
 
-const DishSelector = ({ availableDishes, handleFilter }) => {
+const DishSelector = ({ availableDishes, handleFilterByDish }) => {
   return (
-    <div className="find-dish-buttons">
-      Find Dish:{" "}
-      {availableDishes.map((dish) => (
-        <button
-          key={dish.id}
-          type="submit"
-          name={dish.name}
-          onClick={handleFilter}
-        >
-          {dish.name}
-        </button>
-      ))}
+    <div className="set-dish form-field">
+      <label htmlFor="set-dish">
+        Choose a dish:
+        <select id="set-dish" name="set-dish" onChange={handleFilterByDish}>
+          {availableDishes.map((dish) => (
+            <option value={dish.name} key={dish.id}>
+              {dish.name}
+            </option>
+          ))}
+          ;
+        </select>
+      </label>
     </div>
   );
 };
@@ -23,7 +23,7 @@ DishSelector.propTypes = {
   availableDishes: propTypes.arrayOf({
     dish: propTypes.string,
   }).isRequired,
-  handleFilter: propTypes.func.isRequired,
+  handleFilterByDish: propTypes.func.isRequired,
 };
 
 export default DishSelector;
