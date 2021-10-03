@@ -32,6 +32,7 @@ const FindDishPage = () => {
     async function fetchData() {
       const dishes = await getDishes();
       setAvailableDishes(dishes.dishes);
+      console.log(dishes.dishes);
     }
 
     function getLocation() {

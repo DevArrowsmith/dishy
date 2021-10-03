@@ -86,22 +86,24 @@ DishRatings.propTypes = {
     longitude: PropTypes.number,
     latitude: PropTypes.number,
   }),
-  filteredRatings: PropTypes.arrayOf({
-    address: PropTypes.shape({
-      address1: PropTypes.string,
-      address2: PropTypes.string,
-      city: PropTypes.string,
-      zip_code: PropTypes.string,
-    }).isRequired,
-    comment: PropTypes.string,
-    coordinates: PropTypes.shape({
-      longitude: PropTypes.number,
-      latitude: PropTypes.number,
-    }),
-    dish: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    scores: PropTypes.arrayOf(PropTypes.num),
-  }),
+  filteredRatings: PropTypes.arrayOf(
+    PropTypes.shape({
+      address: PropTypes.shape({
+        address1: PropTypes.string,
+        address2: PropTypes.string,
+        city: PropTypes.string,
+        zip_code: PropTypes.string,
+      }),
+      comment: PropTypes.string,
+      coordinates: PropTypes.shape({
+        longitude: PropTypes.number,
+        latitude: PropTypes.number,
+      }),
+      dish: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      scores: PropTypes.arrayOf(PropTypes.num),
+    })
+  ),
 };
 
 DishRatings.defaultProps = {

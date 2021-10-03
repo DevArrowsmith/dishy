@@ -28,9 +28,12 @@ const DishSelector = ({ availableDishes, handleFilterByDish }) => {
 };
 
 DishSelector.propTypes = {
-  availableDishes: propTypes.arrayOf({
-    dish: propTypes.string,
-  }).isRequired,
+  availableDishes: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.number,
+      name: propTypes.string,
+    })
+  ).isRequired,
   handleFilterByDish: propTypes.func.isRequired,
 };
 
