@@ -1,4 +1,5 @@
 import "../../styles/FindDishPage.css";
+import "../../styles/common/form.css";
 import React, { useState, useEffect } from "react";
 import DishSelector from "./DishSelector";
 import DishRatings from "./DishRatings/DishRatings";
@@ -63,16 +64,18 @@ const FindDishPage = () => {
         <img src={findHeaderImage} alt="Rate a Dish" />
       </h2>
 
-      <DishSelector
-        availableDishes={availableDishes}
-        handleFilterByDish={handleFilterByDish}
-      />
-
-      <div>
-        <DishRatings
-          filteredRatings={filteredRatings}
-          coordinates={coordinates}
+      <div className="form-container">
+        <DishSelector
+          availableDishes={availableDishes}
+          handleFilterByDish={handleFilterByDish}
         />
+
+        <div>
+          <DishRatings
+            filteredRatings={filteredRatings}
+            coordinates={coordinates}
+          />
+        </div>
       </div>
     </div>
   );

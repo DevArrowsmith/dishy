@@ -16,32 +16,8 @@
   width: 70%;
 }
 
-.form-container {
-  width: 300px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-.form-field {
-  width: 300px;
-  padding: 10px 0;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-}
-
-.form-input {
-  height: 30px;
-  width: calc(240px - 6px);
-  padding-left: 6px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.9em;
-  margin-top: 10px;
-  background-color: white;
-  border: 2px solid #bd006b;
-  border-radius: 5px;
-  text-align: center;
+#rating-slider {
+  width: 200px;
 }
 
 #creatable {
@@ -53,31 +29,6 @@
   border: 2px solid #bd006b;
   border-radius: 5px;
   text-align: center;
-}
-
-.form-input:focus {
-  border: 2px solid #ffff51;
-}
-
-#rating-slider {
-  width: 200px;
-}
-
-.form-button {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.9em;
-  width: 100px;
-  height: 40px;
-  color: #171239;
-  text-decoration: none;
-  text-transform: uppercase;
-  background: linear-gradient(130deg, #fcb0ff 0%, #fcb0ff 20%, #fa50ff 100%);
-  border: 2px solid #bd006b;
-  border-radius: 5px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
 }
 
 #stillAtRestaurantButtonsContainer {

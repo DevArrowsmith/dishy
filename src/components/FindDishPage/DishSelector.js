@@ -1,12 +1,18 @@
 import React from "react";
 import propTypes from "prop-types";
+import "../../styles/DishSelector.css";
 
 const DishSelector = ({ availableDishes, handleFilterByDish }) => {
   return (
-    <div className="set-dish form-field">
+    <div className="form-field">
       <label htmlFor="set-dish">
         Choose a dish:
-        <select id="set-dish" name="set-dish" onChange={handleFilterByDish}>
+        <select
+          id="set-dish"
+          className="form-input"
+          name="set-dish"
+          onChange={handleFilterByDish}
+        >
           <option
             selected
             disabled

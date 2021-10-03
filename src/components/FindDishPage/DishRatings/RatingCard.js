@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import "../../../styles/RatingCard.css";
 
 function RatingCard({ rating }) {
   const [showScore, setShowScore] = useState(false);

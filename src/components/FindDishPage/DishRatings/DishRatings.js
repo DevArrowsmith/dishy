@@ -99,8 +99,8 @@ DishRatings.propTypes = {
         longitude: PropTypes.number,
         latitude: PropTypes.number,
       }),
-      dish: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      dish: PropTypes.string,
+      name: PropTypes.string,
       scores: PropTypes.arrayOf(PropTypes.num),
     })
   ),
