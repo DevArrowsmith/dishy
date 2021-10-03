@@ -49,7 +49,7 @@ const SearchForRestaurant = ({
         </label>
         <button
           id="find-restaurant-submit-button"
-          className="form-button"
+          className="pink-button"
           type="submit"
           onClick={getRestaurants}
         >

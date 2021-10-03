@@ -1,15 +1,33 @@
 import "../../styles/FindDishPage.css";
+import "../../styles/common/form.css";
 import React, { useState, useEffect } from "react";
-import DishRatings from "./DishRatings";
+import DishSelector from "./DishSelector";
+import DishRatings from "./DishRatings/DishRatings";
 import {
   getDishes,
   getFilteredRating,
 } from "../../controllers/backendControllers";
+import findHeaderImage from "../../assets/search-image-1.png";
 
 const FindDishPage = () => {
-  const [availableDishes, setAvailableDishes] = useState([]);
-  const [coordinates, setCoordinates] = useState({ longitude: 0, latitude: 0 });
-  const [filteredRatings, setFilteredRatings] = useState([]);
+  const initialState = {
+    availableDishes: [],
+    coordinates: {
+      longitude: 0,
+      latitude: 0,
+    },
+    filteredRatings: [],
+    selectedDish: "",
+  };
+
+  const [availableDishes, setAvailableDishes] = useState(
+    initialState.availableDishes
+  );
+  const [coordinates, setCoordinates] = useState(initialState.coordinates);
+  const [filteredRatings, setFilteredRatings] = useState(
+    initialState.filteredRatings
+  );
+  // const [selectedDish, setSelectedDish] = useState(initialState.selectedDish);
 
   useEffect(() => {
     async function fetchData() {
@@ -33,34 +51,32 @@ const FindDishPage = () => {
     getLocation();
   }, []);
 
-  const handleFilter = async (e) => {
+  const handleFilterByDish = async (e) => {
     e.preventDefault();
-    const response = await getFilteredRating(e.target.name);
+    const response = await getFilteredRating(e.target.value);
     setFilteredRatings(response.ratings);
   };
 
   return (
-    <>
-      <div className="find-dish-buttons">
-        Find Dish:{" "}
-        {availableDishes.map((dish) => (
-          <button
-            key={dish.id}
-            type="submit"
-            name={dish.name}
-            onClick={handleFilter}
-          >
-            {dish.name}
-          </button>
-        ))}
-      </div>
-      <>
-        <DishRatings
-          filteredRatings={filteredRatings}
-          coordinates={coordinates}
+    <div className="FindDishPage">
+      <h2 className="FindPage-header" id="FindPage-header">
+        <img src={findHeaderImage} alt="Rate a Dish" />
+      </h2>
+
+      <div className="form-container">
+        <DishSelector
+          availableDishes={availableDishes}
+          handleFilterByDish={handleFilterByDish}
         />
-      </>
-    </>
+
+        <div>
+          <DishRatings
+            filteredRatings={filteredRatings}
+            coordinates={coordinates}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 export default FindDishPage;

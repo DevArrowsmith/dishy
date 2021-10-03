@@ -41,8 +41,8 @@ const StillAtRestaurantSelector = ({
         <div id="stillAtRestaurantButtonsContainer">
           <button
             type="submit"
-            className={`form-button stillAtRestaurantButton ${
-              selectedButtons.yesButton && "disabledButton"
+            className={`pink-button stillAtRestaurantButton ${
+              selectedButtons.yesButton && "disabled-pink-button"
             }`}
             onClick={() => !selectedButtons.yesButton && yesOnClick()}
           >
@@ -51,8 +51,8 @@ const StillAtRestaurantSelector = ({
 
           <button
             type="submit"
-            className={`form-button stillAtRestaurantButton ${
-              selectedButtons.noButton && "disabledButton"
+            className={`pink-button stillAtRestaurantButton ${
+              selectedButtons.noButton && "disabled-pink-button"
             }`}
             onClick={() => !selectedButtons.noButton && noOnClick()}
           >
