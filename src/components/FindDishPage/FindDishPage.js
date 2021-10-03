@@ -26,7 +26,6 @@ const FindDishPage = () => {
   const [filteredRatings, setFilteredRatings] = useState(
     initialState.filteredRatings
   );
-  // const [selectedDish, setSelectedDish] = useState(initialState.selectedDish);
 
   useEffect(() => {
     async function fetchData() {
