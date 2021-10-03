@@ -18,19 +18,20 @@ function RatingCard({ rating }) {
 
   return (
     <>
-      <div className="RatingCard-left-container">
-        <p>{rating.name}</p>
-        <p>Distance: {rating.distance}m</p>
-        {showDetails && (
+      <button type="submit" className="RatingCard" onClick={handleDetails}>
+        <div className="RatingCard-left-container">
+          <p>{rating.name}</p>
+          <p>Distance: {rating.distance}m</p>
+          {showDetails && (
+            <div>
+              <div>{rating.address.address1}</div>
+              <div>{rating.address.address2}</div>
+              <div>{rating.address.city}</div>
+              <div>{rating.address.zip_code}</div>
+            </div>
+          )}
           <div>
-            <div>{rating.address.address1}</div>
-            <div>{rating.address.address2}</div>
-            <div>{rating.address.city}</div>
-            <div>{rating.address.zip_code}</div>
-          </div>
-        )}
-        <div>
-          {/* {showScore ? (
+            {/* {showScore ? (
             <div>
               <div>
                 {rating.scores.map((score) => (
@@ -41,22 +42,20 @@ function RatingCard({ rating }) {
           ) : (
             rating.averageScore
           )} */}
-          {/* {rating.scores.length > 1 && (
+            {/* {rating.scores.length > 1 && (
             <button type="submit" onClick={handleScore}>
               scores
             </button>
           )} */}
-          <button type="submit" onClick={handleDetails}>
-            details
-          </button>
+          </div>
         </div>
-      </div>
 
-      <div id="RatingCard-right-container">
-        <div className="rating-circle">
-          <p>{rating.averageScore}</p>
+        <div id="RatingCard-right-container">
+          <div className="rating-circle">
+            <p>{rating.averageScore}</p>
+          </div>
         </div>
-      </div>
+      </button>
     </>
   );
 }

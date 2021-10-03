@@ -76,11 +76,9 @@ function DishRatings({ filteredRatings, coordinates }) {
             Sort by Distance
           </button>
         </div>
-        <div className="rating-cards">
+        <div id="rating-cards">
           {dishRatings.map((rating) => (
-            <div className="rating-card" key={rating.name}>
-              <RatingCard rating={rating} />
-            </div>
+            <RatingCard rating={rating} key={rating.name} />
           ))}
         </div>
       </div>
