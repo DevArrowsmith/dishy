@@ -23,11 +23,12 @@ function RatingCard({ rating }) {
           <p>{rating.name}</p>
           <p>Distance: {rating.distance}m</p>
           {showDetails && (
-            <div>
-              <div>{rating.address.address1}</div>
-              <div>{rating.address.address2}</div>
-              <div>{rating.address.city}</div>
-              <div>{rating.address.zip_code}</div>
+            <div className="RatingCard-address">
+              <p>Address:</p>
+              <p>{rating.address.address1}</p>
+              <p>{rating.address.address2}</p>
+              <p>{rating.address.city}</p>
+              <p>{rating.address.zip_code}</p>
             </div>
           )}
           <div>
