@@ -31,19 +31,3 @@
   border: 2px solid #ffff51;
 }
 
-.form-button {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.9em;
-  width: 100px;
-  height: 40px;
-  color: #171239;
-  text-decoration: none;
-  text-transform: uppercase;
-  background: linear-gradient(130deg, #fcb0ff 0%, #fcb0ff 20%, #fa50ff 100%);
-  border: 2px solid #bd006b;
-  border-radius: 5px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-}

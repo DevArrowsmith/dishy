@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import "../../../styles/DishRatings.css";
 import distance from "../../../utils/geoLocation";
 import RatingCard from "./RatingCard";
 
@@ -58,14 +59,21 @@ function DishRatings({ filteredRatings, coordinates }) {
 
   if (filteredRatings[0]) {
     return (
-      <>
-        <div className="sort-buttons">
-          Sort Dish:{" "}
-          <button type="submit" onClick={sortByRating}>
-            rating
+      <div id="DishRatings">
+        <div id="sort-buttons-container">
+          <button
+            className="sort-button pink-button"
+            type="submit"
+            onClick={sortByRating}
+          >
+            Sort by Rating
           </button>
-          <button type="submit" onClick={sortByDistance}>
-            distance
+          <button
+            className="sort-button pink-button"
+            type="submit"
+            onClick={sortByDistance}
+          >
+            Sort by Distance
           </button>
         </div>
         <div className="rating-cards">
@@ -75,7 +83,7 @@ function DishRatings({ filteredRatings, coordinates }) {
             </div>
           ))}
         </div>
-      </>
+      </div>
     );
   }
   return null;

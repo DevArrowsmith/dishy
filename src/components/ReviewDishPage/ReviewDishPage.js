@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/ReviewDishPage.css";
 import "../../styles/common/form.css";
+import "../../styles/common/buttons.css";
 import getRestaurantsByGeolocation from "../../controllers/getRestaurantsByGeolocation";
 import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
 import SearchForRestaurant from "./SearchForRestaurant";

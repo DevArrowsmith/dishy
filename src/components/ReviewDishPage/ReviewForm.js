@@ -109,7 +109,7 @@ const ReviewForm = ({
           </div>
 
           <div id="review-submit-button" className="form-field">
-            <button type="submit" className="form-button">
+            <button type="submit" className="pink-button">
               Rate it!
             </button>
           </div>

@@ -1,0 +1,20 @@
+.pink-button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+  width: 100px;
+  height: 40px;
+  color: #171239;
+  text-decoration: none;
+  background: linear-gradient(130deg, #fcb0ff 0%, #fcb0ff 20%, #fa50ff 100%);
+  border: 2px solid #bd006b;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.disabled-pink-button {
+  background: linear-gradient(130deg, #ffff99 0%, #ffff99 20%, #ffff0a 100%);
+  border-color: #00a2f4;
+}
