@@ -1,3 +1,3 @@
-const rootAddress = `https://localhost:4000/`;
+const rootAddress = `https://dishymcr.herokuapp.com/`;
 
 export default rootAddress;
