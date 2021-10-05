@@ -1,8 +1,10 @@
+import rootAddress from "./rootAddress";
+
 const axios = require("axios");
 
 const getFilteredRating = async (search) => {
   return axios
-    .post(`http://localhost:4000/rating/search`, { query: search })
+    .post(`${rootAddress}rating/search`, { query: search })
 
     .then((response) => {
       const array = [];
@@ -43,7 +45,7 @@ const getFilteredRating = async (search) => {
 };
 
 const getDishes = async () => {
-  return axios.get(`http://localhost:4000/dish/`).then((response) => {
+  return axios.get(`${rootAddress}dish/`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -52,7 +54,7 @@ const getDishes = async () => {
 };
 
 const getRatings = async () => {
-  return axios.get(`http://localhost:4000/rating/all`).then((response) => {
+  return axios.get(`${rootAddress}rating/all`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -61,7 +63,7 @@ const getRatings = async () => {
 };
 
 const getRestaurants = async () => {
-  return axios.get(`http://localhost:4000/restaurant`).then((response) => {
+  return axios.get(`${rootAddress}restaurant`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -72,7 +74,7 @@ const getRestaurants = async () => {
 const saveRestaurant = async (review, targetRestaurant) => {
   const { coordinates, name, location } = targetRestaurant;
   return axios
-    .post(`http://localhost:4000/restaurant`, {
+    .post(`${rootAddress}restaurant`, {
       yelp_id: review.restaurant,
       longitude: coordinates.longitude,
       latitude: coordinates.latitude,
@@ -92,7 +94,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
 
 const saveDish = async (review) => {
   return axios
-    .post(`http://localhost:4000/dish`, {
+    .post(`${rootAddress}dish`, {
       name: review.dish,
     })
     .then((response) => {
@@ -105,7 +107,7 @@ const saveDish = async (review) => {
 
 const saveRating = async (review, restaurantId, dishId) => {
   return axios
-    .post(`http://localhost:4000/rating`, {
+    .post(`${rootAddress}rating`, {
       rating: review.rating,
       comment: "placeholder comment",
       RestaurantId: restaurantId,
