@@ -28,7 +28,6 @@ const ReviewForm = ({
       });
     }
     if (meta.action === "select-option") {
-      setDishesList([...dishesList, option.value]);
       setReview({
         ...review,
         dish: option.value,

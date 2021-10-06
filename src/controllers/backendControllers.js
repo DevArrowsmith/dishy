@@ -7,39 +7,9 @@ const getFilteredRating = async (search) => {
     .post(`${rootAddress}rating/search`, { query: search })
 
     .then((response) => {
-      const array = [];
-      response.data.forEach((data) => {
-        let obj = {};
-        if (
-          !array
-            .map((restaurant) => restaurant.name)
-            .includes(data.Restaurant.name)
-        ) {
-          obj = {
-            dish: data.Dish.name,
-            name: data.Restaurant.name,
-            coordinates: {
-              latitude: data.Restaurant.latitude,
-              longitude: data.Restaurant.longitude,
-            },
-            address: {
-              address1: data.Restaurant.address1,
-              address2: data.Restaurant.address2,
-              city: data.Restaurant.city,
-              zip_code: data.Restaurant.zip_code,
-            },
-            comment: data.comment,
-            scores: [data.rating],
-          };
-          array.push(obj);
-        } else {
-          const index = array.findIndex((i) => i.name === data.Restaurant.name);
-          array[index].scores.push(data.rating);
-        }
-      });
       return {
         status: response.status,
-        ratings: array,
+        ratings: response.data,
       };
     });
 };
