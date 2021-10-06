@@ -1,10 +1,8 @@
-import rootAddress from "./rootAddress";
-
 const axios = require("axios");
 
 const getRestaurantsBySearch = (location) => {
   return axios
-    .get(`${rootAddress}restaurants/search/${location}`)
+    .get(`https://dishymcr.herokuapp.com/restaurants/search/${location}`)
     .then((response) => {
       return {
         status: response.status,

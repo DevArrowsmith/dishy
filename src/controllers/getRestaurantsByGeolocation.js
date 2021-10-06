@@ -1,10 +1,10 @@
-import rootAddress from "./rootAddress";
-
 const axios = require("axios");
 
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
-    .get(`${rootAddress}restaurants/geolocation/${latitude}/${longitude}`)
+    .get(
+      `https://dishymcr.herokuapp.com/restaurants/geolocation/${latitude}/${longitude}`
+    )
     .then((response) => {
       return {
         status: response.status,
