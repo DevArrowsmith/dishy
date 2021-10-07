@@ -41,7 +41,6 @@ const ReviewDishPage = () => {
     initialState.restaurantsList
   );
   const [dishesList, setDishesList] = useState([]);
-
   const [review, setReview] = useState(initialState.review);
 
   // Component Render Toggles
@@ -74,7 +73,6 @@ const ReviewDishPage = () => {
         longitude: locationData.coords.longitude.toString(),
       });
     };
-
     window.navigator.geolocation.getCurrentPosition(setGeolocationState);
   };
 
@@ -85,7 +83,6 @@ const ReviewDishPage = () => {
       geolocation.latitude,
       geolocation.longitude
     );
-
     await setRestaurantsList(restaurantsData.restaurants);
     await setReview({
       ...review,
@@ -128,19 +125,6 @@ const ReviewDishPage = () => {
     setUpDishes();
   }, []);
 
-  const atRestaurantNowHandler = async () => {
-    await handleGetRestaurantsByGeolocation();
-    await setRenderSearchForRestaurant(false);
-    await setRenderReviewForm(true);
-    await setReview(initialState.review);
-  };
-
-  const notAtRestaurantNowHandler = async () => {
-    await setRenderSearchForRestaurant(true);
-    await setRenderReviewForm(false);
-    await setReview(initialState.review);
-  };
-
   return (
     <div className="ReviewDishPage">
       <h2 className="ReviewPage-header" id="ReviewPage-header">
@@ -150,9 +134,11 @@ const ReviewDishPage = () => {
       <div className="form-container">
         <StillAtRestaurantSelector
           renderComponent={renderStillAtRestaurant}
-          atRestaurantNowHandler={atRestaurantNowHandler}
-          notAtRestaurantNowHandler={notAtRestaurantNowHandler}
-          handle
+          handleGetRestaurantsByGeolocation={handleGetRestaurantsByGeolocation}
+          setRenderSearchForRestaurant={setRenderSearchForRestaurant}
+          setRenderReviewForm={setRenderReviewForm}
+          setReview={setReview}
+          initialReviewState={initialState.review}
         />
 
         <SearchForRestaurant
