@@ -33,26 +33,50 @@ const ReviewDishPage = () => {
       rating: 10,
     },
   };
-  const [geolocation, setGeolocation] = useState(initialState.geolocation);
 
+  // Setters
+
+  const [geolocation, setGeolocation] = useState(initialState.geolocation);
   const [restaurantsList, setRestaurantsList] = useState(
     initialState.restaurantsList
   );
-
   const [dishesList, setDishesList] = useState([]);
 
   const [review, setReview] = useState(initialState.review);
 
-  const [renderStillAtRestaurantSelector, setRenderStillAtRestaurantSelector] =
-    useState(initialState.renderStillAtRestaurant);
+  // Component Render Toggles
 
+  const [renderStillAtRestaurant, setRenderStillAtRestaurant] = useState(
+    initialState.renderStillAtRestaurant
+  );
   const [renderSearchForRestaurant, setRenderSearchForRestaurant] = useState(
     initialState.renderSearchForRestaurant
   );
-
   const [renderReviewForm, setRenderReviewForm] = useState(
     initialState.renderReviewForm
   );
+
+  // State Setters
+
+  const setUpDishes = async () => {
+    const existingDishes = await getDishes();
+    setDishesList(existingDishes.dishes.map((dish) => dish.name));
+    await setReview({
+      ...review,
+      dish: dishesList[0],
+    });
+  };
+
+  const handleSetGeolocation = () => {
+    const setGeolocationState = async (locationData) => {
+      await setGeolocation({
+        latitude: locationData.coords.latitude.toString(),
+        longitude: locationData.coords.longitude.toString(),
+      });
+    };
+
+    window.navigator.geolocation.getCurrentPosition(setGeolocationState);
+  };
 
   const handleGetRestaurantsByGeolocation = async () => {
     let restaurantsData;
@@ -68,6 +92,8 @@ const ReviewDishPage = () => {
       restaurant: restaurantsData.restaurants[0].id,
     });
   };
+
+  // Event Handlers
 
   const handleReviewChange = (event) => {
     setReview({
@@ -90,30 +116,12 @@ const ReviewDishPage = () => {
     );
   };
 
-  const handleSetGeolocation = () => {
-    const setGeolocationState = async (locationData) => {
-      await setGeolocation({
-        latitude: locationData.coords.latitude.toString(),
-        longitude: locationData.coords.longitude.toString(),
-      });
-    };
-
-    window.navigator.geolocation.getCurrentPosition(setGeolocationState);
-  };
-
-  const setUpDishes = async () => {
-    const existingDishes = await getDishes();
-    setDishesList(existingDishes.dishes.map((dish) => dish.name));
-    await setReview({
-      ...review,
-      dish: dishesList[0],
-    });
-  };
+  // Page Setup
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     "geolocation" in navigator
-      ? setRenderStillAtRestaurantSelector(true)
+      ? setRenderStillAtRestaurant(true)
       : setRenderSearchForRestaurant(true);
     handleSetGeolocation();
 
@@ -141,7 +149,7 @@ const ReviewDishPage = () => {
 
       <div className="form-container">
         <StillAtRestaurantSelector
-          renderComponent={renderStillAtRestaurantSelector}
+          renderComponent={renderStillAtRestaurant}
           atRestaurantNowHandler={atRestaurantNowHandler}
           notAtRestaurantNowHandler={notAtRestaurantNowHandler}
           handle
