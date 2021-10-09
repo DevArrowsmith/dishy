@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import getRestaurantsBySearch from "../../controllers/getRestaurantsBySearch";
+import { getRestaurantsBySearch } from "../../controllers/backendControllers";
 
 const SearchForRestaurant = ({
   renderComponent,
