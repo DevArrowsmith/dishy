@@ -3,7 +3,10 @@ const axios = require("axios");
 const getFilteredRating = async (search) => {
   return axios
     .post(`https://dishymcr.herokuapp.com/rating/search`, { query: search })
+<<<<<<< HEAD
 
+=======
+>>>>>>> c2e5e08b1b42e8b3ddc48abb027b38140190c83f
     .then((response) => {
       return {
         status: response.status,
