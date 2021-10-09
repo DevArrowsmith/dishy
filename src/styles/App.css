@@ -6,4 +6,14 @@
   background-image: url("../assets/text-bg-2.png");
   background-size: 300px auto;
   background-position: top;
+  animation: background-scroll 20s linear infinite;
+}
+
+@keyframes background-scroll {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: 300px;
+  }
 }
