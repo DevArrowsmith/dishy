@@ -1,7 +1,20 @@
 .message {
+  margin: 0;
   max-width: 300px;
 }
 
-.errorMessage {
+.banner {
+  width: calc(100% - 80px - 20px);
+  min-height: 60px;
+  padding: 10px;
+  border: 2px solid #bd006b;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.error {
   color: #BD006B;
 }

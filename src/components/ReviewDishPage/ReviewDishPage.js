@@ -7,6 +7,7 @@ import getRestaurantsByGeolocation from "../../controllers/getRestaurantsByGeolo
 import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
 import SearchForRestaurant from "./SearchForRestaurant";
 import ReviewForm from "./ReviewForm";
+import Message from "../components/Message";
 import reviewHeaderImage from "../../assets/review-image-1.png";
 
 import {
@@ -21,6 +22,7 @@ const ReviewDishPage = () => {
     renderStillAtRestaurant: false,
     renderSearchForRestaurant: false,
     renderReviewForm: false,
+    submitStatus: "",
     geolocation: {
       latitude: "",
       longitude: "",
@@ -54,6 +56,7 @@ const ReviewDishPage = () => {
   const [renderReviewForm, setRenderReviewForm] = useState(
     initialState.renderReviewForm
   );
+  const [submitStatus, setSubmitStatus] = useState(initialState.submitStatus);
 
   // State Setters
 
@@ -106,11 +109,14 @@ const ReviewDishPage = () => {
     );
     const newDish = await saveDish(review);
     const newRestaurant = await saveRestaurant(review, targetRestaurant);
-    await saveRating(
+    const newRating = await saveRating(
       review,
       newRestaurant.restaurant[0].id,
       newDish.dish[0].id
     );
+    newRating.status = 201
+      ? setSubmitStatus("success")
+      : setSubmitStatus("fail");
   };
 
   // Page Setup
@@ -121,7 +127,6 @@ const ReviewDishPage = () => {
       ? setRenderStillAtRestaurant(true)
       : setRenderSearchForRestaurant(true);
     handleSetGeolocation();
-
     setUpDishes();
   }, []);
 
@@ -161,6 +166,16 @@ const ReviewDishPage = () => {
           setDishesList={setDishesList}
         />
       </div>
+
+      {submitStatus === "success" ? (
+        <Message messageType="banner" messageText="Rating submitted!" />
+      ) : null}
+      {submitStatus === "fail" ? (
+        <Message
+          messageType="banner error"
+          messageText="Oops, something went wrong! Please try again later."
+        />
+      ) : null}
     </div>
   );
 };

@@ -46,6 +46,7 @@ const ReviewForm = ({
               className="form-input"
               name="restaurant"
               onChange={handleFieldChange}
+              required="true"
             >
               {restaurantsList.map((restaurant) => (
                 <option value={restaurant.id} key={restaurant.id}>
@@ -65,6 +66,7 @@ const ReviewForm = ({
               name="dish"
               onChange={handleSetTest}
               id="creatable"
+              required="true"
               components={{
                 IndicatorSeparator: () => null,
               }}
@@ -99,6 +101,7 @@ const ReviewForm = ({
                 max="10"
                 step="1"
                 onChange={handleFieldChange}
+                required="true"
               />
             </label>
             <div id="rating-value-display">
