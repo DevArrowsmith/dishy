@@ -2,11 +2,7 @@ const axios = require("axios");
 
 const getFilteredRating = async (search) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/rating/search`, { query: search })
-<<<<<<< HEAD
-
-=======
->>>>>>> c2e5e08b1b42e8b3ddc48abb027b38140190c83f
+    .post(`http://localhost:4000/rating/search`, { query: search })
     .then((response) => {
       return {
         status: response.status,
@@ -16,7 +12,7 @@ const getFilteredRating = async (search) => {
 };
 
 const getDishes = async () => {
-  return axios.get(`https://dishymcr.herokuapp.com/dish/`).then((response) => {
+  return axios.get(`http://localhost:4000/dish/`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -25,31 +21,27 @@ const getDishes = async () => {
 };
 
 const getRatings = async () => {
-  return axios
-    .get(`https://dishymcr.herokuapp.com/rating/all`)
-    .then((response) => {
-      return {
-        status: response.status,
-        dishes: response.data,
-      };
-    });
+  return axios.get(`http://localhost:4000/rating/all`).then((response) => {
+    return {
+      status: response.status,
+      dishes: response.data,
+    };
+  });
 };
 
 const getRestaurants = async () => {
-  return axios
-    .get(`https://dishymcr.herokuapp.com/restaurant`)
-    .then((response) => {
-      return {
-        status: response.status,
-        dishes: response.data,
-      };
-    });
+  return axios.get(`http://localhost:4000/restaurant`).then((response) => {
+    return {
+      status: response.status,
+      dishes: response.data,
+    };
+  });
 };
 
 const saveRestaurant = async (review, targetRestaurant) => {
   const { coordinates, name, location } = targetRestaurant;
   return axios
-    .post(`https://dishymcr.herokuapp.com/restaurant`, {
+    .post(`http://localhost:4000/restaurant`, {
       yelp_id: review.restaurant,
       longitude: coordinates.longitude,
       latitude: coordinates.latitude,
@@ -69,7 +61,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
 
 const saveDish = async (review) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/dish`, {
+    .post(`http://localhost:4000/dish`, {
       name: review.dish,
     })
     .then((response) => {
@@ -82,7 +74,7 @@ const saveDish = async (review) => {
 
 const saveRating = async (review, restaurantId, dishId) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/rating`, {
+    .post(`http://localhost:4000/rating`, {
       rating: review.rating,
       comment: "placeholder comment",
       RestaurantId: restaurantId,
@@ -99,7 +91,7 @@ const saveRating = async (review, restaurantId, dishId) => {
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
     .get(
-      `https://dishymcr.herokuapp.com/restaurants/geolocation/${latitude}/${longitude}`
+      `http://localhost:4000/restaurants/geolocation/${latitude}/${longitude}`
     )
     .then((response) => {
       return {
@@ -111,7 +103,7 @@ const getRestaurantsByGeolocation = (latitude, longitude) => {
 
 const getRestaurantsBySearch = (location) => {
   return axios
-    .get(`https://dishymcr.herokuapp.com/restaurants/search/${location}`)
+    .get(`http://localhost:4000/restaurants/search/${location}`)
     .then((response) => {
       return {
         status: response.status,

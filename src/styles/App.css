@@ -7,7 +7,6 @@
   background-size: 300px auto;
   background-position: top;
   animation: background-scroll 20s linear infinite;
-<<<<<<< HEAD
 }
 
 @keyframes background-scroll {
@@ -17,8 +16,6 @@
   to {
     background-position-x: 300px;
   }
-=======
->>>>>>> c2e5e08b1b42e8b3ddc48abb027b38140190c83f
 }
 
 @keyframes background-scroll {
