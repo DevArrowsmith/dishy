@@ -21,16 +21,16 @@ const StillAtRestaurantSelector = ({
   );
 
   const atRestaurantNowHandler = async () => {
+    await setReview(initialReviewState);
     await handleGetRestaurantsByGeolocation();
     await setRenderSearchForRestaurant(false);
     await setRenderReviewForm(true);
-    await setReview(initialReviewState);
   };
 
   const notAtRestaurantNowHandler = async () => {
+    await setReview(initialReviewState);
     await setRenderSearchForRestaurant(true);
     await setRenderReviewForm(false);
-    await setReview(initialReviewState);
   };
 
   const yesOnClick = () => {
