@@ -1,15 +1,15 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 import { signUp } from "../../controllers/loginControllers";
 
-function SignUpPage({ user, setUser }) {
+function SignUpPage() {
   const initialState = {
     fields: { username: "", password: "" },
   };
   const [fields, setFields] = useState(initialState.fields);
+
+  const history = useHistory();
+
   const handleFieldChange = (e) => {
     e.preventDefault();
     setFields({ ...fields, [e.target.name]: e.target.value });
@@ -18,8 +18,9 @@ function SignUpPage({ user, setUser }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     await signUp(fields)
-      .then((res) => {
+      .then(() => {
         console.log("successfully signed up!");
+        history.push("/");
       })
       .catch((error) => console.log(error));
   };
@@ -43,7 +44,5 @@ function SignUpPage({ user, setUser }) {
     </div>
   );
 }
-
-SignUpPage.propTypes = {};
 
 export default SignUpPage;
