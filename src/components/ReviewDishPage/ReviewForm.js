@@ -46,6 +46,7 @@ const ReviewForm = ({
               className="form-input"
               name="restaurant"
               onChange={handleFieldChange}
+              required
             >
               {restaurantsList.map((restaurant) => (
                 <option value={restaurant.id} key={restaurant.id}>
@@ -59,12 +60,16 @@ const ReviewForm = ({
 
         <form onSubmit={handleSubmitReviewForm}>
           <div className="form-field">
-            What did you eat?
+            <p className="select-food-header">What did you eat?</p>
+            <p className="select-food-text">
+              If it isn&apos;t in the list you can type it in!
+            </p>
             <Creatable
               options={selectTable}
               name="dish"
               onChange={handleSetTest}
               id="creatable"
+              required
               components={{
                 IndicatorSeparator: () => null,
               }}

@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 
 const StillAtRestaurantSelector = ({
   renderComponent,
-  atRestaurantNowHandler,
-  notAtRestaurantNowHandler,
+  handleGetRestaurantsByGeolocation,
+  setRenderSearchForRestaurant,
+  setRenderReviewForm,
+  setReview,
+  initialReviewState,
 }) => {
   const initialState = {
     selectedButtons: {
@@ -16,6 +19,19 @@ const StillAtRestaurantSelector = ({
   const [selectedButtons, setSelectedButtons] = useState(
     initialState.selectedButtons
   );
+
+  const atRestaurantNowHandler = async () => {
+    await setReview(initialReviewState);
+    await handleGetRestaurantsByGeolocation();
+    await setRenderSearchForRestaurant(false);
+    await setRenderReviewForm(true);
+  };
+
+  const notAtRestaurantNowHandler = async () => {
+    await setReview(initialReviewState);
+    await setRenderSearchForRestaurant(true);
+    await setRenderReviewForm(false);
+  };
 
   const yesOnClick = () => {
     setSelectedButtons({
@@ -67,8 +83,15 @@ const StillAtRestaurantSelector = ({
 
 StillAtRestaurantSelector.propTypes = {
   renderComponent: PropTypes.bool.isRequired,
-  atRestaurantNowHandler: PropTypes.func.isRequired,
-  notAtRestaurantNowHandler: PropTypes.func.isRequired,
+  handleGetRestaurantsByGeolocation: PropTypes.func.isRequired,
+  setRenderSearchForRestaurant: PropTypes.func.isRequired,
+  setRenderReviewForm: PropTypes.func.isRequired,
+  setReview: PropTypes.func.isRequired,
+  initialReviewState: PropTypes.shape({
+    restaurant: PropTypes.string,
+    dish: PropTypes.string,
+    rating: PropTypes.number,
+  }).isRequired,
 };
 
 export default StillAtRestaurantSelector;
