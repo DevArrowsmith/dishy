@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/ReviewDishPage.css";
 import "../../styles/common/form.css";
 import "../../styles/common/buttons.css";
+import PropTypes from "prop-types";
 import {
   getRestaurantsByGeolocation,
   getDishes,
@@ -16,7 +17,7 @@ import ReviewForm from "./ReviewForm";
 import Message from "../components/Message";
 import reviewHeaderImage from "../../assets/review-image-1.png";
 
-const ReviewDishPage = () => {
+const ReviewDishPage = ({ user }) => {
   const initialState = {
     renderStillAtRestaurant: false,
     renderSearchForRestaurant: false,
@@ -133,7 +134,8 @@ const ReviewDishPage = () => {
     const newRating = await saveRating(
       review,
       newRestaurant.restaurant[0].id,
-      newDish.dish[0].id
+      newDish.dish[0].id,
+      user.id
     );
     newRating.status = 201
       ? setSubmitStatus("success")
@@ -200,6 +202,14 @@ const ReviewDishPage = () => {
       ) : null}
     </div>
   );
+};
+
+ReviewDishPage.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    accessToken: PropTypes.string,
+    username: PropTypes.string,
+  }).isRequired,
 };
 
 export default ReviewDishPage;

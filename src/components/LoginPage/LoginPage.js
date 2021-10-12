@@ -1,13 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { signIn } from "../../controllers/loginControllers";
-import HomePage from "../HomePage/HomePage";
 
-function LoginPage({ user, setUser }) {
+function LoginPage({ setUser }) {
   const initialState = {
     fields: { username: "", password: "" },
   };
@@ -23,10 +19,13 @@ function LoginPage({ user, setUser }) {
     await signIn(fields)
       .then((res) => {
         if (res.data.accessToken) {
-          setUser({
+          const loggedInUser = {
             username: res.data.username,
             accessToken: res.data.accessToken,
-          });
+            id: res.data.id,
+          };
+          setUser(loggedInUser);
+          localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
           history.push("/");
         }
       })
@@ -53,6 +52,8 @@ function LoginPage({ user, setUser }) {
   );
 }
 
-LoginPage.propTypes = {};
+LoginPage.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
 
 export default LoginPage;

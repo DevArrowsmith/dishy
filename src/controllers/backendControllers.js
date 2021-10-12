@@ -4,6 +4,7 @@ const getFilteredRating = async (search) => {
   return axios
     .post(`http://localhost:4000/rating/search`, { query: search })
     .then((response) => {
+      console.log(response.data);
       return {
         status: response.status,
         ratings: response.data,
@@ -76,13 +77,14 @@ const saveDish = async (review) => {
     });
 };
 
-const saveRating = async (review, restaurantId, dishId) => {
+const saveRating = async (review, restaurantId, dishId, userId) => {
   return axios
     .post(`https://dishymcr.herokuapp.com/rating`, {
       rating: review.rating,
       comment: "placeholder comment",
       RestaurantId: restaurantId,
       DishId: dishId,
+      UserId: userId,
     })
     .then((response) => {
       return {
