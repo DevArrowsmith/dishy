@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "../../styles/Navbar.css";
 import homeImage from "../../assets/dishy-logo-1.png";
 import reviewImage from "../../assets/review-image-1.png";
@@ -10,7 +9,8 @@ import searchImage from "../../assets/search-image-1.png";
 const Navbar = ({ user, setUser }) => {
   const handleLogout = (e) => {
     e.preventDefault();
-    setUser({ username: "", accessToken: "" });
+    setUser({ username: "", accessToken: "", id: "" });
+    localStorage.clear();
   };
   return (
     <>
@@ -26,6 +26,7 @@ const Navbar = ({ user, setUser }) => {
         <div id="Navbar-right-links-container">
           {user.username ? (
             <>
+              hello {user.username}
               <button type="submit" onClick={handleLogout}>
                 logout
               </button>
@@ -54,6 +55,23 @@ const Navbar = ({ user, setUser }) => {
       </div>
     </>
   );
+};
+
+Navbar.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    accessToken: PropTypes.string,
+    username: PropTypes.string,
+  }),
+};
+
+Navbar.defaultProps = {
+  user: {
+    id: 0,
+    accessToken: "",
+    username: "",
+  },
 };
 
 export default Navbar;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../../../styles/RatingCard.css";
 
-function RatingCard({ rating }) {
+function RatingCard({ rating, user }) {
   // const [showScore, setShowScore] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
@@ -11,9 +11,16 @@ function RatingCard({ rating }) {
   //   setShowScore(!showScore);
   // };
 
+  const handleDeleteRating = (e) => {
+    e.preventDefault();
+    console.log(rating);
+  };
+
   const handleDetails = (e) => {
     e.preventDefault();
-    setShowDetails(!showDetails);
+    if (e.target.className !== "deleteRating") {
+      setShowDetails(!showDetails);
+    }
   };
 
   return (
@@ -55,6 +62,15 @@ function RatingCard({ rating }) {
             <p>{rating.address.address2}</p>
             <p>{rating.address.city}</p>
             <p>{rating.address.zip_code}</p>
+            {rating.users.includes(user.id) && (
+              <button
+                type="submit"
+                className="deleteRating"
+                onClick={handleDeleteRating}
+              >
+                delete
+              </button>
+            )}
           </div>
         )}
       </button>
@@ -64,7 +80,9 @@ function RatingCard({ rating }) {
 
 RatingCard.propTypes = {
   rating: PropTypes.shape({
+    user: PropTypes.number,
     name: PropTypes.string,
+    users: PropTypes.arrayOf(PropTypes.number),
     distance: PropTypes.number,
     averageScore: PropTypes.number,
     scores: PropTypes.arrayOf(PropTypes.number),
@@ -74,6 +92,11 @@ RatingCard.propTypes = {
       city: PropTypes.string,
       zip_code: PropTypes.string,
     }),
+  }).isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    accessToken: PropTypes.string,
+    username: PropTypes.string,
   }).isRequired,
 };
 

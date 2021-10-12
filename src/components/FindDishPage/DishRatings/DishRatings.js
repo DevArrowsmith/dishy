@@ -4,7 +4,7 @@ import "../../../styles/DishRatings.css";
 import distance from "../../../utils/geoLocation";
 import RatingCard from "./RatingCard";
 
-function DishRatings({ filteredRatings, coordinates }) {
+function DishRatings({ filteredRatings, coordinates, user }) {
   const [dishRatings, setDishRatings] = useState([]);
   useEffect(() => {
     const restaurantArray = [];
@@ -78,7 +78,7 @@ function DishRatings({ filteredRatings, coordinates }) {
         </div>
         <div id="rating-cards">
           {dishRatings.map((rating) => (
-            <RatingCard rating={rating} key={rating.name} />
+            <RatingCard rating={rating} key={rating.name} user={user} />
           ))}
         </div>
       </div>
@@ -107,9 +107,14 @@ DishRatings.propTypes = {
       }),
       dish: PropTypes.string,
       name: PropTypes.string,
-      scores: PropTypes.arrayOf(PropTypes.num),
+      scores: PropTypes.arrayOf(PropTypes.number),
     })
   ),
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    accessToken: PropTypes.string,
+    username: PropTypes.string,
+  }).isRequired,
 };
 
 DishRatings.defaultProps = {
