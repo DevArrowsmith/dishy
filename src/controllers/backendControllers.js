@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const getFilteredRating = async (search) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/rating/search`, { query: search })
+    .post(`http://localhost:4000/rating/search`, { query: search })
     .then((response) => {
       return {
         status: response.status,
@@ -92,6 +92,30 @@ const saveRating = async (review, restaurantId, dishId) => {
     });
 };
 
+const getRestaurantsByGeolocation = (latitude, longitude) => {
+  return axios
+    .get(
+      `http://localhost:4000/restaurants/geolocation/${latitude}/${longitude}`
+    )
+    .then((response) => {
+      return {
+        status: response.status,
+        restaurants: response.data.businesses,
+      };
+    });
+};
+
+const getRestaurantsBySearch = (location) => {
+  return axios
+    .get(`http://localhost:4000/restaurants/search/${location}`)
+    .then((response) => {
+      return {
+        status: response.status,
+        restaurants: response.data.businesses,
+      };
+    });
+};
+
 /* TODO: Create error handling. */
 
 module.exports = {
@@ -102,4 +126,6 @@ module.exports = {
   getRestaurants,
   getRatings,
   getFilteredRating,
+  getRestaurantsByGeolocation,
+  getRestaurantsBySearch,
 };

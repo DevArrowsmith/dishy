@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/HomePage.css";
 import dishyLogo from "../../assets/dishy-logo-1.png";
 
-const HomePage = () => {
+const HomePage = ({ user }) => {
   return (
     <div className="HomePage">
       <h1 className="HomePage-header" id="HomePage-header">
@@ -23,15 +24,16 @@ const HomePage = () => {
         >
           Find a Dish
         </Link>
-
-        <Link
-          to="/review"
-          className="HomePage-link-button"
-          id="HomePage-link-button-review"
-          type="button"
-        >
-          Rate a Dish
-        </Link>
+        {user.username && (
+          <Link
+            to="/review"
+            className="HomePage-link-button"
+            id="HomePage-link-button-review"
+            type="button"
+          >
+            Rate a Dish
+          </Link>
+        )}
       </div>
     </div>
   );

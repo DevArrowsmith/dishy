@@ -3,19 +3,18 @@ import React, { useState, useEffect } from "react";
 import "../../styles/ReviewDishPage.css";
 import "../../styles/common/form.css";
 import "../../styles/common/buttons.css";
-import getRestaurantsByGeolocation from "../../controllers/getRestaurantsByGeolocation";
-import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
-import SearchForRestaurant from "./SearchForRestaurant";
-import ReviewForm from "./ReviewForm";
-import Message from "../components/Message";
-import reviewHeaderImage from "../../assets/review-image-1.png";
-
 import {
+  getRestaurantsByGeolocation,
   getDishes,
   saveDish,
   saveRestaurant,
   saveRating,
 } from "../../controllers/backendControllers";
+import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
+import SearchForRestaurant from "./SearchForRestaurant";
+import ReviewForm from "./ReviewForm";
+import Message from "../components/Message";
+import reviewHeaderImage from "../../assets/review-image-1.png";
 
 const ReviewDishPage = () => {
   const initialState = {
@@ -76,6 +75,28 @@ const ReviewDishPage = () => {
         longitude: locationData.coords.longitude.toString(),
       });
     };
+    window.navigator.geolocation.getCurrentPosition(setGeolocationState);
+  };
+
+  // State Setters
+
+  const setUpDishes = async () => {
+    const existingDishes = await getDishes();
+    setDishesList(existingDishes.dishes.map((dish) => dish.name));
+    await setReview({
+      ...review,
+      dish: dishesList[0],
+    });
+  };
+
+  const handleSetGeolocation = () => {
+    const setGeolocationState = async (locationData) => {
+      await setGeolocation({
+        latitude: locationData.coords.latitude.toString(),
+        longitude: locationData.coords.longitude.toString(),
+      });
+    };
+
     window.navigator.geolocation.getCurrentPosition(setGeolocationState);
   };
 
