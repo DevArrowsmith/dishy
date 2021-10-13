@@ -34,7 +34,27 @@ const HomePage = ({ user }) => {
             Rate a Dish
           </Link>
         )}
+        {!user.username && (
+          <Link
+            to="/signin"
+            className="HomePage-link-button"
+            id="HomePage-link-button-login"
+            type="button"
+          >
+            Log In
+          </Link>
+        )}
       </div>
+      {!user.username && (
+        <Link
+          to="/signup"
+          className="HomePage-link-button"
+          id="HomePage-link-button-signup"
+          type="button"
+        >
+          Create an account
+        </Link>
+      )}
     </div>
   );
 };

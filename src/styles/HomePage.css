@@ -43,3 +43,9 @@
   flex-flow: column nowrap;
   justify-content: center;
 }
+
+#HomePage-link-button-signup {
+  width: calc(280px - 4px);
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
