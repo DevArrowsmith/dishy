@@ -76,27 +76,6 @@ const ReviewDishPage = ({ user }) => {
         longitude: locationData.coords.longitude.toString(),
       });
     };
-    window.navigator.geolocation.getCurrentPosition(setGeolocationState);
-  };
-
-  // State Setters
-
-  const setUpDishes = async () => {
-    const existingDishes = await getDishes();
-    setDishesList(existingDishes.dishes.map((dish) => dish.name));
-    await setReview({
-      ...review,
-      dish: dishesList[0],
-    });
-  };
-
-  const handleSetGeolocation = () => {
-    const setGeolocationState = async (locationData) => {
-      await setGeolocation({
-        latitude: locationData.coords.latitude.toString(),
-        longitude: locationData.coords.longitude.toString(),
-      });
-    };
 
     window.navigator.geolocation.getCurrentPosition(setGeolocationState);
   };
