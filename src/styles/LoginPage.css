@@ -53,3 +53,21 @@
   border-radius: 0 5px 5px 0;
   text-align: center;
 }
+
+.LoginPage-login-button {
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  color: #171239;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: linear-gradient(130deg, #fcb0ff 0%, #fcb0ff 20%, #FA50FF 100%);
+  border: 2px solid #BD006B;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}

@@ -54,7 +54,11 @@ function LoginPage({ setUser }) {
           <input type="password" name="password" />
         </label>
 
-        <button type="submit" onClick={handleFormSubmit}>
+        <button
+          className="LoginPage-login-button"
+          type="submit"
+          onClick={handleFormSubmit}
+        >
           login
         </button>
       </form>
