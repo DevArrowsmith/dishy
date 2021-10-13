@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { signIn } from "../../controllers/loginControllers";
+import loginHeaderImage from "../../assets/login-image-1.png";
+import "../../styles/LoginPage.css";
 
 function LoginPage({ setUser }) {
   const initialState = {
     fields: { username: "", password: "" },
   };
+
   const [fields, setFields] = useState(initialState.fields);
+
   const handleFieldChange = (e) => {
     e.preventDefault();
     setFields({ ...fields, [e.target.name]: e.target.value });
   };
+
   const history = useHistory();
 
   const handleFormSubmit = async (e) => {
@@ -34,8 +39,8 @@ function LoginPage({ setUser }) {
 
   return (
     <div className="LoginPage">
-      <h2 className="FindPage-header" id="FindPage-header">
-        Login
+      <h2 className="LoginPage-header" id="LoginPage-header">
+        <img src={loginHeaderImage} alt="Rate a Dish" />
       </h2>
 
       <div className="form-container">
@@ -47,7 +52,7 @@ function LoginPage({ setUser }) {
           </button>
         </form>
       </div>
-      <Link to="/signup">not a member? Sign up</Link>
+      <Link to="/signup">Not a member? Sign up</Link>
     </div>
   );
 }
