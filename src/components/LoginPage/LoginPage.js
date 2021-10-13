@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { signIn } from "../../controllers/loginControllers";
-import loginHeaderImage from "../../assets/login-image-1.png";
+import loginHeaderImage from "../../assets/login-image-2.png";
 import "../../styles/LoginPage.css";
 
 function LoginPage({ setUser }) {
@@ -63,7 +63,9 @@ function LoginPage({ setUser }) {
         </button>
       </form>
 
-      <Link to="/signup">Not a member? Sign up</Link>
+      <Link className="LoginPage-signup-button" to="/signup">
+        Not a member? Sign up!
+      </Link>
     </div>
   );
 }
