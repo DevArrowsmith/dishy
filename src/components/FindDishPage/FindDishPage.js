@@ -61,7 +61,7 @@ const FindDishPage = ({ user }) => {
   return (
     <div className="FindDishPage">
       <h2 className="FindPage-header" id="FindPage-header">
-        <img src={findHeaderImage} alt="Rate a Dish" />
+        <img src={findHeaderImage} alt="Find a Dish" />
       </h2>
 
       <div className="form-container">

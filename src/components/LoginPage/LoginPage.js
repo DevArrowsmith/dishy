@@ -40,7 +40,7 @@ function LoginPage({ setUser }) {
   return (
     <div className="LoginPage">
       <h2 className="LoginPage-header" id="LoginPage-header">
-        <img src={loginHeaderImage} alt="Rate a Dish" />
+        <img src={loginHeaderImage} alt="Log In" />
       </h2>
 
       <div className="form-container">
