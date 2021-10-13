@@ -14,3 +14,42 @@
 .LoginPage-header img {
   width: 80%;
 }
+
+.LoginPage-form {
+  width: 280px;
+}
+
+.LoginPage-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.LoginPage-form-field p {
+  margin: 0;
+  width: calc(110px - 3px);
+  height: 32px;
+  background-color: white;
+  border-top: 2px solid #bd006b;
+  border-left: 2px solid #bd006b;
+  border-bottom: 2px solid #bd006b;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.LoginPage-form-field input {
+  width: calc(170px - 6px);
+  height: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid #bd006b;
+  border-radius: 0 5px 5px 0;
+  text-align: center;
+}

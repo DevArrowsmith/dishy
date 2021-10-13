@@ -43,15 +43,15 @@ function LoginPage({ setUser }) {
         <img src={loginHeaderImage} alt="Log In" />
       </h2>
 
-      <form onChange={handleFieldChange}>
-        <label htmlFor="username">
+      <form className="LoginPage-form" onChange={handleFieldChange}>
+        <label className="LoginPage-form-field" htmlFor="username">
           <p>username:</p>
           <input type="text" name="username" />
         </label>
 
-        <label htmlFor="password">
+        <label className="LoginPage-form-field" htmlFor="password">
           <p>password:</p>
-          <input type="text" name="password" />
+          <input type="password" name="password" />
         </label>
 
         <button type="submit" onClick={handleFormSubmit}>
