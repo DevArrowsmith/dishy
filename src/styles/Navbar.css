@@ -25,3 +25,12 @@
   margin-top: 8px;
   margin-right: 10px;
 }
+
+#Navbar-right-links-container {
+  width: calc(100% - 102px - 20px);
+  height: 70px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}

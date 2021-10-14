@@ -8,9 +8,7 @@ import Menu from "./Menu";
 
 const BurgerMenuContainer = styled.div`
   height: 50px;
-  width: 60px;
-  margin: 0;
-  padding: 0;
+  width: 56px;
 `;
 
 const BurgerMenu = () => {

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const StyledBurger = styled.button`
   padding: 0;
+  margin: 0;
   width: 55px;
   height: 50px;
   background: none;
