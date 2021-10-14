@@ -39,4 +39,5 @@ In time this app will be hosted online.
 
 - React was used to create the UI.
 - Axios was used to handle communications with the backend.
+- styled-components was used for styling of certain components.
 - eslint & prettier were used for linting.

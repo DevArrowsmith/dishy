@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import "../../styles/Navbar.css";
 import homeImage from "../../assets/dishy-logo-1.png";
 import reviewImage from "../../assets/review-image-1.png";
@@ -12,6 +13,7 @@ const Navbar = ({ user, setUser }) => {
     setUser({ username: "", accessToken: "", id: "" });
     localStorage.clear();
   };
+
   return (
     <>
       <div className="Navbar" id="Navbar">
@@ -51,6 +53,8 @@ const Navbar = ({ user, setUser }) => {
               alt="Find a Dish"
             />
           </Link>
+
+          <BurgerMenu />
         </div>
       </div>
     </>
