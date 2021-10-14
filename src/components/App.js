@@ -6,7 +6,7 @@ import HomePage from "./HomePage/HomePage";
 import ReviewDishPage from "./ReviewDishPage/ReviewDishPage";
 import FindDishPage from "./FindDishPage/FindDishPage";
 import LoginPage from "./LoginPage/LoginPage";
-import SignUpPage from "./LoginPage/SignUpPage";
+import SignUpPage from "./SignUpPage/SignUpPage";
 
 const App = () => {
   const initialState = {
