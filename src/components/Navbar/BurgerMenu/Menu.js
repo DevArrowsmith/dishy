@@ -7,6 +7,7 @@ import homeImage from "../../../assets/menu-image-home.png";
 import rateDishImage from "../../../assets/menu-image-ratedish.png";
 import findDishImage from "../../../assets/menu-image-finddish.png";
 import loginImage from "../../../assets/menu-image-login.png";
+import logoutImage from "../../../assets/menu-image-logout.png";
 import signupImage from "../../../assets/menu-image-signup.png";
 
 export const StyledMenu = styled.nav`
@@ -69,14 +70,7 @@ const Menu = ({ open }) => {
           alt="Home"
         />
       </Navlink>
-      <Navlink to="/review">
-        <NavImage
-          className="Menu-image"
-          id="Menu-image-ratedish"
-          src={rateDishImage}
-          alt="Rate Dish"
-        />
-      </Navlink>
+
       <Navlink to="/signin">
         <NavImage
           className="Menu-image"
@@ -85,6 +79,7 @@ const Menu = ({ open }) => {
           alt="Login"
         />
       </Navlink>
+
       <Navlink to="/signup">
         <NavImage
           className="Menu-image"
@@ -93,12 +88,31 @@ const Menu = ({ open }) => {
           alt="Sign Up"
         />
       </Navlink>
+
       <Navlink to="/find">
         <NavImage
           className="Menu-image"
           id="Menu-image-finddish"
           src={findDishImage}
           alt="Find Dish"
+        />
+      </Navlink>
+
+      <Navlink to="/review">
+        <NavImage
+          className="Menu-image"
+          id="Menu-image-ratedish"
+          src={rateDishImage}
+          alt="Rate Dish"
+        />
+      </Navlink>
+
+      <Navlink to="/">
+        <NavImage
+          className="Menu-image"
+          id="Menu-image-logout"
+          src={logoutImage}
+          alt="Log Out"
         />
       </Navlink>
     </StyledMenu>
