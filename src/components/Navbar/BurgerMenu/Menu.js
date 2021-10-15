@@ -18,7 +18,26 @@ export const StyledMenu = styled.nav`
   height: calc(100vh - 80px - 40px);
   width: 260px;
   padding: 20px 0;
-  background: rgba(0, 0, 0, 0.9);
+  // background: linear-gradient(
+  //   rgba(240, 240, 240, 1) 0%,
+  //   rgba(240, 240, 240, 1) 93%,
+  //   #33f2ff 96%,
+  //   #f63ed4 98%
+  // );
+  background: linear-gradient(
+    rgba(50, 50, 50, 1) 0%,
+    rgba(40, 30, 50, 1) 93%,
+    #f63ed4 96%,
+    #33f2ff 98%
+  );
+  // background: linear-gradient(
+  //   #171239 0%,
+  //   #4e044e 90%,
+  //   #f63ed4 92%,
+  //   #33f2ff 94%,
+  //   #a8eb12 96%,
+  //   #ffff51 98%
+  // );
   text-align: center;
   display: flex;
   flex-flow: column nowrap;
