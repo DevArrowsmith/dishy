@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "../../styles/ReviewDishPage.css";
 import "../../styles/common/form.css";
 import "../../styles/common/buttons.css";
@@ -35,7 +36,11 @@ const ReviewDishPage = ({ user }) => {
       rating: 10,
     },
   };
+  const history = useHistory();
 
+  if (!user.username) {
+    history.push("/");
+  }
   // Setters
 
   const [geolocation, setGeolocation] = useState(initialState.geolocation);
