@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import homeImage from "../../../assets/menu-image-home.png";
+import rateDishImage from "../../../assets/menu-image-ratedish.png";
+import findDishImage from "../../../assets/menu-image-finddish.png";
+import loginImage from "../../../assets/menu-image-login.png";
+import signupImage from "../../../assets/menu-image-signup.png";
+
 export const StyledMenu = styled.nav`
   position: absolute;
   z-index: 2;
@@ -26,9 +32,9 @@ export const StyledMenu = styled.nav`
 `;
 
 const Navlink = styled(Link)`
-  width: calc(100% - 40px);
-  height: 75px;
-  padding: 0 40px 0 0;
+  width: 100%;
+  height: 70px;
+  padding: 0 0px 0 0;
   font-family: "Contrail One", Helvetica, sans-serif;
   font-size: 1.8em;
   color: white;
@@ -48,14 +54,53 @@ const Navlink = styled(Link)`
   }
 `;
 
+const NavImage = styled.img`
+  height: 60px;
+`;
+
 const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
-      <Navlink to="/">Home</Navlink>
-      <Navlink to="/review">Rate Dish</Navlink>
-      <Navlink to="/signin">Login</Navlink>
-      <Navlink to="/signup">Sign Up</Navlink>
-      <Navlink to="/find">Find Dish</Navlink>
+      <Navlink to="/">
+        <NavImage
+          className="Menu-image"
+          id="Menu-image-home"
+          src={homeImage}
+          alt="Home"
+        />
+      </Navlink>
+      <Navlink to="/review">
+        <NavImage
+          className="Menu-image"
+          id="Menu-image-ratedish"
+          src={rateDishImage}
+          alt="Rate Dish"
+        />
+      </Navlink>
+      <Navlink to="/signin">
+        <NavImage
+          className="Menu-image"
+          id="Menu-image-login"
+          src={loginImage}
+          alt="Login"
+        />
+      </Navlink>
+      <Navlink to="/signup">
+        <NavImage
+          className="Menu-image"
+          id="Menu-image-signup"
+          src={signupImage}
+          alt="Sign Up"
+        />
+      </Navlink>
+      <Navlink to="/find">
+        <NavImage
+          className="Menu-image"
+          id="Menu-image-finddish"
+          src={findDishImage}
+          alt="Find Dish"
+        />
+      </Navlink>
     </StyledMenu>
   );
 };
