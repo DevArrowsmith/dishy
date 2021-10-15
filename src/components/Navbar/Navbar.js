@@ -24,7 +24,7 @@ const Navbar = ({ user, setUser }) => {
           />
         </Link>
         <div id="Navbar-right-links-container">
-          {user.username ? (
+          {user.username && (
             <>
               hello {user.username}
               <button type="submit" onClick={handleLogout}>
@@ -39,8 +39,6 @@ const Navbar = ({ user, setUser }) => {
                 />
               </Link>
             </>
-          ) : (
-            <Link to="/signin">log in</Link>
           )}
 
           <Link to="/find">
