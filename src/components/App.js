@@ -6,7 +6,7 @@ import HomePage from "./HomePage/HomePage";
 import ReviewDishPage from "./ReviewDishPage/ReviewDishPage";
 import FindDishPage from "./FindDishPage/FindDishPage";
 import LoginPage from "./LoginPage/LoginPage";
-import SignUpPage from "./LoginPage/SignUpPage";
+import SignupPage from "./SignupPage/SignupPage";
 
 const App = () => {
   const initialState = {
@@ -44,7 +44,7 @@ const App = () => {
           path="/signin"
           component={() => <LoginPage user={user} setUser={setUser} />}
         />
-        <Route exact path="/signup" component={() => <SignUpPage />} />
+        <Route exact path="/Signup" component={() => <SignupPage />} />
       </Switch>
     </div>
   );

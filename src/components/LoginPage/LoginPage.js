@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { signIn } from "../../controllers/loginControllers";
-import loginHeaderImage from "../../assets/login-image-1.png";
+import loginHeaderImage from "../../assets/login-image-2.png";
 import "../../styles/LoginPage.css";
 
 function LoginPage({ setUser }) {
@@ -43,16 +43,29 @@ function LoginPage({ setUser }) {
         <img src={loginHeaderImage} alt="Log In" />
       </h2>
 
-      <div className="form-container">
-        <form onChange={handleFieldChange}>
-          username: <input name="username" />
-          password: <input name="password" />
-          <button type="submit" onClick={handleFormSubmit}>
-            login
-          </button>
-        </form>
-      </div>
-      <Link to="/signup">Not a member? Sign up</Link>
+      <form className="LoginPage-form" onChange={handleFieldChange}>
+        <label className="LoginPage-form-field" htmlFor="username">
+          <p>username:</p>
+          <input type="text" name="username" />
+        </label>
+
+        <label className="LoginPage-form-field" htmlFor="password">
+          <p>password:</p>
+          <input type="password" name="password" />
+        </label>
+
+        <button
+          className="LoginPage-login-button"
+          type="submit"
+          onClick={handleFormSubmit}
+        >
+          login
+        </button>
+      </form>
+
+      <Link className="LoginPage-signup-button" to="/signup">
+        Not a member? Sign up!
+      </Link>
     </div>
   );
 }
