@@ -15,9 +15,20 @@ const getFilteredRating = async (search) => {
 
 const getDishes = async () => {
   return axios.get(`${api}dish/`).then((response) => {
+    const tempArray = [...response.data];
+    tempArray.sort((a, b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        return -1;
+      }
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+
     return {
       status: response.status,
-      dishes: response.data,
+      dishes: tempArray,
     };
   });
 };
@@ -75,7 +86,13 @@ const saveDish = async (review) => {
     });
 };
 
-const saveRating = async (review, restaurantId, dishId, userId) => {
+const saveRating = async (
+  review,
+  restaurantId,
+  dishId,
+  userId,
+  accessToken
+) => {
   return axios
 
     .post(`${api}rating`, {
@@ -84,6 +101,7 @@ const saveRating = async (review, restaurantId, dishId, userId) => {
       RestaurantId: restaurantId,
       DishId: dishId,
       UserId: userId,
+      accessToken,
     })
     .then((response) => {
       return {

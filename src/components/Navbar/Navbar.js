@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import "../../styles/Navbar.css";
 import homeImage from "../../assets/dishy-logo-1.png";
+import reviewImage from "../../assets/review-image-1.png";
+import searchImage from "../../assets/search-image-1.png";
+import { UserContext } from "../../contexts/UserContext";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = () => {
+  const { user, setUser } = useContext(UserContext);
+  useEffect(() => {
+    if (localStorage.loggedInUser) {
+      setUser(JSON.parse(localStorage.loggedInUser));
+    }
+  }, []);
+
   const handleLogout = (e) => {
     e.preventDefault();
     setUser({ username: "", accessToken: "", id: "" });
@@ -40,23 +49,6 @@ const Navbar = ({ user, setUser }) => {
       </div>
     </>
   );
-};
-
-Navbar.propTypes = {
-  setUser: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    accessToken: PropTypes.string,
-    username: PropTypes.string,
-  }),
-};
-
-Navbar.defaultProps = {
-  user: {
-    id: 0,
-    accessToken: "",
-    username: "",
-  },
 };
 
 export default Navbar;

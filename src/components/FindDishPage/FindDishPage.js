@@ -1,7 +1,6 @@
 import "../../styles/FindDishPage.css";
 import "../../styles/common/form.css";
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import DishSelector from "./DishSelector";
 import DishRatings from "./DishRatings/DishRatings";
 import {
@@ -10,7 +9,7 @@ import {
 } from "../../controllers/backendControllers";
 import findHeaderImage from "../../assets/search-image-1.png";
 
-const FindDishPage = ({ user }) => {
+const FindDishPage = () => {
   const initialState = {
     availableDishes: [],
     coordinates: {
@@ -74,28 +73,11 @@ const FindDishPage = ({ user }) => {
           <DishRatings
             filteredRatings={filteredRatings}
             coordinates={coordinates}
-            user={user}
           />
         </div>
       </div>
     </div>
   );
-};
-
-FindDishPage.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    accessToken: PropTypes.string,
-    username: PropTypes.string,
-  }),
-};
-
-FindDishPage.defaultProps = {
-  user: {
-    id: 0,
-    accessToken: "",
-    username: "",
-  },
 };
 
 export default FindDishPage;
