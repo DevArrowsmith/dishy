@@ -1,10 +1,10 @@
-const axios = require("axios");
+import axios from "axios";
+
+const api = process.env.REACT_APP_API_URL;
 
 const getFilteredRating = async (search) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/rating/search`, {
-      query: search,
-    })
+    .post(`${api}rating/search`, { query: search })
     .then((response) => {
       return {
         status: response.status,
@@ -14,7 +14,7 @@ const getFilteredRating = async (search) => {
 };
 
 const getDishes = async () => {
-  return axios.get(`https://dishymcr.herokuapp.com/dish/`).then((response) => {
+  return axios.get(`${api}dish/`).then((response) => {
     const tempArray = [...response.data];
     tempArray.sort((a, b) => {
       if (a.name.toLowerCase() < b.name.toLowerCase()) {
@@ -34,31 +34,28 @@ const getDishes = async () => {
 };
 
 const getRatings = async () => {
-  return axios
-    .get(`https://dishymcr.herokuapp.com/rating/all`)
-    .then((response) => {
-      return {
-        status: response.status,
-        dishes: response.data,
-      };
-    });
+  return axios.get(`${api}rating/all`).then((response) => {
+    return {
+      status: response.status,
+      dishes: response.data,
+    };
+  });
 };
 
 const getRestaurants = async () => {
-  return axios
-    .get(`https://dishymcr.herokuapp.com/restaurant`)
-    .then((response) => {
-      return {
-        status: response.status,
-        dishes: response.data,
-      };
-    });
+  return axios.get(`${api}restaurant`).then((response) => {
+    return {
+      status: response.status,
+      dishes: response.data,
+    };
+  });
 };
 
 const saveRestaurant = async (review, targetRestaurant) => {
   const { coordinates, name, location } = targetRestaurant;
   return axios
-    .post(`https://dishymcr.herokuapp.com/restaurant`, {
+
+    .post(`${api}restaurant`, {
       yelp_id: review.restaurant,
       longitude: coordinates.longitude,
       latitude: coordinates.latitude,
@@ -78,7 +75,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
 
 const saveDish = async (review) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/dish`, {
+    .post(`${api}dish`, {
       name: review.dish,
     })
     .then((response) => {
@@ -97,21 +94,15 @@ const saveRating = async (
   accessToken
 ) => {
   return axios
-    .post(
-      `https://dishymcr.herokuapp.com/rating`,
-      {
-        rating: review.rating,
-        comment: "placeholder comment",
-        RestaurantId: restaurantId,
-        DishId: dishId,
-        UserId: userId,
-      },
-      {
-        headers: {
-          "x-access-token": accessToken,
-        },
-      }
-    )
+
+    .post(`${api}rating`, {
+      rating: review.rating,
+      comment: "placeholder comment",
+      RestaurantId: restaurantId,
+      DishId: dishId,
+      UserId: userId,
+      accessToken,
+    })
     .then((response) => {
       return {
         status: response.status,
@@ -122,9 +113,9 @@ const saveRating = async (
 
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
-    .get(
-      `https://dishymcr.herokuapp.com/restaurants/geolocation/${latitude}/${longitude}`
-    )
+
+    .get(`${api}restaurants/geolocation/${latitude}/${longitude}`)
+
     .then((response) => {
       return {
         status: response.status,
@@ -134,19 +125,16 @@ const getRestaurantsByGeolocation = (latitude, longitude) => {
 };
 
 const getRestaurantsBySearch = (location) => {
-  return axios
-    .get(`https://dishymcr.herokuapp.com/restaurants/search/${location}`)
-    .then((response) => {
-      return {
-        status: response.status,
-        restaurants: response.data.businesses,
-      };
-    });
+  return axios.get(`${api}restaurants/search/${location}`).then((response) => {
+    return {
+      status: response.status,
+      restaurants: response.data.businesses,
+    };
+  });
 };
 
 /* TODO: Create error handling. */
-
-module.exports = {
+export {
   saveRestaurant,
   saveDish,
   saveRating,

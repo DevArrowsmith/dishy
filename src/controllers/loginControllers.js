@@ -1,10 +1,11 @@
-const axios = require("axios");
+import axios from "axios";
+
+const api = process.env.REACT_APP_API_URL;
 
 const signIn = async (fields) => {
   const { username, password } = fields;
-  console.log(username);
   return axios
-    .post(`https://dishymcr.herokuapp.com/auth/signin`, {
+    .post(`${api}auth/signin`, {
       username,
       password,
     })
@@ -18,15 +19,11 @@ const signIn = async (fields) => {
 
 const signUp = async (fields) => {
   const { username, password, email } = fields;
-  return axios
-    .post(`https://dishymcr.herokuapp.com/auth/signup`, {
-      username,
-      password,
-      email,
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  return axios.post(`${api}auth/signup`, {
+    username,
+    password,
+    email,
+  });
 };
 
-module.exports = { signIn, signUp };
+export { signIn, signUp };
