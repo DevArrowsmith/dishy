@@ -4,7 +4,7 @@ const api = process.env.API_URL;
 
 const getFilteredRating = async (search) => {
   return axios
-    .post(`${api}/rating/search`, { query: search })
+    .post(`${api}rating/search`, { query: search })
     .then((response) => {
       return {
         status: response.status,
@@ -14,7 +14,7 @@ const getFilteredRating = async (search) => {
 };
 
 const getDishes = async () => {
-  return axios.get(`${api}/dish/`).then((response) => {
+  return axios.get(`${api}dish/`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -23,7 +23,7 @@ const getDishes = async () => {
 };
 
 const getRatings = async () => {
-  return axios.get(`${api}/rating/all`).then((response) => {
+  return axios.get(`${api}rating/all`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -32,7 +32,7 @@ const getRatings = async () => {
 };
 
 const getRestaurants = async () => {
-  return axios.get(`${api}/restaurant`).then((response) => {
+  return axios.get(`${api}restaurant`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -44,7 +44,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
   const { coordinates, name, location } = targetRestaurant;
   return axios
 
-    .post(`${api}/restaurant`, {
+    .post(`${api}restaurant`, {
       yelp_id: review.restaurant,
       longitude: coordinates.longitude,
       latitude: coordinates.latitude,
@@ -64,7 +64,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
 
 const saveDish = async (review) => {
   return axios
-    .post(`${api}/dish`, {
+    .post(`${api}dish`, {
       name: review.dish,
     })
     .then((response) => {
@@ -78,7 +78,7 @@ const saveDish = async (review) => {
 const saveRating = async (review, restaurantId, dishId, userId) => {
   return axios
 
-    .post(`${api}/rating`, {
+    .post(`${api}rating`, {
       rating: review.rating,
       comment: "placeholder comment",
       RestaurantId: restaurantId,
