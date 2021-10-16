@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { signIn } from "../../controllers/loginControllers";
 import loginHeaderImage from "../../assets/login-image-2.png";
 import "../../styles/LoginPage.css";
+import { UserContext } from "../../contexts/UserContext";
 
-function LoginPage({ setUser }) {
+function LoginPage() {
   const initialState = {
     fields: { username: "", password: "" },
   };
 
   const [fields, setFields] = useState(initialState.fields);
+  const { setUser } = useContext(UserContext);
 
   const handleFieldChange = (e) => {
     e.preventDefault();
@@ -69,9 +70,4 @@ function LoginPage({ setUser }) {
     </div>
   );
 }
-
-LoginPage.propTypes = {
-  setUser: PropTypes.func.isRequired,
-};
-
 export default LoginPage;

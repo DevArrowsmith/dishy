@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { HashRouter as Switch, Route } from "react-router-dom";
 import "../styles/App.css";
 import Navbar from "./Navbar/Navbar";
@@ -7,45 +7,23 @@ import ReviewDishPage from "./ReviewDishPage/ReviewDishPage";
 import FindDishPage from "./FindDishPage/FindDishPage";
 import LoginPage from "./LoginPage/LoginPage";
 import SignupPage from "./SignupPage/SignupPage";
+import { UserProvider } from "../contexts/UserContext";
 
 const App = () => {
-  const initialState = {
-    user: { username: "", accessToken: "", id: 0 },
-  };
-  const [user, setUser] = useState(initialState.user);
-  useEffect(() => {
-    if (localStorage.loggedInUser) {
-      setUser(JSON.parse(localStorage.loggedInUser));
-    }
-  }, []);
   return (
     <div className="App">
-      <Navbar user={user} setUser={setUser} />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          component={() => <HomePage user={user} setUser={setUser} />}
-        />
+      <UserProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={() => <HomePage />} />
 
-        <Route
-          exact
-          path="/review"
-          component={() => <ReviewDishPage user={user} />}
-        />
+          <Route exact path="/review" component={() => <ReviewDishPage />} />
 
-        <Route
-          exact
-          path="/find"
-          component={() => <FindDishPage user={user} />}
-        />
-        <Route
-          exact
-          path="/signin"
-          component={() => <LoginPage user={user} setUser={setUser} />}
-        />
-        <Route exact path="/Signup" component={() => <SignupPage />} />
-      </Switch>
+          <Route exact path="/find" component={() => <FindDishPage />} />
+          <Route exact path="/signin" component={() => <LoginPage />} />
+          <Route exact path="/Signup" component={() => <SignupPage />} />
+        </Switch>
+      </UserProvider>
     </div>
   );
 };

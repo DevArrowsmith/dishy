@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../../../styles/RatingCard.css";
 
-function RatingCard({ rating, user }) {
+function RatingCard({ rating }) {
   // const [showScore, setShowScore] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
@@ -10,11 +10,6 @@ function RatingCard({ rating, user }) {
   //   e.preventDefault();
   //   setShowScore(!showScore);
   // };
-
-  const handleDeleteRating = (e) => {
-    e.preventDefault();
-    console.log(rating);
-  };
 
   const handleDetails = (e) => {
     e.preventDefault();
@@ -62,15 +57,6 @@ function RatingCard({ rating, user }) {
             <p>{rating.address.address2}</p>
             <p>{rating.address.city}</p>
             <p>{rating.address.zip_code}</p>
-            {rating.users.includes(user.id) && (
-              <button
-                type="submit"
-                className="deleteRating"
-                onClick={handleDeleteRating}
-              >
-                delete
-              </button>
-            )}
           </div>
         )}
       </button>

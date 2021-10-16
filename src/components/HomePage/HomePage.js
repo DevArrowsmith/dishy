@@ -1,10 +1,11 @@
-/* eslint-disable react/prop-types */
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/HomePage.css";
 import dishyLogo from "../../assets/dishy-logo-1.png";
+import { UserContext } from "../../contexts/UserContext";
 
-const HomePage = ({ user }) => {
+const HomePage = () => {
+  const { user } = useContext(UserContext);
   return (
     <div className="HomePage">
       <h1 className="HomePage-header" id="HomePage-header">
