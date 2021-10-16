@@ -43,6 +43,7 @@ const getRestaurants = async () => {
 const saveRestaurant = async (review, targetRestaurant) => {
   const { coordinates, name, location } = targetRestaurant;
   return axios
+
     .post(`${api}/restaurant`, {
       yelp_id: review.restaurant,
       longitude: coordinates.longitude,
@@ -76,6 +77,7 @@ const saveDish = async (review) => {
 
 const saveRating = async (review, restaurantId, dishId, userId) => {
   return axios
+
     .post(`${api}/rating`, {
       rating: review.rating,
       comment: "placeholder comment",
@@ -93,7 +95,9 @@ const saveRating = async (review, restaurantId, dishId, userId) => {
 
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
+
     .get(`${api}restaurants/geolocation/${latitude}/${longitude}`)
+
     .then((response) => {
       return {
         status: response.status,

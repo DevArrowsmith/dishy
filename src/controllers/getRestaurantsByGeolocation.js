@@ -5,6 +5,7 @@ const api = process.env.API_URL;
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
     .get(`${api}restaurants/geolocation/${latitude}/${longitude}`)
+
     .then((response) => {
       return {
         status: response.status,
