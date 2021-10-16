@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { signUp } from "../../controllers/loginControllers";
+import { signUp, signIn } from "../../controllers/loginControllers";
+import { UserContext } from "../../contexts/UserContext";
 import SignupHeaderImage from "../../assets/signup-image-1.png";
 import "../../styles/SignupPage.css";
 
@@ -9,6 +10,7 @@ function SignUpPage() {
     fields: { username: "", password: "" },
   };
   const [fields, setFields] = useState(initialState.fields);
+  const { setUser } = useContext(UserContext);
 
   const history = useHistory();
 
@@ -22,9 +24,20 @@ function SignUpPage() {
     await signUp(fields)
       .then(() => {
         console.log("successfully signed up!");
-        history.push("/");
       })
       .catch((error) => console.log(error));
+    await signIn(fields).then((res) => {
+      if (res.data.accessToken) {
+        const loggedInUser = {
+          username: res.data.username,
+          accessToken: res.data.accessToken,
+          id: res.data.id,
+        };
+        setUser(loggedInUser);
+        localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+        history.push("/");
+      }
+    });
   };
 
   return (

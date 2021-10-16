@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Creatable from "react-select/creatable";
 import PropTypes from "prop-types";
 import "../../styles/ReviewForm.css";
@@ -35,6 +35,28 @@ const ReviewForm = ({
     }
   };
 
+  const initialState = {
+    buttonTimedOut: false,
+  };
+
+  const [buttonTimedOut, setButtonTimedOut] = useState(
+    initialState.buttonTimedOut
+  );
+
+  /* eslint-disable no-param-reassign */
+  const handleButtonTimeout = () => {
+    setButtonTimedOut(true);
+    setTimeout(() => {
+      setButtonTimedOut(false);
+    }, 2000);
+  };
+  /* eslint-enable no-param-reassign */
+
+  const handleFormSubmit = (formData) => {
+    handleButtonTimeout();
+    handleSubmitReviewForm(formData);
+  };
+
   if (renderComponent) {
     return (
       <>
@@ -58,7 +80,7 @@ const ReviewForm = ({
           </label>
         </div>
 
-        <form onSubmit={handleSubmitReviewForm}>
+        <form onSubmit={handleFormSubmit}>
           <div className="form-field">
             <p className="select-food-header">What did you eat?</p>
             <p className="select-food-text">
@@ -113,7 +135,13 @@ const ReviewForm = ({
           </div>
 
           <div id="review-submit-button" className="form-field">
-            <button type="submit" className="pink-button">
+            <button
+              type="submit"
+              className={
+                buttonTimedOut ? "pink-button button-flash" : "pink-button"
+              }
+              disabled={buttonTimedOut}
+            >
               Rate it!
             </button>
           </div>

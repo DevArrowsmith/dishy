@@ -18,3 +18,22 @@
   background: linear-gradient(130deg, #ffff99 0%, #ffff99 20%, #ffff0a 100%);
   border-color: #00a2f4;
 }
+
+@keyframes buttonFlash {
+  0% {
+    background: #fcb0ff;
+  }
+  10% {
+    background: #ffff0a;
+  }
+  95% {
+    background: #ffff0a;
+  }
+  100% {
+    background: #fcb0ff;
+  }
+}
+
+.button-flash {
+  animation: 2s buttonFlash;
+}
