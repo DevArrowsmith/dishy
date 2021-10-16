@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/dishy-frontend/static/css/main.1217697b.chunk.css",
+    "main.js": "/dishy-frontend/static/js/main.f0f1b522.chunk.js",
+    "main.js.map": "/dishy-frontend/static/js/main.f0f1b522.chunk.js.map",
+    "runtime-main.js": "/dishy-frontend/static/js/runtime-main.a764eda3.js",
+    "runtime-main.js.map": "/dishy-frontend/static/js/runtime-main.a764eda3.js.map",
+    "static/js/2.557d9cb0.chunk.js": "/dishy-frontend/static/js/2.557d9cb0.chunk.js",
+    "static/js/2.557d9cb0.chunk.js.map": "/dishy-frontend/static/js/2.557d9cb0.chunk.js.map",
+    "index.html": "/dishy-frontend/index.html",
+    "static/css/main.1217697b.chunk.css.map": "/dishy-frontend/static/css/main.1217697b.chunk.css.map",
+    "static/js/2.557d9cb0.chunk.js.LICENSE.txt": "/dishy-frontend/static/js/2.557d9cb0.chunk.js.LICENSE.txt",
+    "static/media/dishy-logo-1.17f392e8.png": "/dishy-frontend/static/media/dishy-logo-1.17f392e8.png",
+    "static/media/login-image-2.f1b7d5f7.png": "/dishy-frontend/static/media/login-image-2.f1b7d5f7.png",
+    "static/media/menu-image-finddish.62d35d65.png": "/dishy-frontend/static/media/menu-image-finddish.62d35d65.png",
+    "static/media/menu-image-home.84ee7eaf.png": "/dishy-frontend/static/media/menu-image-home.84ee7eaf.png",
+    "static/media/menu-image-login-peach.e3ddea9c.png": "/dishy-frontend/static/media/menu-image-login-peach.e3ddea9c.png",
+    "static/media/menu-image-logout.e27f0bcb.png": "/dishy-frontend/static/media/menu-image-logout.e27f0bcb.png",
+    "static/media/menu-image-ratedish.d89e22a2.png": "/dishy-frontend/static/media/menu-image-ratedish.d89e22a2.png",
+    "static/media/menu-image-signup.1e4611ea.png": "/dishy-frontend/static/media/menu-image-signup.1e4611ea.png",
+    "static/media/review-image-1.47e0b1ab.png": "/dishy-frontend/static/media/review-image-1.47e0b1ab.png",
+    "static/media/search-image-1.3e918d1e.png": "/dishy-frontend/static/media/search-image-1.3e918d1e.png",
+    "static/media/signup-image-1.a01a6aa7.png": "/dishy-frontend/static/media/signup-image-1.a01a6aa7.png",
+    "static/media/App.css": "/dishy-frontend/static/media/text-bg-2.2a26a83c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a764eda3.js",
+    "static/js/2.557d9cb0.chunk.js",
+    "static/css/main.1217697b.chunk.css",
+    "static/js/main.f0f1b522.chunk.js"
+  ]
+}
