@@ -5,6 +5,7 @@ import homeImage from "../../assets/dishy-logo-1.png";
 import reviewImage from "../../assets/review-image-1.png";
 import searchImage from "../../assets/search-image-1.png";
 import { UserContext } from "../../contexts/UserContext";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -19,6 +20,7 @@ const Navbar = () => {
     setUser({ username: "", accessToken: "", id: "" });
     localStorage.clear();
   };
+
   return (
     <>
       <div className="Navbar" id="Navbar">
@@ -30,32 +32,19 @@ const Navbar = () => {
             alt="Home"
           />
         </Link>
-        <div id="Navbar-right-links-container">
-          {user.username && (
-            <>
-              hello {user.username}
-              <button type="submit" onClick={handleLogout}>
-                logout
-              </button>
-              <Link to="/review">
-                <img
-                  className="Navbar-image"
-                  id="Navbar-review-image"
-                  src={reviewImage}
-                  alt="Rate a Dish"
-                />
-              </Link>
-            </>
-          )}
 
-          <Link to="/find">
-            <img
-              className="Navbar-image"
-              id="Navbar-search-image"
-              src={searchImage}
-              alt="Find a Dish"
-            />
-          </Link>
+        <div id="Navbar-right-links-container">
+          {user.username ? (
+            <div
+              className="Navbar-text-container"
+              id="Navbar-username-container"
+            >
+              <p>Hi</p>
+              <p>{user.username}!</p>
+            </div>
+          ) : null}
+
+          <BurgerMenu isLoggedIn={user.username} handleLogout={handleLogout} />
         </div>
       </div>
     </>
