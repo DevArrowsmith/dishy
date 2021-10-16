@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/dishy-frontend/static/css/main.1217697b.chunk.css",
-    "main.js": "/dishy-frontend/static/js/main.df1be181.chunk.js",
-    "main.js.map": "/dishy-frontend/static/js/main.df1be181.chunk.js.map",
+    "main.js": "/dishy-frontend/static/js/main.4fbdf5f2.chunk.js",
+    "main.js.map": "/dishy-frontend/static/js/main.4fbdf5f2.chunk.js.map",
     "runtime-main.js": "/dishy-frontend/static/js/runtime-main.a764eda3.js",
     "runtime-main.js.map": "/dishy-frontend/static/js/runtime-main.a764eda3.js.map",
     "static/js/2.849366b1.chunk.js": "/dishy-frontend/static/js/2.849366b1.chunk.js",
@@ -27,6 +27,6 @@
     "static/js/runtime-main.a764eda3.js",
     "static/js/2.849366b1.chunk.js",
     "static/css/main.1217697b.chunk.css",
-    "static/js/main.df1be181.chunk.js"
+    "static/js/main.4fbdf5f2.chunk.js"
   ]
 }
