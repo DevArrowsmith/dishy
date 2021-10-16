@@ -54,7 +54,7 @@ const Navbar = ({ user, setUser }) => {
             />
           </Link>
 
-          <BurgerMenu />
+          <BurgerMenu isLoggedIn={user.username} handleLogout={handleLogout} />
         </div>
       </div>
     </>

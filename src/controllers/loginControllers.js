@@ -4,7 +4,7 @@ const signIn = async (fields) => {
   const { username, password } = fields;
   console.log(username);
   return axios
-    .post(`http://localhost:4000/auth/signin`, {
+    .post(`http://localhost:4002/auth/signin`, {
       username,
       password,
     })
@@ -19,7 +19,7 @@ const signIn = async (fields) => {
 const signUp = async (fields) => {
   const { username, password, email } = fields;
   return axios
-    .post(`http://localhost:4000/auth/signup`, {
+    .post(`http://localhost:4002/auth/signup`, {
       username,
       password,
       email,
