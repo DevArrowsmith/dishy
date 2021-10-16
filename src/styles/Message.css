@@ -1,9 +1,30 @@
+@keyframes flashAndFade {
+  0% {
+    opacity: 1;
+    background-color: #ffff0a;
+  }
+  10% {
+    background-color: #fcb0ff;
+  }
+  20% {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    
+    opacity: 0;
+  }
+}
+
 .message {
   margin: 0;
   max-width: 300px;
 }
 
 .banner {
+
   width: calc(100% - 80px - 20px);
   min-height: 60px;
   padding: 10px;
@@ -13,6 +34,11 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  opacity: 0;
+}
+
+.banner-flash {
+  animation: 5s flashAndFade;
 }
 
 .error {

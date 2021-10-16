@@ -62,3 +62,12 @@
 #find-restaurant-submit-button {
   margin-top: 10px;
 }
+
+.message-container {
+  min-height: 70px;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}

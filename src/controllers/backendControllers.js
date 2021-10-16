@@ -95,14 +95,21 @@ const saveRating = async (
 ) => {
   return axios
 
-    .post(`${api}rating`, {
-      rating: review.rating,
-      comment: "placeholder comment",
-      RestaurantId: restaurantId,
-      DishId: dishId,
-      UserId: userId,
-      accessToken,
-    })
+    .post(
+      `${api}rating`,
+      {
+        rating: review.rating,
+        comment: "placeholder comment",
+        RestaurantId: restaurantId,
+        DishId: dishId,
+        UserId: userId,
+      },
+      {
+        headers: {
+          "x-access-token": accessToken,
+        },
+      }
+    )
     .then((response) => {
       return {
         status: response.status,

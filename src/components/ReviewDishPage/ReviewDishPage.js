@@ -110,6 +110,7 @@ const ReviewDishPage = () => {
 
   const handleSubmitReviewForm = async (event) => {
     event.preventDefault();
+    setSubmitStatus("");
     const targetRestaurant = restaurantsList.find(
       (restaurant) => restaurant.id === review.restaurant
     );
@@ -175,15 +176,20 @@ const ReviewDishPage = () => {
         />
       </div>
 
-      {submitStatus === "success" ? (
-        <Message messageType="banner" messageText="Rating submitted!" />
-      ) : null}
-      {submitStatus === "fail" ? (
-        <Message
-          messageType="banner error"
-          messageText="Oops, something went wrong! Please try again later."
-        />
-      ) : null}
+      <div className="message-container">
+        {submitStatus === "success" ? (
+          <Message
+            messageType="banner banner-flash"
+            messageText="Rating submitted!"
+          />
+        ) : null}
+        {submitStatus === "fail" ? (
+          <Message
+            messageType="banner error"
+            messageText="Oops, something went wrong! Please try again later."
+          />
+        ) : null}
+      </div>
     </div>
   );
 };

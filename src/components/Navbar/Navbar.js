@@ -2,8 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Navbar.css";
 import homeImage from "../../assets/dishy-logo-1.png";
-import reviewImage from "../../assets/review-image-1.png";
-import searchImage from "../../assets/search-image-1.png";
 import { UserContext } from "../../contexts/UserContext";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 
