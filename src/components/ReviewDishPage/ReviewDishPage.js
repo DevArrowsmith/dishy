@@ -119,7 +119,6 @@ const ReviewDishPage = ({ user }) => {
     newRating.status = 201
       ? setSubmitStatus("success")
       : setSubmitStatus("fail");
-    console.log("Loop Check");
   };
 
   // Page Setup

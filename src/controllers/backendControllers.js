@@ -1,10 +1,11 @@
-const axios = require("axios");
+import axios from "axios";
+
+const api = process.env.API_URL;
 
 const getFilteredRating = async (search) => {
   return axios
-    .post(`http://localhost:4002/rating/search`, { query: search })
+    .post(`${api}/rating/search`, { query: search })
     .then((response) => {
-      console.log(response.data);
       return {
         status: response.status,
         ratings: response.data,
@@ -13,7 +14,7 @@ const getFilteredRating = async (search) => {
 };
 
 const getDishes = async () => {
-  return axios.get(`http://localhost:4002/dish/`).then((response) => {
+  return axios.get(`${api}/dish/`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -22,7 +23,7 @@ const getDishes = async () => {
 };
 
 const getRatings = async () => {
-  return axios.get(`http://localhost:4002/rating/all`).then((response) => {
+  return axios.get(`${api}/rating/all`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -31,7 +32,7 @@ const getRatings = async () => {
 };
 
 const getRestaurants = async () => {
-  return axios.get(`http://localhost:4002/restaurant`).then((response) => {
+  return axios.get(`${api}/restaurant`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -42,7 +43,7 @@ const getRestaurants = async () => {
 const saveRestaurant = async (review, targetRestaurant) => {
   const { coordinates, name, location } = targetRestaurant;
   return axios
-    .post(`http://localhost:4002/restaurant`, {
+    .post(`${api}/restaurant`, {
       yelp_id: review.restaurant,
       longitude: coordinates.longitude,
       latitude: coordinates.latitude,
@@ -62,7 +63,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
 
 const saveDish = async (review) => {
   return axios
-    .post(`http://localhost:4002/dish`, {
+    .post(`${api}/dish`, {
       name: review.dish,
     })
     .then((response) => {
@@ -75,7 +76,7 @@ const saveDish = async (review) => {
 
 const saveRating = async (review, restaurantId, dishId, userId) => {
   return axios
-    .post(`http://localhost:4002/rating`, {
+    .post(`${api}/rating`, {
       rating: review.rating,
       comment: "placeholder comment",
       RestaurantId: restaurantId,
@@ -92,9 +93,7 @@ const saveRating = async (review, restaurantId, dishId, userId) => {
 
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
-    .get(
-      `http://localhost:4002/restaurants/geolocation/${latitude}/${longitude}`
-    )
+    .get(`${api}restaurants/geolocation/${latitude}/${longitude}`)
     .then((response) => {
       return {
         status: response.status,
@@ -104,14 +103,12 @@ const getRestaurantsByGeolocation = (latitude, longitude) => {
 };
 
 const getRestaurantsBySearch = (location) => {
-  return axios
-    .get(`http://localhost:4002/restaurants/search/${location}`)
-    .then((response) => {
-      return {
-        status: response.status,
-        restaurants: response.data.businesses,
-      };
-    });
+  return axios.get(`${api}restaurants/search/${location}`).then((response) => {
+    return {
+      status: response.status,
+      restaurants: response.data.businesses,
+    };
+  });
 };
 
 /* TODO: Create error handling. */

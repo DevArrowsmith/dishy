@@ -1,10 +1,11 @@
-const axios = require("axios");
+import axios from "axios";
+
+const api = process.env.API_URL;
 
 const signIn = async (fields) => {
   const { username, password } = fields;
-  console.log(username);
   return axios
-    .post(`http://localhost:4002/auth/signin`, {
+    .post(`${api}auth/signin`, {
       username,
       password,
     })
@@ -18,15 +19,11 @@ const signIn = async (fields) => {
 
 const signUp = async (fields) => {
   const { username, password, email } = fields;
-  return axios
-    .post(`http://localhost:4002/auth/signup`, {
-      username,
-      password,
-      email,
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  return axios.post(`${api}auth/signup`, {
+    username,
+    password,
+    email,
+  });
 };
 
 export { signIn, signUp };

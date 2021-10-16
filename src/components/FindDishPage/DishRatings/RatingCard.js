@@ -13,7 +13,6 @@ function RatingCard({ rating, user }) {
 
   const handleDeleteRating = (e) => {
     e.preventDefault();
-    console.log(rating);
   };
 
   const handleDetails = (e) => {

@@ -1,10 +1,10 @@
-const axios = require("axios");
+import axios from "axios";
+
+const api = process.env.API_URL;
 
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
-    .get(
-      `https://dishymcr.herokuapp.com/restaurants/geolocation/${latitude}/${longitude}`
-    )
+    .get(`${api}restaurants/geolocation/${latitude}/${longitude}`)
     .then((response) => {
       return {
         status: response.status,
