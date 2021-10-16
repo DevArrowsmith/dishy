@@ -25,3 +25,37 @@
   margin-top: 8px;
   margin-right: 10px;
 }
+
+#Navbar-right-links-container {
+  width: calc(100% - 102px - 20px);
+  height: 70px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Navbar-text-container {
+  height: 50px;
+  margin-right: 10px;
+  padding: 0 4px;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.Navbar-text-container p {
+  margin: 0;
+}
+
+#Navbar-username-container {
+  background: linear-gradient(130deg, #61FFE3 0%, #61FFE3 20%, #00A2F4 100%);
+}
+
+#Navbar-login-button {
+  width: 46px;
+  align-items: center;
+  background: linear-gradient(130deg, #61FFE3 0%, #61FFE3 20%, #00A2F4 100%);
+}

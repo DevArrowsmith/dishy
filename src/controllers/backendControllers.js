@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const getFilteredRating = async (search) => {
   return axios
-    .post(`http://localhost:4000/rating/search`, { query: search })
+    .post(`http://localhost:4002/rating/search`, { query: search })
     .then((response) => {
       console.log(response.data);
       return {
@@ -97,7 +97,7 @@ const saveRating = async (review, restaurantId, dishId, userId) => {
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
     .get(
-      `http://localhost:4000/restaurants/geolocation/${latitude}/${longitude}`
+      `http://localhost:4002/restaurants/geolocation/${latitude}/${longitude}`
     )
     .then((response) => {
       return {
@@ -109,7 +109,7 @@ const getRestaurantsByGeolocation = (latitude, longitude) => {
 
 const getRestaurantsBySearch = (location) => {
   return axios
-    .get(`http://localhost:4000/restaurants/search/${location}`)
+    .get(`http://localhost:4002/restaurants/search/${location}`)
     .then((response) => {
       return {
         status: response.status,
