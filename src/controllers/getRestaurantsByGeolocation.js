@@ -3,7 +3,7 @@ const axios = require("axios");
 const getRestaurantsByGeolocation = (latitude, longitude) => {
   return axios
     .get(
-      `http://localhost:4000/restaurants/geolocation/${latitude}/${longitude}`
+      `https://dishymcr.herokuapp.com/restaurants/geolocation/${latitude}/${longitude}`
     )
     .then((response) => {
       return {

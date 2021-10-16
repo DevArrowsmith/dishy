@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const getRestaurantsBySearch = (location) => {
   return axios
-    .get(`http://localhost:4000/restaurants/search/${location}`)
+    .get(`https://dishymcr.herokuapp.com/restaurants/search/${location}`)
     .then((response) => {
       return {
         status: response.status,
