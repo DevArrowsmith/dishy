@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = process.env.API_URL;
+const api = process.env.REACT_APP_API_URL;
 
 const getRestaurantsBySearch = (location) => {
   return axios.get(`${api}restaurants/search/${location}`).then((response) => {
