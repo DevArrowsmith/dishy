@@ -13,7 +13,7 @@ const getFilteredRating = async (search) => {
 };
 
 const getDishes = async () => {
-  return axios.get(`https://dishymcr.herokuapp.com/dish/`).then((response) => {
+  return axios.get(`http://localhost:4002/dish/`).then((response) => {
     return {
       status: response.status,
       dishes: response.data,
@@ -22,31 +22,27 @@ const getDishes = async () => {
 };
 
 const getRatings = async () => {
-  return axios
-    .get(`https://dishymcr.herokuapp.com/rating/all`)
-    .then((response) => {
-      return {
-        status: response.status,
-        dishes: response.data,
-      };
-    });
+  return axios.get(`http://localhost:4002/rating/all`).then((response) => {
+    return {
+      status: response.status,
+      dishes: response.data,
+    };
+  });
 };
 
 const getRestaurants = async () => {
-  return axios
-    .get(`https://dishymcr.herokuapp.com/restaurant`)
-    .then((response) => {
-      return {
-        status: response.status,
-        dishes: response.data,
-      };
-    });
+  return axios.get(`http://localhost:4002/restaurant`).then((response) => {
+    return {
+      status: response.status,
+      dishes: response.data,
+    };
+  });
 };
 
 const saveRestaurant = async (review, targetRestaurant) => {
   const { coordinates, name, location } = targetRestaurant;
   return axios
-    .post(`https://dishymcr.herokuapp.com/restaurant`, {
+    .post(`http://localhost:4002/restaurant`, {
       yelp_id: review.restaurant,
       longitude: coordinates.longitude,
       latitude: coordinates.latitude,
@@ -66,7 +62,7 @@ const saveRestaurant = async (review, targetRestaurant) => {
 
 const saveDish = async (review) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/dish`, {
+    .post(`http://localhost:4002/dish`, {
       name: review.dish,
     })
     .then((response) => {
@@ -79,7 +75,7 @@ const saveDish = async (review) => {
 
 const saveRating = async (review, restaurantId, dishId, userId) => {
   return axios
-    .post(`https://dishymcr.herokuapp.com/rating`, {
+    .post(`http://localhost:4002/rating`, {
       rating: review.rating,
       comment: "placeholder comment",
       RestaurantId: restaurantId,
@@ -119,8 +115,7 @@ const getRestaurantsBySearch = (location) => {
 };
 
 /* TODO: Create error handling. */
-
-module.exports = {
+export {
   saveRestaurant,
   saveDish,
   saveRating,

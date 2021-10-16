@@ -29,4 +29,4 @@ const signUp = async (fields) => {
     });
 };
 
-module.exports = { signIn, signUp };
+export { signIn, signUp };
