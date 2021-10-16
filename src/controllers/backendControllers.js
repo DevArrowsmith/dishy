@@ -72,15 +72,29 @@ const saveDish = async (review) => {
     });
 };
 
-const saveRating = async (review, restaurantId, dishId, userId) => {
+const saveRating = async (
+  review,
+  restaurantId,
+  dishId,
+  userId,
+  accessToken
+) => {
   return axios
-    .post(`http://localhost:4000/rating`, {
-      rating: review.rating,
-      comment: "placeholder comment",
-      RestaurantId: restaurantId,
-      DishId: dishId,
-      UserId: userId,
-    })
+    .post(
+      `http://localhost:4000/rating`,
+      {
+        rating: review.rating,
+        comment: "placeholder comment",
+        RestaurantId: restaurantId,
+        DishId: dishId,
+        UserId: userId,
+      },
+      {
+        headers: {
+          "x-access-token": accessToken,
+        },
+      }
+    )
     .then((response) => {
       return {
         status: response.status,

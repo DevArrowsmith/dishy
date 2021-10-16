@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "../../styles/ReviewDishPage.css";
 import "../../styles/common/form.css";
 import "../../styles/common/buttons.css";
-import PropTypes from "prop-types";
 import {
   getRestaurantsByGeolocation,
   getDishes,
@@ -17,8 +15,9 @@ import SearchForRestaurant from "./SearchForRestaurant";
 import ReviewForm from "./ReviewForm";
 import Message from "../components/Message";
 import reviewHeaderImage from "../../assets/review-image-1.png";
+import { UserContext } from "../../contexts/UserContext";
 
-const ReviewDishPage = ({ user }) => {
+const ReviewDishPage = () => {
   const initialState = {
     renderStillAtRestaurant: false,
     renderSearchForRestaurant: false,
@@ -37,6 +36,7 @@ const ReviewDishPage = ({ user }) => {
     },
   };
   const history = useHistory();
+  const { user } = useContext(UserContext);
 
   if (!user.username) {
     history.push("/");
@@ -119,7 +119,8 @@ const ReviewDishPage = ({ user }) => {
       review,
       newRestaurant.restaurant[0].id,
       newDish.dish[0].id,
-      user.id
+      user.id,
+      user.accessToken
     );
     newRating.status = 201
       ? setSubmitStatus("success")
@@ -186,14 +187,6 @@ const ReviewDishPage = ({ user }) => {
       ) : null}
     </div>
   );
-};
-
-ReviewDishPage.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    accessToken: PropTypes.string,
-    username: PropTypes.string,
-  }).isRequired,
 };
 
 export default ReviewDishPage;
