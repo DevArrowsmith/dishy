@@ -65,6 +65,8 @@ function RatingCard({ rating }) {
         <a
           className="pink-button rating-card-button"
           href={`https://www.google.com/maps/@${rating.coordinates.latitude},${rating.coordinates.longitude},30z`}
+          target="_blank"
+          rel="noreferrer noopener"
         >
           View in Google Maps
         </a>

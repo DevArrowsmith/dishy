@@ -15,6 +15,11 @@
   align-items: center;
 }
 
+.RatingCard:focus {
+  border: none;
+  outline: none;
+}
+
 .RatingCard-top-container {
   width: 100%;
   margin-bottom: 5px;
