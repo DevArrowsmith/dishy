@@ -1,13 +1,17 @@
 @keyframes flashAndFade {
   0% {
+    opacity: 0;
+    background-color: #ffff0a;
+    border: 2px solid #ffff0a;
+  }
+  3% {  
     opacity: 1;
     background-color: #ffff0a;
-  }
-  10% {
-    background-color: #fcb0ff;
+    border: 2px solid #ffff0a;
   }
   20% {
     background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #bd006b;
   }
   70% {
     opacity: 1;
