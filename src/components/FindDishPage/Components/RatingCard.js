@@ -60,6 +60,13 @@ function RatingCard({ rating }) {
           </div>
         )}
       </button>
+      {showDetails && (
+        <a
+          href={`https://www.google.com/maps/@${rating.coordinates.latitude},${rating.coordinates.longitude},30z`}
+        >
+          View in Google Maps
+        </a>
+      )}
     </>
   );
 }
@@ -78,6 +85,10 @@ RatingCard.propTypes = {
       city: PropTypes.string,
       zip_code: PropTypes.string,
     }),
+    coordinates: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+    }),
   }).isRequired,
   user: PropTypes.shape({
     id: PropTypes.number,
@@ -86,4 +97,40 @@ RatingCard.propTypes = {
   }).isRequired,
 };
 
+// RatingCard.propTypes = {
+//   rating: PropTypes.shape({
+//   user: PropTypes.number,
+//   name: PropTypes.string,
+//   users: PropTypes.arrayOf(PropTypes.number),
+//   distance: PropTypes.number,
+//   averageScore: PropTypes.number,
+//   scores: PropTypes.arrayOf(PropTypes.number),
+//   address: PropTypes.shape({
+//   address1: PropTypes.string,
+//   address2: PropTypes.string,
+//   city: PropTypes.string,
+//   zip_code: PropTypes.string,
+//   }),
+//   coordinates: PropTypes.shape({
+//     latitude: PropTypes.number,
+//     longitude: PropTypes.number,
+//     }),
+//   }).isRequired,
+//   user: PropTypes.shape({
+//   id: PropTypes.number,
+//   accessToken: PropTypes.string,
+//   username: PropTypes.string,
+//   }).isRequired,
+//   };
+
 export default RatingCard;
+
+// {
+//   showDetails && (
+//     <a
+//       href={`https://www.google.com/maps/@${rating.coordinates.latitude}, ${rating.coordinates.longitude},18z`}
+//     >
+//       View in Google Maps
+//     </a>
+//   );
+// }
