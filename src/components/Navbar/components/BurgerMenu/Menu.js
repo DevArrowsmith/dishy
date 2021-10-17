@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import homeImage from "../../../assets/menu-image-home.png";
-import rateDishImage from "../../../assets/menu-image-ratedish.png";
-import findDishImage from "../../../assets/menu-image-finddish.png";
-import loginImage from "../../../assets/menu-image-login-peach.png";
-import logoutImage from "../../../assets/menu-image-logout.png";
-import signupImage from "../../../assets/menu-image-signup.png";
+import homeImage from "../../../../assets/menu-image-home.png";
+import rateDishImage from "../../../../assets/menu-image-ratedish.png";
+import findDishImage from "../../../../assets/menu-image-finddish.png";
+import loginImage from "../../../../assets/menu-image-login-peach.png";
+import logoutImage from "../../../../assets/menu-image-logout.png";
+import signupImage from "../../../../assets/menu-image-signup.png";
 
 export const StyledMenu = styled.nav`
   position: absolute;

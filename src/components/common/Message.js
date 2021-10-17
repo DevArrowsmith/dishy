@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../styles/Message.css";
+import "../../styles/common/message.css";
 
 const Message = ({ messageType, messageText }) => (
   <>

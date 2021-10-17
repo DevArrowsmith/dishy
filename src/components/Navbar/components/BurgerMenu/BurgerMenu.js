@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import useOnClickOutside from "../../../hooks/hooks";
+import useOnClickOutside from "../../../../hooks/hooks";
 // eslint-disable-next-line import/no-unresolved
 import Burger from "./Burger";
 // eslint-disable-next-line import/no-unresolved

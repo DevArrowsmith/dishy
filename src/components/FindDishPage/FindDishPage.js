@@ -1,8 +1,8 @@
 import "../../styles/FindDishPage.css";
 import "../../styles/common/form.css";
 import React, { useState, useEffect } from "react";
-import DishSelector from "./DishSelector";
-import DishRatings from "./DishRatings/DishRatings";
+import DishSelector from "./Components/DishSelector";
+import DishRatings from "./Components/DishRatings";
 import {
   getDishes,
   getFilteredRating,

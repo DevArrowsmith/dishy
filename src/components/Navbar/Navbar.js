@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/Navbar.css";
 import homeImage from "../../assets/dishy-logo-1.png";
 import { UserContext } from "../../contexts/UserContext";
-import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import BurgerMenu from "./components/BurgerMenu/BurgerMenu";
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);

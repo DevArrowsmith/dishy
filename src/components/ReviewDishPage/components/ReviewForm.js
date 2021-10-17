@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Creatable from "react-select/creatable";
 import PropTypes from "prop-types";
-import "../../styles/ReviewForm.css";
+import "../../../styles/ReviewForm.css";
 
 const ReviewForm = ({
   renderComponent,

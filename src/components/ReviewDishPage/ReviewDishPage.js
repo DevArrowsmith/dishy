@@ -10,9 +10,9 @@ import {
   saveRestaurant,
   saveRating,
 } from "../../controllers/backendControllers";
-import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
-import SearchForRestaurant from "./SearchForRestaurant";
-import ReviewForm from "./ReviewForm";
+import StillAtRestaurantSelector from "./components/StillAtRestaurantSelector";
+import SearchForRestaurant from "./components/SearchForRestaurant";
+import ReviewForm from "./components/ReviewForm";
 import Message from "../common/Message";
 import reviewHeaderImage from "../../assets/review-image-1.png";
 import { UserContext } from "../../contexts/UserContext";

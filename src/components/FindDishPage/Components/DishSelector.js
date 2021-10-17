@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import "../../styles/DishSelector.css";
+import "../../../styles/DishSelector.css";
 
 const DishSelector = ({ availableDishes, handleFilterByDish }) => {
   return (
