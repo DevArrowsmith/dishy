@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/dishy-frontend/static/css/main.f28895e8.chunk.css",
-    "main.js": "/dishy-frontend/static/js/main.6cfdd8be.chunk.js",
-    "main.js.map": "/dishy-frontend/static/js/main.6cfdd8be.chunk.js.map",
+    "main.css": "/dishy-frontend/static/css/main.244b3375.chunk.css",
+    "main.js": "/dishy-frontend/static/js/main.e59dc0be.chunk.js",
+    "main.js.map": "/dishy-frontend/static/js/main.e59dc0be.chunk.js.map",
     "runtime-main.js": "/dishy-frontend/static/js/runtime-main.a764eda3.js",
     "runtime-main.js.map": "/dishy-frontend/static/js/runtime-main.a764eda3.js.map",
     "static/js/2.ba9b2eb3.chunk.js": "/dishy-frontend/static/js/2.ba9b2eb3.chunk.js",
     "static/js/2.ba9b2eb3.chunk.js.map": "/dishy-frontend/static/js/2.ba9b2eb3.chunk.js.map",
     "index.html": "/dishy-frontend/index.html",
-    "static/css/main.f28895e8.chunk.css.map": "/dishy-frontend/static/css/main.f28895e8.chunk.css.map",
+    "static/css/main.244b3375.chunk.css.map": "/dishy-frontend/static/css/main.244b3375.chunk.css.map",
     "static/js/2.ba9b2eb3.chunk.js.LICENSE.txt": "/dishy-frontend/static/js/2.ba9b2eb3.chunk.js.LICENSE.txt",
     "static/media/dishy-logo-1.17f392e8.png": "/dishy-frontend/static/media/dishy-logo-1.17f392e8.png",
     "static/media/login-image-2.f1b7d5f7.png": "/dishy-frontend/static/media/login-image-2.f1b7d5f7.png",
@@ -26,7 +26,7 @@
   "entrypoints": [
     "static/js/runtime-main.a764eda3.js",
     "static/js/2.ba9b2eb3.chunk.js",
-    "static/css/main.f28895e8.chunk.css",
-    "static/js/main.6cfdd8be.chunk.js"
+    "static/css/main.244b3375.chunk.css",
+    "static/js/main.e59dc0be.chunk.js"
   ]
 }
