@@ -90,7 +90,7 @@ StillAtRestaurantSelector.propTypes = {
   initialReviewState: PropTypes.shape({
     restaurant: PropTypes.string,
     dish: PropTypes.string,
-    rating: PropTypes.number,
+    rating: PropTypes.string,
   }).isRequired,
 };
 

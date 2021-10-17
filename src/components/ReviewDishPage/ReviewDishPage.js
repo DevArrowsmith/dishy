@@ -34,7 +34,7 @@ const ReviewDishPage = () => {
     review: {
       restaurant: "",
       dish: "",
-      rating: 10,
+      rating: "10",
     },
   };
   const history = useHistory();

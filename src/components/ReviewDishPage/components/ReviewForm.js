@@ -157,14 +157,14 @@ ReviewForm.propTypes = {
   restaurantsList: PropTypes.arrayOf(PropTypes.object).isRequired,
   dishesList: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleFieldChange: PropTypes.func.isRequired,
-  currentRating: PropTypes.number.isRequired,
+  currentRating: PropTypes.string.isRequired,
   handleSubmitReviewForm: PropTypes.func.isRequired,
   setDishesList: PropTypes.func.isRequired,
   setReview: PropTypes.func.isRequired,
   review: PropTypes.shape({
     dish: PropTypes.string,
     restaurant: PropTypes.string,
-    rating: PropTypes.number,
+    rating: PropTypes.string,
   }).isRequired,
 };
 
