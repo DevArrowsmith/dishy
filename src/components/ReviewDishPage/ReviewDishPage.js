@@ -17,6 +17,8 @@ import Message from "../common/Message";
 import reviewHeaderImage from "../../assets/review-image-1.png";
 import { UserContext } from "../../contexts/UserContext";
 
+const API_SUCCESS_CODE = 201;
+
 const ReviewDishPage = () => {
   const initialState = {
     renderStillAtRestaurant: false,
@@ -123,7 +125,7 @@ const ReviewDishPage = () => {
       user.id,
       user.accessToken
     );
-    newRating.status = 201
+    newRating.status = API_SUCCESS_CODE
       ? setSubmitStatus("success")
       : setSubmitStatus("fail");
   };
