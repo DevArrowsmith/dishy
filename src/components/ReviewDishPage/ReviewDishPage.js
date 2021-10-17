@@ -13,7 +13,7 @@ import {
 import StillAtRestaurantSelector from "./StillAtRestaurantSelector";
 import SearchForRestaurant from "./SearchForRestaurant";
 import ReviewForm from "./ReviewForm";
-import Message from "../components/Message";
+import Message from "../common/Message";
 import reviewHeaderImage from "../../assets/review-image-1.png";
 import { UserContext } from "../../contexts/UserContext";
 
