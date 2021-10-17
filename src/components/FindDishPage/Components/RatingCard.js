@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../../../styles/RatingCard.css";
+import "../../../styles/common/buttons.css";
 
 function RatingCard({ rating }) {
   // const [showScore, setShowScore] = useState(false);
@@ -62,11 +63,13 @@ function RatingCard({ rating }) {
       </button>
       {showDetails && (
         <a
+          className="pink-button rating-card-button"
           href={`https://www.google.com/maps/@${rating.coordinates.latitude},${rating.coordinates.longitude},30z`}
         >
           View in Google Maps
         </a>
       )}
+      <div id="card-separator" />
     </>
   );
 }
