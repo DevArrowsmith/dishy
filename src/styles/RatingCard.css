@@ -2,6 +2,7 @@
   width: 100%;
   padding: 16px 10px;
   background: none;
+  color: black;
   font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   display: flex;
@@ -28,6 +29,7 @@
 }
 
 .RatingCard-left-container p {
+  color: black;
   margin: 0;
   text-align: left;
 }
@@ -37,6 +39,7 @@
 }
 
 .RatingCard-address p {
+  color: black;
   margin: 0 10px;
   width: 100%;
   text-align: left;
@@ -63,5 +66,6 @@
 }
 
 .rating-circle p {
+  color: black;
   margin: 0;
 }
