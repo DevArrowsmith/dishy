@@ -41,6 +41,10 @@
   opacity: 0;
 }
 
+.banner-spaced {
+  margin: 20px 0;
+}
+
 .banner-flash {
   animation: 5s flashAndFade;
 }
