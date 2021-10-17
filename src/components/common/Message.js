@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import "../../styles/common/message.css";
 
 const Message = ({ messageType, messageText }) => (
-  <>
-    <p className={`message ${messageType}`}>{messageText}</p>
-  </>
+  <p className={`message ${messageType}`}>{messageText}</p>
 );
 Message.defaultProps = {
   messageType: "",
