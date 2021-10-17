@@ -76,6 +76,9 @@ function DishRatings({ filteredRatings, coordinates }) {
             Sort by Distance
           </button>
         </div>
+        <div id="guidance-text-container">
+          <p id="guidance-text">Click on a listing for more details.</p>
+        </div>
         <div id="rating-cards">
           {dishRatings.map((rating) => (
             <RatingCard rating={rating} key={rating.name} />
